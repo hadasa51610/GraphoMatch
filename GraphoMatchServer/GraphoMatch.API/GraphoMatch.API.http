@@ -1,0 +1,6 @@
+@GraphoMatch.API_HostAddress = http://localhost:5289
+
+GET {{GraphoMatch.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
