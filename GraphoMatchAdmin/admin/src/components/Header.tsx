@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { PenLine } from "lucide-react";
+import { Link, PenLine } from "lucide-react";
 import { Button } from "./ui/Button";
 import { useEffect, useState } from "react";
+// import Link from 'next/link';
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false)
@@ -44,7 +45,7 @@ const Header = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
                     >
-                        <a href="#" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">  About </a>
+                        <Link href="#" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">  About </Link>
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, y: -10 }}

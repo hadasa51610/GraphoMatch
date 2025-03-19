@@ -4,23 +4,33 @@ import { Button } from "@/components/ui/Button"
 import { Input } from "@/components/ui/Input"
 import { Label } from "@/components/ui/Label"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/Dialog"
-import { ArrowRight, Lock, Mail, Loader2, Link } from "lucide-react"
+import { ArrowRight, Lock, Mail, Loader2 } from "lucide-react"
+import { UserLoginType } from "@/types/UserLoginType"
+import { AppDispatch } from "@/store/store"
+import { useDispatch } from "react-redux"
+import { Login } from "@/store/authSlice"
+import { Link} from 'react-router'
 
 interface LoginDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
 }
 
-export function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
+export const LoginDialog=({ open, onOpenChange }: LoginDialogProps) =>{
+  const dispatch = useDispatch<AppDispatch>();
   const [isLoading, setIsLoading] = useState(false)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = (e: React.FormEvent,data:UserLoginType) => {
     e.preventDefault()
     setIsLoading(true)
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false)
-      onOpenChange(false)
+    dispatch(Login(data)); 
+        setTimeout(() => {
+      setIsLoading(false);
+      onOpenChange(false);
+      <Link to="/dashboard"/>
     }, 1500)
   }
 
@@ -30,13 +40,12 @@ export function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
         <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg blur opacity-20 -z-10"></div>
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
-            Graphologist Login
+          Welcome Back
           </DialogTitle>
           <DialogDescription className="text-gray-400">
-            Enter your credentials to access the graphologist dashboard.
-          </DialogDescription>
+          Login to access your GraphoMatch account          </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e)=>{handleSubmit(e,{email:email,password:password})}}>
           <div className="grid gap-5 py-4">
             <div className="space-y-2">
               <Label htmlFor="email" className="text-sm font-medium text-gray-300"> Email</Label>
@@ -47,7 +56,8 @@ export function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="graphologist@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus-visible:ring-purple-500"
                   required
                 />
@@ -56,9 +66,9 @@ export function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password" className="text-sm font-medium text-gray-300"> Password </Label>
-                <Link href="#" className="text-xs text-purple-400 hover:text-purple-300 transition-colors">
+                <a href="#" className="text-xs text-purple-400 hover:text-purple-300 transition-colors">
                   Forgot password?
-                </Link>
+                </a>
               </div>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -67,6 +77,8 @@ export function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
                 <Input
                   id="password"
                   type="password"
+                  value={password}
+                  onChange={(e)=>setPassword(e.target.value)}
                   className="pl-10 bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
                   required
                 />

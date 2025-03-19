@@ -1,12 +1,13 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { ArrowRight, FileText, BrainCircuit, ChevronRight, Fingerprint } from "lucide-react"
+import { ArrowRight, FileText, BrainCircuit, ChevronRight, Fingerprint, Section } from "lucide-react"
 import { Button } from "@/components/ui/Button"
 import { LoginDialog } from "@/pages/LoginDialog"
-import { ParticleBackground } from "./components/ParticleBackground"
 import { RegisterDialog } from "./RegisterDialog"
-import Footer from "./components/Footer"
-import Header from "./components/Header"
+import { ParticleBackground } from "@/components/ParticleBackground"
+import Header from "@/components/Header"
+import Footer from "@/components/Footer"
+
 
 export default function Home() {
     const [loginOpen, setLoginOpen] = useState(false)
@@ -15,7 +16,7 @@ export default function Home() {
     return (
         <div className="w-screen min-h-screen bg-black text-white overflow-hidden">
             <ParticleBackground />
-            <Header/>
+            <Header />
             <main className="relative pt-32 pb-20">
                 <section className="container mx-auto px-4 mb-32">
                     <div className="max-w-5xl mx-auto">
@@ -30,7 +31,7 @@ export default function Home() {
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
                                 </span>
-                                <span className="text-gray-300 font-medium text-sm">Graphologist Portal - Professional Access</span>
+                                <span className="text-gray-300 font-medium text-sm">Job Matching Platform</span>
                             </div>
                         </motion.div>
 
@@ -40,9 +41,9 @@ export default function Home() {
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="text-5xl md:text-7xl font-bold text-center leading-tight mb-6"
                         >
-                            <span className="block">Discover Career Potential</span>
+                            <span className="block">Find Your Perfect</span>
                             <span className="block mt-2">
-                                Through{" "}
+                                Career Through{" "}
                                 <span className="relative">
                                     <span className="absolute -inset-1 blur-xl bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 opacity-30 rounded-lg"></span>
                                     <span className="relative bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
@@ -58,8 +59,8 @@ export default function Home() {
                             transition={{ duration: 0.6, delay: 0.3 }}
                             className="text-xl text-gray-300 max-w-3xl mx-auto text-center mb-10"
                         >
-                            Welcome to the exclusive GraphoMatch platform, where the art of graphology meets cutting-edge AI to reveal
-                            career insights hidden within the strokes of handwriting.
+                            Welcome to GraphoMatch, where handwriting analysis and AI technology combine to match you with your ideal
+                            career opportunities.
                         </motion.p>
 
                         <motion.div
@@ -73,15 +74,15 @@ export default function Home() {
                                 className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white border-0 h-14 px-8 rounded-full group"
                                 onClick={() => setLoginOpen(true)}
                             >
-                                <span>Login to Dashboard</span>
+                                <span>Get Started</span>
                                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                             </Button>
                             <Button
                                 size="lg"
                                 variant="outline"
                                 className="text-black border-white/20 bg-white/5 hover:bg-white/10 h-14 px-8 rounded-full backdrop-blur-sm"
-                                onClick={() => setRegisterOpen(true)}
-                            > Register as Graphologist
+                                onClick={() => setLoginOpen(true)}
+                            >Login to Account
                             </Button>
                         </motion.div>
 
@@ -93,7 +94,7 @@ export default function Home() {
                         >
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur opacity-30"></div>
                             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl">
-                                <div className="p-1"> </div>
+                                <div className="p-1"></div>
                             </div>
                         </motion.div>
                     </div>
@@ -108,10 +109,9 @@ export default function Home() {
                             viewport={{ once: true }}
                             className="text-center mb-16"
                         >
-                            <h2 className="text-3xl md:text-4xl font-bold mb-4">Advanced Graphology Platform</h2>
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
                             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                                Powerful tools designed specifically for professional graphologists
-                            </p>
+                                Our unique approach to job matching combines handwriting analysis with your resume                            </p>
                         </motion.div>
 
                         <div className="grid md:grid-cols-3 gap-8">
@@ -130,10 +130,9 @@ export default function Home() {
                                             <div className="bg-gradient-to-br from-purple-500 to-pink-500 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                                 <FileText className="h-7 w-7 text-white" />
                                             </div>
-                                            <h3 className="text-xl font-bold text-white mb-3">Handwriting Analysis</h3>
+                                            <h3 className="text-xl font-bold text-white mb-3">Upload Documents</h3>
                                             <p className="text-gray-300 mb-6">
-                                                Advanced tools to process and clean handwriting samples before AI analysis.
-                                            </p>
+                                                Submit your resume and a handwriting sample to our secure platform                                            </p>
                                             <div className="mt-auto pt-4">
                                                 <a href="#"
                                                     className="inline-flex items-center text-sm font-medium text-purple-400 hover:text-purple-300 transition-colors"
@@ -162,10 +161,9 @@ export default function Home() {
                                             <div className="bg-gradient-to-br from-pink-500 to-red-500 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                                 <BrainCircuit className="h-7 w-7 text-white" />
                                             </div>
-                                            <h3 className="text-xl font-bold text-white mb-3">AI-Powered Insights</h3>
+                                            <h3 className="text-xl font-bold text-white mb-3">AI Analysis</h3>
                                             <p className="text-gray-300 mb-6">
-                                                Leverage state-of-the-art LLM models to extract personality traits from handwriting.
-                                            </p>
+                                                Our AI analyzes your handwriting to identify personality traits and career aptitudes                                            </p>
                                             <div className="mt-auto pt-4">
                                                 <a href="#"
                                                     className="inline-flex items-center text-sm font-medium text-pink-400 hover:text-pink-300 transition-colors"
@@ -194,10 +192,9 @@ export default function Home() {
                                             <div className="bg-gradient-to-br from-blue-500 to-purple-500 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                                 <Fingerprint className="h-7 w-7 text-white" />
                                             </div>
-                                            <h3 className="text-xl font-bold text-white mb-3">Career Matching</h3>
+                                            <h3 className="text-xl font-bold text-white mb-3">Job Matching</h3>
                                             <p className="text-gray-300 mb-6">
-                                                Provide personalized career recommendations based on personality analysis.
-                                            </p>
+                                                Receive personalized job recommendations based on your unique profile                                            </p>
                                             <div className="mt-auto pt-4">
                                                 <a href="#"
                                                     className="inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
@@ -229,19 +226,31 @@ export default function Home() {
                                 <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl"></div>
                                 <div className="relative flex flex-col md:flex-row items-center gap-8 md:gap-12">
                                     <div className="md:w-1/2">
-                                        <h2 className="text-3xl md:text-4xl font-bold mb-4">Join Our Expert Network</h2>
+                                        <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Find Your Perfect Job?</h2>
                                         <p className="text-gray-300 mb-6">
-                                            Become part of our exclusive network of professional graphologists and help people discover their
-                                            true career potential through the science of handwriting analysis.
+                                            Join thousands of job seekers who have discovered their ideal career path through GraphoMatch's
+                                            innovative approach.
                                         </p>
                                         <Button
                                             size="lg"
                                             className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white border-0 rounded-full group"
                                             onClick={() => setRegisterOpen(true)}
                                         >
-                                            <span>Register Now</span>
+                                            <span>Get Started Now</span>
                                             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                                         </Button>
+                                    </div>
+                                    <div className="md:w-1/2 flex justify-center">
+                                        <div className="relative">
+                                            <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur opacity-50"></div>
+                                            <div className="relative rounded-full p-1 bg-black/50 backdrop-blur-sm border border-white/10">
+                                                <img
+                                                    src="/placeholder.svg?height=300&width=300"
+                                                    alt="Job seeker success"
+                                                    className="w-64 h-64 rounded-full object-cover"
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -249,7 +258,7 @@ export default function Home() {
                     </div>
                 </section>
             </main>
-           <Footer/>
+            <Footer />
 
             <LoginDialog open={loginOpen} onOpenChange={setLoginOpen} />
             <RegisterDialog open={registerOpen} onOpenChange={setRegisterOpen} />

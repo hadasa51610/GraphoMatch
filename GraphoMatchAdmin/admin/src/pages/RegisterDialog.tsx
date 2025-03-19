@@ -5,6 +5,12 @@ import { Input } from "@/components/ui/Input"
 import { Label } from "@/components/ui/Label"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter, } from "@/components/ui/Dialog"
 import { ArrowRight, User, Mail, Lock, Loader2 } from "lucide-react"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "@/store/store"
+import { Register } from "@/store/authSlice"
+import { UserRegisterType } from "@/types/UserRegisterType"
+import {Link} from 'react-router'
+
 
 interface RegisterDialogProps {
   open: boolean
@@ -12,15 +18,21 @@ interface RegisterDialogProps {
 }
 
 export function RegisterDialog({ open, onOpenChange }: RegisterDialogProps) {
+  const dispatch = useDispatch<AppDispatch>();
   const [isLoading, setIsLoading] = useState(false)
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent, data: UserRegisterType) => {
     e.preventDefault()
     setIsLoading(true)
-    // Simulate API call
+    dispatch(Register(data))
     setTimeout(() => {
-      setIsLoading(false)
-      onOpenChange(false)
+      setIsLoading(false);
+      onOpenChange(false);
+      <Link to='/dashboard'/>
     }, 1500)
   }
 
@@ -30,13 +42,14 @@ export function RegisterDialog({ open, onOpenChange }: RegisterDialogProps) {
         <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg blur opacity-20 -z-10"></div>
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
-            Graphologist Registration
+            Create Your Account
           </DialogTitle>
           <DialogDescription className="text-gray-400">
-            Create an account to join the GraphoMatch analyst team.
+            Join GraphoMatch to find your perfect career match
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => handleSubmit(e, { firstName: firstName, lastName: lastName, email: email, password: password })}>
+          <div className="grid gap-5 py-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="first-name" className="text-sm font-medium text-gray-300"> First name </Label>
@@ -46,15 +59,20 @@ export function RegisterDialog({ open, onOpenChange }: RegisterDialogProps) {
                   </div>
                   <Input
                     id="first-name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
                     className="pl-10 bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
                     required
                   />
                 </div>
               </div>
-              <div className="space-y-2">
+              <div
+                className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500">
                 <Label htmlFor="last-name" className="text-sm font-medium text-gray-300"> Last name </Label>
                 <Input
                   id="last-name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
                   required
                 />
@@ -69,6 +87,8 @@ export function RegisterDialog({ open, onOpenChange }: RegisterDialogProps) {
                 <Input
                   id="email"
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="graphologist@example.com"
                   className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus-visible:ring-purple-500"
                   required
@@ -84,6 +104,8 @@ export function RegisterDialog({ open, onOpenChange }: RegisterDialogProps) {
                 <Input
                   id="password"
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="pl-10 bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
                   required
                 />
@@ -98,25 +120,26 @@ export function RegisterDialog({ open, onOpenChange }: RegisterDialogProps) {
                 required
               />
             </div>
-          <DialogFooter>
-            <Button
-              type="submit"
-              className="w-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white border-0 rounded-full"
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Processing...
-                </>
-              ) : (
-                <>
-                  Complete Registration
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </>
-              )}
-            </Button>
-          </DialogFooter>
+            <DialogFooter>
+              <Button
+                type="submit"
+                className="w-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white border-0 rounded-full"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    Complete Registration
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </>
+                )}
+              </Button>
+            </DialogFooter>
+            </div>
         </form>
       </DialogContent>
     </Dialog>
