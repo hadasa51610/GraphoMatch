@@ -33,6 +33,12 @@ namespace GraphoMatch.Service
             return _mapper.Map<UserDto>(user);
         }
 
+        public async Task<UserDto?> GetByEmailAsync(string email)
+        {
+            var user = await _managerRepository._users.GetByEmailAsync(email);
+            return _mapper.Map<UserDto>(user);
+        }
+
         public async Task<bool> RemoveAsync(int id)
         {
             var feedbacks = await _managerRepository._feedback.GetByUserIdAsync(id);

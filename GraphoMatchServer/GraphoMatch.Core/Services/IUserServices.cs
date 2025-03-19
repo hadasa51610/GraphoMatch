@@ -9,6 +9,6 @@ namespace GraphoMatch.Core.Services
 {
     public interface IUserService:IService<UserDto>
     {
-       
+        public Task<UserDto?> GetByEmailAsync(string email);
     }
 }

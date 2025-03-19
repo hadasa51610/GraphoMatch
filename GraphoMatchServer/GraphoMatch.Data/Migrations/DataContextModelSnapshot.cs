@@ -115,6 +115,38 @@ namespace GraphoMatch.Data.Migrations
                     b.ToTable("HandWriting", (string)null);
                 });
 
+            modelBuilder.Entity("GraphoMatch.Core.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RoleDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Role", (string)null);
+                });
+
             modelBuilder.Entity("GraphoMatch.Core.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -128,18 +160,21 @@ namespace GraphoMatch.Data.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("UpdateAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -187,10 +222,20 @@ namespace GraphoMatch.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("GraphoMatch.Core.Models.Role", b =>
+                {
+                    b.HasOne("GraphoMatch.Core.Models.User", "User")
+                        .WithMany("Roles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("GraphoMatch.Core.Models.Analysis", b =>
                 {
-                    b.Navigation("Feedback")
-                        .IsRequired();
+                    b.Navigation("Feedback");
                 });
 
             modelBuilder.Entity("GraphoMatch.Core.Models.HandWriting", b =>
@@ -203,6 +248,8 @@ namespace GraphoMatch.Data.Migrations
                     b.Navigation("Feedback");
 
                     b.Navigation("HandWritings");
+
+                    b.Navigation("Roles");
                 });
 #pragma warning restore 612, 618
         }
