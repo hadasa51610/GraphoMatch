@@ -7,6 +7,7 @@ import { RegisterDialog } from "./RegisterDialog"
 import { ParticleBackground } from "@/components/ParticleBackground"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
+import { Outlet } from "react-router-dom"
 
 
 export default function Home() {
@@ -16,7 +17,7 @@ export default function Home() {
     return (
         <div className="w-screen min-h-screen bg-black text-white overflow-hidden">
             <ParticleBackground />
-            <Header />
+            <Header/>
             <main className="relative pt-32 pb-20">
                 <section className="container mx-auto px-4 mb-32">
                     <div className="max-w-5xl mx-auto">
@@ -94,7 +95,13 @@ export default function Home() {
                         >
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur opacity-30"></div>
                             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl">
-                                <div className="p-1"></div>
+                                <div className="p-1">
+                                    <img
+                                        src="picture2.png"
+                                        alt="GraphoMatch Dashboard Preview"
+                                        className="w-full h-auto rounded-xl object-cover"
+                                    />
+                                </div>
                             </div>
                         </motion.div>
                     </div>
@@ -258,7 +265,6 @@ export default function Home() {
                     </div>
                 </section>
             </main>
-            <Footer />
 
             <LoginDialog open={loginOpen} onOpenChange={setLoginOpen} />
             <RegisterDialog open={registerOpen} onOpenChange={setRegisterOpen} />

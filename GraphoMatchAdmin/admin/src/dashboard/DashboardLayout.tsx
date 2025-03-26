@@ -1,25 +1,36 @@
-"use client"
-
-import type React from "react"
-
 import { useState, useEffect } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { useLocation, Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import { PenLine, User, BrainCircuit, Briefcase, MessageSquare, LogOut, Bell } from "lucide-react"
 
 import { Button } from "@/components/ui/Button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import { ParticleBackground } from "@/components/ParticleBackground"
+import { Outlet } from "react-router"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "@/store/store"
+import { UserType } from "@/types/UserType"
+import { Get } from "@/store/slices/userSlice"
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+
+const DashboardLayout = () => {
   const [scrolled, setScrolled] = useState(false)
-  const [notifications, setNotifications] = useState(3)
-  const pathname = usePathname()
+  const [notifications,] = useState(3)
+  const { pathname } = useLocation()
+  const dispatch = useDispatch<AppDispatch>();
+  const [user, setUser] = useState<UserType | null>(null);
+
+
+  useEffect(() => {
+    const userId = sessionStorage.getItem('userId');
+    if (userId) {
+      dispatch(Get(Number(userId))).then((result: any) => {
+        if (result.payload) {
+          setUser(result.payload as UserType);
+        }
+      });
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,16 +41,15 @@ export default function DashboardLayout({
   }, [])
 
   const navItems = [
-    { name: "Profile", href: "/dashboard", icon: User },
-    { name: "Analysis", href: "/dashboard/analysis", icon: BrainCircuit },
-    { name: "Jobs", href: "/dashboard/jobs", icon: Briefcase },
-    { name: "Feedback", href: "/dashboard/feedback", icon: MessageSquare },
+    { name: "Profile", href: "profile", icon: User },
+    { name: "Analysis", href: "analysis", icon: BrainCircuit },
+    { name: "Jobs", href: "jobs", icon: Briefcase },
+    { name: "Feedback", href: "feedback", icon: MessageSquare },
   ]
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       <ParticleBackground />
-
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-black/80 backdrop-blur-md py-3 shadow-lg" : "bg-transparent py-6"}`}
       >
@@ -61,29 +71,28 @@ export default function DashboardLayout({
             </span>
           </motion.div>
 
-          <nav className="hidden md:flex items-center gap-6">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`)
-              const Icon = item.icon
-
+          <nav className="md:flex items-center gap-6">
+            {navItems.map((item, index) => {
+              const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+              const Icon = item.icon;
               return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-full transition-colors ${
-                    isActive ? "bg-white/10 text-white" : "text-gray-400 hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  <Icon className="h-4 w-4" />
-                  <span className="text-sm font-medium">{item.name}</span>
-                </Link>
-              )
+                <div key={item.name || index}>
+                  <Link
+                    to={item.href}
+                    className={`flex items-center gap-2 px-3 py-2 rounded-full transition-colors ${isActive ? "bg-white/10 text-white" : "text-gray-400 hover:text-white hover:bg-white/5"
+                      }`}
+                  >
+                    <Icon className="h-4 w-4" />
+                    <span className="text-sm font-medium">{item.name}</span>
+                  </Link>
+                </div>
+              );
             })}
           </nav>
 
           <div className="flex items-center gap-4">
             <div className="relative">
-              <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-full relative">
+              <Button variant="ghost" size="icon" className="text-black hover:bg-white/10 rounded-full relative">
                 <Bell className="h-5 w-5" />
                 {notifications > 0 && (
                   <span className="absolute top-0 right-0 h-4 w-4 bg-red-500 rounded-full flex items-center justify-center text-[10px] font-bold">
@@ -96,16 +105,16 @@ export default function DashboardLayout({
             <div className="flex items-center gap-2">
               <Avatar className="h-9 w-9 border-2 border-purple-500">
                 <AvatarImage src="/placeholder.svg?height=36&width=36" alt="User" />
-                <AvatarFallback className="bg-purple-900 text-white">JD</AvatarFallback>
+                <AvatarFallback className="bg-purple-900 text-white">{user?.firstName.charAt(0).toUpperCase()}{user?.lastName.charAt(0).toUpperCase()}</AvatarFallback>
               </Avatar>
-              <div className="hidden md:block">
-                <p className="text-sm font-medium">John Doe</p>
-                <p className="text-xs text-gray-400">Software Developer</p>
+              <div className="md:block">
+                <p className="text-sm font-medium">{user?.firstName} {user?.lastName}</p>
+                <p className="text-xs text-gray-400">{user?.profession}</p>
               </div>
             </div>
 
-            <Link href="/">
-              <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-full">
+            <Link to="/">
+              <Button variant="ghost" size="icon" className="text-black hover:bg-white/10 rounded-full">
                 <LogOut className="h-5 w-5" />
               </Button>
             </Link>
@@ -113,39 +122,10 @@ export default function DashboardLayout({
         </div>
       </header>
 
-      <main className="pt-32 pb-20 container mx-auto px-4">{children}</main>
-
-      <footer className="relative bg-black/50 backdrop-blur-lg border-t border-white/5 py-10 z-10">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center gap-2 mb-6 md:mb-0">
-              <div className="relative">
-                <PenLine className="h-6 w-6 text-gray-400" />
-              </div>
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
-                GraphoMatch
-              </span>
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-8 mb-6 md:mb-0">
-              <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">
-                About
-              </Link>
-              <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">
-                Privacy
-              </Link>
-              <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">
-                Terms
-              </Link>
-              <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">
-                Contact
-              </Link>
-            </div>
-
-            <div className="text-sm text-gray-500">© {new Date().getFullYear()} GraphoMatch. All rights reserved.</div>
-          </div>
-        </div>
-      </footer>
+      <main className="pt-32 pb-20 container mx-auto px-4">
+        <Outlet />
+      </main>
     </div>
   )
 }
+export default DashboardLayout;

@@ -1,20 +1,40 @@
 import type React from "react"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { FileText, Upload, User, Check, AlertCircle } from "lucide-react"
+import { FileText, Upload, User, Check, AlertCircle} from "lucide-react"
 
 import { Button } from "@/components/ui/Button"
-import { Card } from "@/components/ui/card"
+import { Card } from "@/components/ui/Card"
 import { Progress } from "@/components/ui/Progress"
 import { Badge } from "@/components/ui/Badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import { Input } from "@/components/ui/Input"
 import { Label } from "@/components/ui/Label"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "@/store/store"
+import { Get, Update } from "@/store/slices/userSlice"
+import { UserType } from "@/types/UserType"
+import { SuccessNotification } from "@/components/SuccessNotification"
 
 export default function ProfilePage() {
   const [resumeFile, setResumeFile] = useState<File | null>(null)
   const [handwritingFile, setHandwritingFile] = useState<File | null>(null)
+  const dispatch = useDispatch<AppDispatch>();
+  const [user, setUser] = useState<UserType | null>(null);
+  const [showProfileSuccess, setShowProfileSuccess] = useState(false)
+
+
+  useEffect(() => {
+    const userId = sessionStorage.getItem('userId');
+    if (userId) {
+      dispatch(Get(Number(userId))).then((result: any) => {
+        if (result.payload) {
+          setUser(result.payload as UserType);
+        }
+      });
+    }
+  }, [dispatch]);
 
   const handleResumeUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -28,7 +48,22 @@ export default function ProfilePage() {
     }
   }
 
-  const profileCompletion = resumeFile && handwritingFile ? 100 : resumeFile || handwritingFile ? 50 : 25
+  const profileCompletion = resumeFile && handwritingFile ? 100 : resumeFile || handwritingFile ? 50 : 0
+
+  const handleSaveProfile = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (user) {
+      const userId = sessionStorage.getItem('userId');
+      if (userId) {
+        dispatch(Update({ data: user, userId: Number(userId) })).then((result: any) => {
+          if (result.payload) {
+            setUser(result.payload as UserType);
+          }
+        });
+      }
+    }
+    setShowProfileSuccess(true);
+  }
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -62,16 +97,16 @@ export default function ProfilePage() {
               <div className="flex flex-col items-center text-center mb-6">
                 <Avatar className="h-24 w-24 border-2 border-purple-500 mb-4">
                   <AvatarImage src="/placeholder.svg?height=96&width=96" alt="User" />
-                  <AvatarFallback className="bg-purple-900 text-white text-2xl">JD</AvatarFallback>
+                  <AvatarFallback className="bg-purple-900 text-white text-2xl">{user?.firstName.charAt(0).toUpperCase()}{user?.lastName.charAt(0).toUpperCase()}</AvatarFallback>
                 </Avatar>
-                <h2 className="text-xl font-bold">John Doe</h2>
-                <p className="text-gray-400">Software Developer</p>
+                <h2 className="text-xl font-bold text-white">{user?.firstName} {user?.lastName}</h2>
+                <p className="text-gray-400">{user?.profession}</p>
               </div>
 
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-400">Profile Completion</span>
-                  <span className="text-sm font-medium">{profileCompletion}%</span>
+                  <span className="text-sm font-medium text-gray-400">{profileCompletion}%</span>
                 </div>
                 <Progress
                   value={profileCompletion}
@@ -86,11 +121,13 @@ export default function ProfilePage() {
                         <User className="h-5 w-5 text-purple-400" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium">Personal Info</p>
+                        <p className="text-sm font-medium text-gray-300">Personal Info</p>
                       </div>
                     </div>
-                    <Badge variant="outline" className="bg-green-500/10 text-green-400 border-green-500/20">
-                      Complete
+                    <Badge variant="outline"
+                      className={`${resumeFile ? "bg-green-500/10 text-green-400 border-green-500/20" : "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"}`}
+                    >
+                      {resumeFile ? "Complete" : "Pending"}
                     </Badge>
                   </div>
 
@@ -100,14 +137,14 @@ export default function ProfilePage() {
                         <FileText className="h-5 w-5 text-pink-400" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium">Documents</p>
+                        <p className="text-sm font-medium text-gray-300">Documents</p>
                       </div>
                     </div>
                     <Badge
                       variant="outline"
-                      className={`${resumeFile && handwritingFile ? "bg-green-500/10 text-green-400 border-green-500/20" : "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"}`}
+                      className={`${handwritingFile ? "bg-green-500/10 text-green-400 border-green-500/20" : "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"}`}
                     >
-                      {resumeFile && handwritingFile ? "Complete" : "Pending"}
+                      {handwritingFile ? "Complete" : "Pending"}
                     </Badge>
                   </div>
                 </div>
@@ -124,58 +161,85 @@ export default function ProfilePage() {
         >
           <Card className="bg-gradient-to-br from-gray-900 to-black border border-white/10 backdrop-blur-xl overflow-hidden mb-8">
             <div className="p-6">
-              <h3 className="text-xl font-bold mb-4">Personal Information</h3>
+              <h3 className="text-xl font-bold mb-4 text-white">Personal Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2 text-gray-500">
+                    <Label htmlFor="first-name">First Name</Label>
+                    <Input
+                      id="first-name"
+                      defaultValue={user?.firstName}
+                      onChange={(e) => {
+                        if (user) {
+                          setUser({ ...user, firstName: e.target.value });
+                        }
+                      }}
+                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-gray-300"
+                    />
+                  </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="first-name">First Name</Label>
-                  <Input
-                    id="first-name"
-                    defaultValue="John"
-                    className="bg-white/5 border-white/10 focus-visible:ring-purple-500"
-                  />
+                  <div className="space-y-2 text-gray-500">
+                    <Label htmlFor="last-name">Last Name</Label>
+                    <Input
+                      id="last-name"
+                      defaultValue={user?.lastName}
+                      onChange={(e) => {
+                        if (user) {
+                          setUser({ ...user, lastName: e.target.value })
+                        }
+                      }}
+                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-gray-300"
+                    />
+                  </div>
+
+                  <div className="space-y-2 text-gray-500">
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      defaultValue={user?.email}
+                      onChange={(e) => {
+                        if (user) {
+                          setUser({ ...user, email: e.target.value })
+                        }
+                      }}
+                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-gray-300"
+                    />
+                  </div>
+
+                  <div className="space-y-2 text-gray-500">
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input
+                      id="phone"
+                      defaultValue={user?.phone}
+                      onChange={(e) => {
+                        if (user) {
+                          setUser({ ...user, phone: e.target.value })
+                        }
+                      }}
+                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-gray-300"
+                    />
+                  </div>
+
+                  <div className="space-y-2 md:col-span-2 text-gray-500">
+                    <Label htmlFor="profession">Current Profession</Label>
+                    <Input
+                      id="profession"
+                      defaultValue={user?.profession}
+                      onChange={(e) => {
+                        if (user) {
+                          setUser({ ...user, profession: e.target.value })
+                        }
+                      }}
+                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-gray-300"
+                    />
+                  </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="last-name">Last Name</Label>
-                  <Input
-                    id="last-name"
-                    defaultValue="Doe"
-                    className="bg-white/5 border-white/10 focus-visible:ring-purple-500"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    defaultValue="john.doe@example.com"
-                    className="bg-white/5 border-white/10 focus-visible:ring-purple-500"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone</Label>
-                  <Input
-                    id="phone"
-                    defaultValue="+1 (555) 123-4567"
-                    className="bg-white/5 border-white/10 focus-visible:ring-purple-500"
-                  />
-                </div>
-
-                <div className="space-y-2 md:col-span-2">
-                  <Label htmlFor="profession">Current Profession</Label>
-                  <Input
-                    id="profession"
-                    defaultValue="Software Developer"
-                    className="bg-white/5 border-white/10 focus-visible:ring-purple-500"
-                  />
-                </div>
-              </div>
-
-              <div className="mt-6 flex justify-end">
-                <Button className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white border-0 rounded-lg">
+                <div className="mt-6 flex justify-end">
+                <Button
+                  className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white border-0 rounded-lg"
+                  onClick={handleSaveProfile}
+                >
                   Save Changes
                 </Button>
               </div>
@@ -184,7 +248,7 @@ export default function ProfilePage() {
 
           <Card className="bg-gradient-to-br from-gray-900 to-black border border-white/10 backdrop-blur-xl overflow-hidden">
             <div className="p-6">
-              <h3 className="text-xl font-bold mb-4">Document Upload</h3>
+              <h3 className="text-xl font-bold mb-4 text-white">Document Upload</h3>
               <p className="text-gray-400 mb-6">
                 Upload your resume and a handwriting sample for analysis. The handwriting sample should be at least one
                 paragraph written on unlined paper.
@@ -201,18 +265,17 @@ export default function ProfilePage() {
                     ) : (
                       <>
                         <FileText className="h-10 w-10 text-gray-400 mb-2" />
-                        <h4 className="font-medium mb-1">Resume</h4>
+                        <h4 className="font-medium mb-1 text-white">Resume</h4>
                         <p className="text-sm text-gray-400 mb-4">Upload your CV or resume (PDF, DOCX)</p>
                       </>
                     )}
 
                     <Label
                       htmlFor="resume-upload"
-                      className={`cursor-pointer inline-flex items-center gap-2 px-4 py-2 rounded-lg ${
-                        resumeFile
-                          ? "bg-white/10 hover:bg-white/20 text-white"
-                          : "bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white"
-                      }`}
+                      className={`cursor-pointer inline-flex items-center gap-2 px-4 py-2 rounded-lg ${resumeFile
+                        ? "bg-white/10 hover:bg-white/20 text-white"
+                        : "bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white"
+                        }`}
                     >
                       <Upload className="h-4 w-4" />
                       <span>{resumeFile ? "Change File" : "Upload Resume"}</span>
@@ -237,7 +300,7 @@ export default function ProfilePage() {
                     ) : (
                       <>
                         <FileText className="h-10 w-10 text-gray-400 mb-2" />
-                        <h4 className="font-medium mb-1">Handwriting Sample</h4>
+                        <h4 className="font-medium mb-1 text-white">Handwriting Sample</h4>
                         <p className="text-sm text-gray-400 mb-4">
                           Upload a clear image of your handwriting (JPG, PNG)
                         </p>
@@ -246,11 +309,10 @@ export default function ProfilePage() {
 
                     <Label
                       htmlFor="handwriting-upload"
-                      className={`cursor-pointer inline-flex items-center gap-2 px-4 py-2 rounded-lg ${
-                        handwritingFile
-                          ? "bg-white/10 hover:bg-white/20 text-white"
-                          : "bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white"
-                      }`}
+                      className={`cursor-pointer inline-flex items-center gap-2 px-4 py-2 rounded-lg ${handwritingFile
+                        ? "bg-white/10 hover:bg-white/20 text-white"
+                        : "bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white"
+                        }`}
                     >
                       <Upload className="h-4 w-4" />
                       <span>{handwritingFile ? "Change File" : "Upload Handwriting"}</span>
@@ -287,6 +349,13 @@ export default function ProfilePage() {
           </Card>
         </motion.div>
       </div>
+      <SuccessNotification
+        show={showProfileSuccess}
+        onClose={() => setShowProfileSuccess(false)}
+        title="Profile Updated!"
+        message="Your profile information has been successfully updated. The changes will be reflected across your account."
+        color="purple"
+      />
     </div>
   )
 }

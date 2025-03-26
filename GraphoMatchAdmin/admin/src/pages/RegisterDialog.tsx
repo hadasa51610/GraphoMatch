@@ -7,9 +7,9 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { ArrowRight, User, Mail, Lock, Loader2 } from "lucide-react"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/store/store"
-import { Register } from "@/store/authSlice"
-import { UserRegisterType } from "@/types/UserRegisterType"
-import {Link} from 'react-router'
+import { Register } from "@/store/slices/authSlice"
+import { Link, useNavigate } from 'react-router'
+import { UserType } from "@/types/UserType"
 
 
 interface RegisterDialogProps {
@@ -19,20 +19,24 @@ interface RegisterDialogProps {
 
 export function RegisterDialog({ open, onOpenChange }: RegisterDialogProps) {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate(); 
   const [isLoading, setIsLoading] = useState(false)
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [phone, setPhone] = useState("")
+  const [profession, setProfession] = useState("")
 
-  const handleSubmit = (e: React.FormEvent, data: UserRegisterType) => {
+
+  const handleSubmit = (e: React.FormEvent, data: UserType) => {
     e.preventDefault()
     setIsLoading(true)
     dispatch(Register(data))
     setTimeout(() => {
       setIsLoading(false);
       onOpenChange(false);
-      <Link to='/dashboard'/>
+      navigate('/dashboard')
     }, 1500)
   }
 
@@ -48,7 +52,9 @@ export function RegisterDialog({ open, onOpenChange }: RegisterDialogProps) {
             Join GraphoMatch to find your perfect career match
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={(e) => handleSubmit(e, { firstName: firstName, lastName: lastName, email: email, password: password })}>
+        <form onSubmit={(e) => handleSubmit(e, {
+          firstName: firstName, lastName: lastName, email: email, password: password, phone: phone, profession: profession
+        })}>
           <div className="grid gap-5 py-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -71,12 +77,31 @@ export function RegisterDialog({ open, onOpenChange }: RegisterDialogProps) {
                 <Label htmlFor="last-name" className="text-sm font-medium text-gray-300"> Last name </Label>
                 <Input
                   id="last-name"
-                  value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
                   required
                 />
               </div>
+            </div>
+            <div className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500">
+              <Label htmlFor="phone" className="text-sm font-medium text-gray-300">Phone</Label>
+              <Input
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
+                required
+              />
+            </div>
+
+            <div className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500">
+              <Label htmlFor="profession" className="text-sm font-medium text-gray-300">Current Profession</Label>
+              <Input
+                id="profession"
+                value={profession}
+                onChange={(e) => setProfession(e.target.value)}
+                className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
+                required
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email" className="text-sm font-medium text-gray-300"> Email </Label>
@@ -139,7 +164,7 @@ export function RegisterDialog({ open, onOpenChange }: RegisterDialogProps) {
                 )}
               </Button>
             </DialogFooter>
-            </div>
+          </div>
         </form>
       </DialogContent>
     </Dialog>

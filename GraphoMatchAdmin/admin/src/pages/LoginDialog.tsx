@@ -8,8 +8,9 @@ import { ArrowRight, Lock, Mail, Loader2 } from "lucide-react"
 import { UserLoginType } from "@/types/UserLoginType"
 import { AppDispatch } from "@/store/store"
 import { useDispatch } from "react-redux"
-import { Login } from "@/store/authSlice"
-import { Link} from 'react-router'
+import { Login } from "@/store/slices/authSlice"
+import { Link,useNavigate} from 'react-router-dom'
+
 
 interface LoginDialogProps {
   open: boolean
@@ -21,16 +22,19 @@ export const LoginDialog=({ open, onOpenChange }: LoginDialogProps) =>{
   const [isLoading, setIsLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate(); 
 
 
   const handleSubmit = (e: React.FormEvent,data:UserLoginType) => {
     e.preventDefault()
     setIsLoading(true)
-    dispatch(Login(data)); 
+    let user=dispatch(Login(data)); 
+    console.log(user.arg);
+    
         setTimeout(() => {
       setIsLoading(false);
       onOpenChange(false);
-      <Link to="/dashboard"/>
+      navigate('/dashboard');
     }, 1500)
   }
 

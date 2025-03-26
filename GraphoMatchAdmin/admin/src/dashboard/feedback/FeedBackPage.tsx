@@ -4,11 +4,13 @@ import { MessageSquare, Send, ThumbsUp } from "lucide-react"
 
 import { Card } from "@/components/ui/Card"
 import { Button } from "@/components/ui/Button"
-import { Textarea } from "@/components/ui/textarea"
+import { Textarea } from "@/components/ui/Textarea"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
+import { SuccessNotification } from "@/components/SuccessNotification"
 
 export default function FeedbackPage() {
   const [feedback, setFeedback] = useState("")
+  const [showSuccess, setShowSuccess] = useState(false)
 
   const feedbackItems = [
     {
@@ -44,7 +46,7 @@ export default function FeedbackPage() {
     if (feedback.trim()) {
       // Here you would normally send the feedback to your backend
       setFeedback("")
-      alert("Feedback submitted successfully!")
+      setShowSuccess(true)
     }
   }
 
@@ -141,6 +143,15 @@ export default function FeedbackPage() {
           </div>
         </Card>
       </motion.div>
+
+      <SuccessNotification
+        show={showSuccess}
+        onClose={() => setShowSuccess(false)}
+        title="Feedback Received!"
+        message="Thank you for your feedback! Our team will review your comments soon."
+        color="green"
+      />
     </div>
   )
 }
+

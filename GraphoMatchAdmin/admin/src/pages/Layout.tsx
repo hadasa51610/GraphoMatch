@@ -1,31 +1,28 @@
-import type React from "react"
 import "@/App.css"
-import { Inter } from "next/font/google"
-// import { ThemeProvider } from "@/components/theme-provider"
+import Footer from "@/components/Footer"
+import { Outlet } from "react-router-dom"
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-})
 
 export const metadata = {
   title: "GraphoMatch - Handwriting Analysis for Career Matching",
   description: "Professional platform for graphologists to analyze handwriting and provide career guidance",
 }
+// useEffect(() => {
+//   const handleScroll = () => {
+//     setScrolled(window.scrollY > 50)
+//   }
+//   window.addEventListener("scroll", handleScroll)
+//   return () => window.removeEventListener("scroll", handleScroll)
+// }, [])
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout() {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} font-sans`}>
-        {/* <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange> */}
-          {children}
-        {/* </ThemeProvider> */}
-      </body>
-    </html>
+    <>
+      <div className="w-screen min-h-screen bg-black text-white overflow-hidden">
+        <Outlet />
+        <Footer />
+      </div>
+    </>
   )
 }
 
