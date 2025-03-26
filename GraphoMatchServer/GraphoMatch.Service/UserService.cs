@@ -42,9 +42,9 @@ namespace GraphoMatch.Service
         public async Task<bool> RemoveAsync(int id)
         {
             var feedbacks = await _managerRepository._feedback.GetByUserIdAsync(id);
-            while (feedbacks != null)
+            foreach (var feedback in feedbacks)
             {
-                bool succeed= await _managerRepository._feedback.DeleteAsync(feedbacks.Id);
+                bool succeed= await _managerRepository._feedback.DeleteAsync(feedback.Id);
                 if(succeed) await _managerRepository.SaveAsync();
                 feedbacks = await _managerRepository._feedback.GetByUserIdAsync(id);
             }

@@ -23,14 +23,9 @@ namespace GraphoMatch.Core.Models
         public DateTime CreatedAt {  get; set; }
         public DateTime UploadedAt { get; set; }
 
-        //one to one - feedback to analysis
-        //[ForeignKey(nameof(Id))]
-        //public int? FeedbackId {  get; set; }
-        public Feedback? Feedback { get; set; }
         public Analysis()
         {
             HandWriting = new HandWriting();
-            Feedback = new Feedback();
             CreatedAt = DateTime.Now;
             UploadedAt = DateTime.Now;
         }

@@ -41,7 +41,6 @@ namespace GraphoMatch.Core.Models
 
         //one to one - feedback to user
         //[ForeignKey(nameof(Id))]
-        //public int? FeedbackId {  get; set; }
         public List<Feedback> Feedback { get; set; }
 
         public User()

@@ -18,6 +18,5 @@ namespace GraphoMatch.Core.DTOs
         public string Profession { get; set; }
         public Role Role { get; set; }
         public DateTime CreatedAt { get; set; }
-        public int FeedbackId { get; set; }
     }
 }

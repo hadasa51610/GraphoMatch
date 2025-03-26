@@ -33,12 +33,6 @@ namespace GraphoMatch.Data
                 .HasForeignKey(f => f.UserId)
                 .OnDelete(DeleteBehavior.Restrict); // לא לאפשר מחיקה של משתמש עם פידבקים
 
-            modelBuilder.Entity<Feedback>()
-                .HasOne(f => f.Analysis)
-                .WithOne(a => a.Feedback)
-                .OnDelete(DeleteBehavior.Restrict); // לא לאפשר מחיקה של ניתוח עם פידבקים
-
-            // הגדרות נוספות...
         }
 
     }

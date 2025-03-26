@@ -17,14 +17,10 @@ namespace GraphoMatch.Data.Repositories
             _feedbacks = context.Set<Feedback>();
         }
 
-        public async Task<Feedback?> GetByAnalysisIdAsync(int analysisId)
-        {
-            return await _feedbacks.FirstOrDefaultAsync(f => f.AnalysisId == analysisId);
-        }
 
-        public async Task<Feedback?> GetByUserIdAsync(int userId)
+        public async Task<IEnumerable<Feedback>> GetByUserIdAsync(int userId)
         {
-            return await _feedbacks.FirstOrDefaultAsync(f => f.UserId == userId);
+            return await _feedbacks.Where(f => f.UserId == userId).ToListAsync();
         }
     }
 }

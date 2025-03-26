@@ -10,7 +10,6 @@ namespace GraphoMatch.Core.Services
 {
     public interface IFeedbackService:IService<FeedbackDto>
     {
-        Task<FeedbackDto?> GetByUserIdAsync(int userId);
-        Task<FeedbackDto?> GetByAnalysisIdAsync(int analysisId);
+        Task<IEnumerable<FeedbackDto>> GetByUserIdAsync(int userId);
     }
 }

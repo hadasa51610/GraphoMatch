@@ -19,19 +19,12 @@ namespace GraphoMatch.Core.Models
         public int UserId {  get; set; }
         public User User { get; set; }
 
-        //one to one - feedback to analysis
-        [ForeignKey(nameof(Id))]
-        public int AnalysisId {  get; set; }
-        public Analysis Analysis { get; set; }
-
-        public int Rating {  get; set; }
-        public string Comment {  get; set; }
+        public string Content {  get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UploadedAt { get; set; }
         public Feedback()
         {
             User = new User();
-            Analysis = new Analysis();
             CreatedAt = DateTime.Now;
             UploadedAt = DateTime.Now;
         }

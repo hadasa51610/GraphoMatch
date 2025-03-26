@@ -34,16 +34,10 @@ namespace GraphoMatch.Service
             return _mapper.Map<FeedbackDto>(feedback);
         }
 
-        public async Task<FeedbackDto?> GetByUserIdAsync(int userId)
+        public async Task<IEnumerable<FeedbackDto>> GetByUserIdAsync(int userId)
         {
-            var feedback = await _managerRepository._feedback.GetByUserIdAsync(userId);
-            return _mapper.Map<FeedbackDto>(feedback);
-        }
-
-        public async Task<FeedbackDto?> GetByAnalysisIdAsync(int analysisId)
-        {
-            var feedback = await _managerRepository._feedback.GetByAnalysisIdAsync(analysisId);
-            return _mapper.Map<FeedbackDto>(feedback);
+            var feedbacks = await _managerRepository._feedback.GetByUserIdAsync(userId);
+            return _mapper.Map<IEnumerable<FeedbackDto>>(feedbacks);
         }
 
         public async Task<bool> RemoveAsync(int id)
@@ -64,6 +58,7 @@ namespace GraphoMatch.Service
         public async Task<FeedbackDto> AddAsync(FeedbackDto entity)
         {
             var feedbackDto = _mapper.Map<Feedback>(entity);
+            feedbackDto.User = await _managerRepository._users.GetByIdAsync(feedbackDto.UserId);
             feedbackDto = await _managerRepository._feedback.AddAsync(feedbackDto);
             if (feedbackDto != null) await _managerRepository.SaveAsync();
             return _mapper.Map<FeedbackDto>(feedbackDto);
