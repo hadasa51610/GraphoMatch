@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/Input"
 import { Label } from "@/components/ui/Label"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/store/store"
-import { Get, Update } from "@/store/slices/userSlice"
+import {  GetUser, Update } from "@/store/slices/userSlice"
 import { UserType } from "@/types/UserType"
 import { SuccessNotification } from "@/components/SuccessNotification"
 
@@ -28,7 +28,7 @@ export default function ProfilePage() {
   useEffect(() => {
     const userId = sessionStorage.getItem('userId');
     if (userId) {
-      dispatch(Get(Number(userId))).then((result: any) => {
+      dispatch(GetUser(Number(userId))).then((result: any) => {
         if (result.payload) {
           setUser(result.payload as UserType);
         }
@@ -106,7 +106,7 @@ export default function ProfilePage() {
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-400">Profile Completion</span>
-                  <span className="text-sm font-medium text-gray-400">{profileCompletion}%</span>
+                  <span className="text-sm font-medium text-white">{profileCompletion}%</span>
                 </div>
                 <Progress
                   value={profileCompletion}
@@ -121,13 +121,13 @@ export default function ProfilePage() {
                         <User className="h-5 w-5 text-purple-400" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-300">Personal Info</p>
+                        <p className="text-sm font-medium text-white">Personal Info</p>
                       </div>
                     </div>
                     <Badge variant="outline"
                       className={`${resumeFile ? "bg-green-500/10 text-green-400 border-green-500/20" : "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"}`}
                     >
-                      {resumeFile ? "Complete" : "Pending"}
+                      {resumeFile ? "Complete" : "Required"}
                     </Badge>
                   </div>
 
@@ -137,14 +137,14 @@ export default function ProfilePage() {
                         <FileText className="h-5 w-5 text-pink-400" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-300">Documents</p>
+                        <p className="text-sm font-medium text-white">Documents</p>
                       </div>
                     </div>
                     <Badge
                       variant="outline"
                       className={`${handwritingFile ? "bg-green-500/10 text-green-400 border-green-500/20" : "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"}`}
                     >
-                      {handwritingFile ? "Complete" : "Pending"}
+                      {handwritingFile ? "Complete" : "Required"}
                     </Badge>
                   </div>
                 </div>
@@ -163,7 +163,7 @@ export default function ProfilePage() {
             <div className="p-6">
               <h3 className="text-xl font-bold mb-4 text-white">Personal Information</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2 text-gray-500">
+                  <div className="space-y-2 text-gray-300">
                     <Label htmlFor="first-name">First Name</Label>
                     <Input
                       id="first-name"
@@ -173,11 +173,11 @@ export default function ProfilePage() {
                           setUser({ ...user, firstName: e.target.value });
                         }
                       }}
-                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-gray-300"
+                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
                     />
                   </div>
 
-                  <div className="space-y-2 text-gray-500">
+                  <div className="space-y-2 text-gray-300">
                     <Label htmlFor="last-name">Last Name</Label>
                     <Input
                       id="last-name"
@@ -187,11 +187,11 @@ export default function ProfilePage() {
                           setUser({ ...user, lastName: e.target.value })
                         }
                       }}
-                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-gray-300"
+                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
                     />
                   </div>
 
-                  <div className="space-y-2 text-gray-500">
+                  <div className="space-y-2 text-gray-300">
                     <Label htmlFor="email">Email</Label>
                     <Input
                       id="email"
@@ -202,11 +202,11 @@ export default function ProfilePage() {
                           setUser({ ...user, email: e.target.value })
                         }
                       }}
-                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-gray-300"
+                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
                     />
                   </div>
 
-                  <div className="space-y-2 text-gray-500">
+                  <div className="space-y-2 text-gray-300">
                     <Label htmlFor="phone">Phone</Label>
                     <Input
                       id="phone"
@@ -216,11 +216,11 @@ export default function ProfilePage() {
                           setUser({ ...user, phone: e.target.value })
                         }
                       }}
-                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-gray-300"
+                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
                     />
                   </div>
 
-                  <div className="space-y-2 md:col-span-2 text-gray-500">
+                  <div className="space-y-2 md:col-span-2 text-gray-300">
                     <Label htmlFor="profession">Current Profession</Label>
                     <Input
                       id="profession"
@@ -230,7 +230,7 @@ export default function ProfilePage() {
                           setUser({ ...user, profession: e.target.value })
                         }
                       }}
-                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-gray-300"
+                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
                     />
                   </div>
                 </div>

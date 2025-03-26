@@ -10,7 +10,7 @@ import { Outlet } from "react-router"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/store/store"
 import { UserType } from "@/types/UserType"
-import { Get } from "@/store/slices/userSlice"
+import { GetUser } from "@/store/slices/userSlice"
 
 
 const DashboardLayout = () => {
@@ -24,7 +24,7 @@ const DashboardLayout = () => {
   useEffect(() => {
     const userId = sessionStorage.getItem('userId');
     if (userId) {
-      dispatch(Get(Number(userId))).then((result: any) => {
+      dispatch(GetUser(Number(userId))).then((result: any) => {
         if (result.payload) {
           setUser(result.payload as UserType);
         }

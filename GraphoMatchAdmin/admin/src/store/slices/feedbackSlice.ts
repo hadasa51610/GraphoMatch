@@ -1,13 +1,13 @@
-import { UserType } from "@/types/UserType";
+import { FeedbackType } from "@/types/FeedbackType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const baseUrl = 'https://localhost:7134/api'
 
-export const GetUser = createAsyncThunk('data/get',
-    async (userId: number, thunkAPI) => {
+export const Get = createAsyncThunk('data/get',
+    async (_, thunkAPI) => {
         try {
-            const response = await axios.get(`${baseUrl}/User/${userId}`)
+            const response = await axios.get(`${baseUrl}/Feedback`)
             return response.data
         } catch (error) {
             if (error instanceof Error) {
@@ -18,16 +18,12 @@ export const GetUser = createAsyncThunk('data/get',
     }
 )
 
-export const Update = createAsyncThunk('data/put',
-    async ({ data, userId }: { data: UserType; userId: number }, thunkAPI) => {
+export const Add = createAsyncThunk('data/post',
+    async (data: FeedbackType, thunkAPI) => {
         try {
-            const response = await axios.put(`${baseUrl}/User/${userId}`, {
-                FirstName: data.firstName,
-                LastName: data.lastName,
-                Email: data.email,
-                Password: data.password,
-                Phone: data.phone,
-                Profession: data.profession
+            const response = await axios.post(`${baseUrl}/Feedback`, {
+                UserId: data.userId,
+                Content: data.content
             })
             return response.data;
         } catch (error) {
@@ -39,35 +35,36 @@ export const Update = createAsyncThunk('data/put',
     }
 )
 
-export const userSlice = createSlice({
+export const feedbackSlice = createSlice({
     name: 'data',
-    initialState: { list: [] as UserType[], loading: true, error: null as string | null },
+    initialState: { list: [] as FeedbackType[], loading: true, error: null as string | null },
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(GetUser.fulfilled,
+            .addCase(Get.fulfilled,
                 (state, action) => {
                     state.list = [...state.list, { ...action.payload }];
                 }
-            ).addCase(GetUser.rejected,
+            ).addCase(Get.rejected,
                 (state, action) => {
-                    console.log('Get user by id failed');
+                    console.log('Get feedbacks failed');
                     state.error = action.payload as string;
                 }
-            ).addCase(GetUser.pending, (state) => {
+            ).addCase(Get.pending, (state) => {
                 state.error = null;
-            }) .addCase(Update.fulfilled,
+            })
+            .addCase(Add.fulfilled,
                 (state, action) => {
-                    console.log('User update succeessfully');
+                    console.log('Feedback add succeessfully');
                     state.list = [...state.list, { ...action.payload }];
                 }
-            ).addCase(Update.rejected,
+            ).addCase(Add.rejected,
                 (state, action) => {
-                    console.log('Update user failed');
+                    console.log('Add feedback failed');
                     state.error = action.payload as string;
                 }
-            ).addCase(Update.pending, (state) => {
-                console.log('Update user...');
+            ).addCase(Add.pending, (state) => {
+                console.log('Add feedback...');
                 state.error = null;
             })
     }
