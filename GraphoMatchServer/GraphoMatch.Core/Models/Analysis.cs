@@ -20,11 +20,19 @@ namespace GraphoMatch.Core.Models
         public HandWriting HandWriting { get; set; }
         public string AnalysisResult {  get; set; }
         public string Recommendation {  get; set; }
-        public DateTime AnalysisDate {  get; set; }
+        public DateTime CreatedAt {  get; set; }
+        public DateTime UploadedAt { get; set; }
 
         //one to one - feedback to analysis
         //[ForeignKey(nameof(Id))]
         //public int? FeedbackId {  get; set; }
         public Feedback? Feedback { get; set; }
+        public Analysis()
+        {
+            HandWriting = new HandWriting();
+            Feedback = new Feedback();
+            CreatedAt = DateTime.Now;
+            UploadedAt = DateTime.Now;
+        }
     }
 }

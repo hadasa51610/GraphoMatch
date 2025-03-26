@@ -7,6 +7,14 @@
       "RelativeMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|solutionrelative:graphomatch.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Migrations\\20250326164952_AddFieldsToUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GraphoMatch.Data\\Migrations\\20250326164952_AddFieldsToUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|solutionrelative:graphomatch.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.api\\models\\loginpostmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|solutionrelative:graphomatch.api\\models\\loginpostmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,40 +23,72 @@
       "RelativeMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|solutionrelative:graphomatch.api\\models\\userpostmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|solutionrelative:graphomatch.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.api\\mappingpostprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|solutionrelative:graphomatch.api\\mappingpostprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3AEAD297-2508-4768-9D88-7D6032A77B34}|GraphoMatch.Service\\GraphoMatch.Service.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AEAD297-2508-4768-9D88-7D6032A77B34}|GraphoMatch.Service\\GraphoMatch.Service.csproj|solutionrelative:graphomatch.service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3AEAD297-2508-4768-9D88-7D6032A77B34}|GraphoMatch.Service\\GraphoMatch.Service.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AEAD297-2508-4768-9D88-7D6032A77B34}|GraphoMatch.Service\\GraphoMatch.Service.csproj|solutionrelative:graphomatch.service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3AEAD297-2508-4768-9D88-7D6032A77B34}|GraphoMatch.Service\\GraphoMatch.Service.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.service\\graphomatch.service.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{3AEAD297-2508-4768-9D88-7D6032A77B34}|GraphoMatch.Service\\GraphoMatch.Service.csproj|solutionrelative:graphomatch.service\\graphomatch.service.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|solutionrelative:graphomatch.data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|solutionrelative:graphomatch.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.data\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|solutionrelative:graphomatch.data\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\models\\permission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\models\\permission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.api\\extensiondependency.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|solutionrelative:graphomatch.api\\extensiondependency.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.data\\repositories\\managerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|solutionrelative:graphomatch.data\\repositories\\managerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\models\\analysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\models\\analysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\models\\handwriting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\models\\handwriting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\models\\permission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\models\\permission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\models\\rolepermission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\models\\rolepermission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AEAD297-2508-4768-9D88-7D6032A77B34}|GraphoMatch.Service\\GraphoMatch.Service.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AEAD297-2508-4768-9D88-7D6032A77B34}|GraphoMatch.Service\\GraphoMatch.Service.csproj|solutionrelative:graphomatch.service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|solutionrelative:graphomatch.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AEAD297-2508-4768-9D88-7D6032A77B34}|GraphoMatch.Service\\GraphoMatch.Service.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.service\\graphomatch.service.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3AEAD297-2508-4768-9D88-7D6032A77B34}|GraphoMatch.Service\\GraphoMatch.Service.csproj|solutionrelative:graphomatch.service\\graphomatch.service.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3AEAD297-2508-4768-9D88-7D6032A77B34}|GraphoMatch.Service\\GraphoMatch.Service.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.service\\analysisservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -63,28 +103,8 @@
       "RelativeMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|solutionrelative:graphomatch.data\\repositories\\handwritingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.data\\repositories\\managerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|solutionrelative:graphomatch.data\\repositories\\managerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Migrations\\20250311193743_CreateDB2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GraphoMatch.Data\\Migrations\\20250311193743_CreateDB2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\models\\analysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\models\\analysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|solutionrelative:graphomatch.data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.data\\repositories\\analysisrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|solutionrelative:graphomatch.data\\repositories\\analysisrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.data\\repositories\\feedbackrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -95,20 +115,8 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GraphoMatch.Data\\Migrations\\20250311192428_CreateDB2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.data\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|solutionrelative:graphomatch.data\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3AEAD297-2508-4768-9D88-7D6032A77B34}|GraphoMatch.Service\\GraphoMatch.Service.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AEAD297-2508-4768-9D88-7D6032A77B34}|GraphoMatch.Service\\GraphoMatch.Service.csproj|solutionrelative:graphomatch.service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\services\\iservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\services\\iservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\services\\iuserservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\services\\iuserservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.api\\controllers\\handwritingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -159,28 +167,12 @@
       "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\repositories\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Migrations\\20250311171434_CreateDB.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GraphoMatch.Data\\Migrations\\20250311171434_CreateDB.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\dtos\\handwritingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\dtos\\handwritingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.api\\mappingpostprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|solutionrelative:graphomatch.api\\mappingpostprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.api\\extensiondependency.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|solutionrelative:graphomatch.api\\extensiondependency.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.api\\models\\handwritingpostmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -207,8 +199,12 @@
       "RelativeMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|solutionrelative:graphomatch.core\\dtos\\analysisdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.data\\migrations\\20250315212651_createdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|solutionrelative:graphomatch.data\\migrations\\20250315212651_createdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.data\\migrations\\20250325205524_fixpasswordfield.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|solutionrelative:graphomatch.data\\migrations\\20250325205524_fixpasswordfield.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.data\\migrations\\20250325203059_createdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6E8D02D-B834-4C07-950E-48A54F9EF1DC}|GraphoMatch.Data\\GraphoMatch.Data.csproj|solutionrelative:graphomatch.data\\migrations\\20250325203059_createdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -218,7 +214,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Bookmark",
@@ -254,116 +250,211 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "20250326164952_AddFieldsToUser.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Migrations\\20250326164952_AddFieldsToUser.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Data\\Migrations\\20250326164952_AddFieldsToUser.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Migrations\\20250326164952_AddFieldsToUser.cs",
+              "RelativeToolTip": "GraphoMatch.Data\\Migrations\\20250326164952_AddFieldsToUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T16:49:52.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\DTOs\\UserDto.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Core\\DTOs\\UserDto.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\DTOs\\UserDto.cs",
+              "RelativeToolTip": "GraphoMatch.Core\\DTOs\\UserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T17:31:12.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Data\\Repositories\\UserRepository.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "GraphoMatch.Data\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABYAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:49:08.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DataContext.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\DataContext.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Data\\DataContext.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\DataContext.cs",
+              "RelativeToolTip": "GraphoMatch.Data\\DataContext.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwAoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T18:58:58.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\UserService.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Service\\UserService.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\UserService.cs",
+              "RelativeToolTip": "GraphoMatch.Service\\UserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T21:47:05.067Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MappingPostProfile.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\MappingPostProfile.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.API\\MappingPostProfile.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\MappingPostProfile.cs",
+              "RelativeToolTip": "GraphoMatch.API\\MappingPostProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T15:59:52.805Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserPostModel.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Models\\UserPostModel.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.API\\Models\\UserPostModel.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Models\\UserPostModel.cs",
+              "RelativeToolTip": "GraphoMatch.API\\Models\\UserPostModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T12:57:28.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "GraphoMatch.API\\Controllers\\AuthController.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "GraphoMatch.API\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAAA4AAAAZAAAAAAAAAA==",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Controllers\\AuthController.cs*",
+              "RelativeToolTip": "GraphoMatch.API\\Controllers\\AuthController.cs*",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwCcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-15T22:04:51.773Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 10,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\User.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Core\\Models\\User.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\User.cs",
+              "RelativeToolTip": "GraphoMatch.Core\\Models\\User.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAkwB4AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T16:51:17.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "LoginPostModel.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Models\\LoginPostModel.cs",
               "RelativeDocumentMoniker": "GraphoMatch.API\\Models\\LoginPostModel.cs",
               "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Models\\LoginPostModel.cs",
               "RelativeToolTip": "GraphoMatch.API\\Models\\LoginPostModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T22:03:18.968Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GraphoMatch.Service.csproj",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\GraphoMatch.Service.csproj",
-              "RelativeDocumentMoniker": "GraphoMatch.Service\\GraphoMatch.Service.csproj",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\GraphoMatch.Service.csproj",
-              "RelativeToolTip": "GraphoMatch.Service\\GraphoMatch.Service.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-03-15T21:47:03.422Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\AuthService.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Service\\AuthService.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\AuthService.cs",
-              "RelativeToolTip": "GraphoMatch.Service\\AuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T21:47:17.077Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Permission.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Permission.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Core\\Models\\Permission.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Permission.cs",
-              "RelativeToolTip": "GraphoMatch.Core\\Models\\Permission.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T20:06:24.148Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Role.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Role.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Core\\Models\\Role.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Role.cs",
-              "RelativeToolTip": "GraphoMatch.Core\\Models\\Role.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T19:59:35.091Z"
+              "WhenOpened": "2025-03-15T22:03:18.968Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "UserPostModel.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Models\\UserPostModel.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.API\\Models\\UserPostModel.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Models\\UserPostModel.cs",
-              "RelativeToolTip": "GraphoMatch.API\\Models\\UserPostModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T12:57:28.42Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 51,
-              "Title": "20250315212651_CreateDB.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Migrations\\20250315212651_CreateDB.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Data\\Migrations\\20250315212651_CreateDB.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Migrations\\20250315212651_CreateDB.cs",
-              "RelativeToolTip": "GraphoMatch.Data\\Migrations\\20250315212651_CreateDB.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T21:26:51.585Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "UserController.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "GraphoMatch.API\\Controllers\\UserController.cs",
               "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Controllers\\UserController.cs",
               "RelativeToolTip": "GraphoMatch.API\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACIAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T19:20:28.991Z"
+              "WhenOpened": "2025-03-11T19:20:28.991Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
+              "Title": "ExtensionDependency.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\ExtensionDependency.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.API\\ExtensionDependency.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\ExtensionDependency.cs",
+              "RelativeToolTip": "GraphoMatch.API\\ExtensionDependency.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T16:20:37.176Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Analysis.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Analysis.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Core\\Models\\Analysis.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Analysis.cs",
+              "RelativeToolTip": "GraphoMatch.Core\\Models\\Analysis.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAA1wCIAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T17:03:47.055Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Feedback.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Feedback.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Core\\Models\\Feedback.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Feedback.cs",
+              "RelativeToolTip": "GraphoMatch.Core\\Models\\Feedback.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAUwCMAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T17:26:47.176Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "HandWriting.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\HandWriting.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Core\\Models\\HandWriting.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\HandWriting.cs",
+              "RelativeToolTip": "GraphoMatch.Core\\Models\\HandWriting.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAwwCIAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T17:09:42.327Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Permission.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Permission.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Core\\Models\\Permission.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Permission.cs",
+              "RelativeToolTip": "GraphoMatch.Core\\Models\\Permission.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T20:06:24.148Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "RolePermission.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\RolePermission.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Core\\Models\\RolePermission.cs",
@@ -375,31 +466,93 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "User.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\User.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Core\\Models\\User.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\User.cs",
-              "RelativeToolTip": "GraphoMatch.Core\\Models\\User.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAADwvx4AAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T16:51:17.692Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Program.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.API\\Program.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Program.cs",
-              "RelativeToolTip": "GraphoMatch.API\\Program.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAAD8AAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T16:49:59.065Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 12,
+              "Title": "ManagerRepository.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Repositories\\ManagerRepository.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Data\\Repositories\\ManagerRepository.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Repositories\\ManagerRepository.cs",
+              "RelativeToolTip": "GraphoMatch.Data\\Repositories\\ManagerRepository.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAnwBwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-11T16:20:35.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Role.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Role.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Core\\Models\\Role.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Role.cs",
+              "RelativeToolTip": "GraphoMatch.Core\\Models\\Role.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABQAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T19:59:35.091Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\AuthService.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Service\\AuthService.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\AuthService.cs",
+              "RelativeToolTip": "GraphoMatch.Service\\AuthService.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAQwDoAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T21:47:17.077Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\appsettings.json",
+              "RelativeDocumentMoniker": "GraphoMatch.API\\appsettings.json",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\appsettings.json",
+              "RelativeToolTip": "GraphoMatch.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-25T20:41:14.175Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "20250325205524_FixPasswordField.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Migrations\\20250325205524_FixPasswordField.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Data\\Migrations\\20250325205524_FixPasswordField.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Migrations\\20250325205524_FixPasswordField.cs",
+              "RelativeToolTip": "GraphoMatch.Data\\Migrations\\20250325205524_FixPasswordField.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:55:25.02Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "20250325203059_CreateDB.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Migrations\\20250325203059_CreateDB.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Data\\Migrations\\20250325203059_CreateDB.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Migrations\\20250325203059_CreateDB.cs",
+              "RelativeToolTip": "GraphoMatch.Data\\Migrations\\20250325203059_CreateDB.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:31:00.083Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "GraphoMatch.Service.csproj",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\GraphoMatch.Service.csproj",
+              "RelativeDocumentMoniker": "GraphoMatch.Service\\GraphoMatch.Service.csproj",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\GraphoMatch.Service.csproj",
+              "RelativeToolTip": "GraphoMatch.Service\\GraphoMatch.Service.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-15T21:47:03.422Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
               "Title": "AnalysisService.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\AnalysisService.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Service\\AnalysisService.cs",
@@ -411,19 +564,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "HandWriting.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\HandWriting.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Core\\Models\\HandWriting.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\HandWriting.cs",
-              "RelativeToolTip": "GraphoMatch.Core\\Models\\HandWriting.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T17:09:42.327Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 23,
               "Title": "HandWritingService.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\HandWritingService.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Service\\HandWritingService.cs",
@@ -435,43 +576,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Analysis.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Analysis.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Core\\Models\\Analysis.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Analysis.cs",
-              "RelativeToolTip": "GraphoMatch.Core\\Models\\Analysis.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T17:03:47.055Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Feedback.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Feedback.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Core\\Models\\Feedback.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Models\\Feedback.cs",
-              "RelativeToolTip": "GraphoMatch.Core\\Models\\Feedback.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAADwvxMAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T17:26:47.176Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "ManagerRepository.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Repositories\\ManagerRepository.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Data\\Repositories\\ManagerRepository.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Repositories\\ManagerRepository.cs",
-              "RelativeToolTip": "GraphoMatch.Data\\Repositories\\ManagerRepository.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA9wBwAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T16:20:35.778Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 24,
               "Title": "HandWritingRepository.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Repositories\\HandWritingRepository.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Data\\Repositories\\HandWritingRepository.cs",
@@ -483,7 +588,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 25,
               "Title": "20250311193743_CreateDB2.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Migrations\\20250311193743_CreateDB2.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Data\\Migrations\\20250311193743_CreateDB2.cs",
@@ -494,43 +599,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "AnalysisRepository.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Repositories\\AnalysisRepository.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Data\\Repositories\\AnalysisRepository.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Repositories\\AnalysisRepository.cs",
-              "RelativeToolTip": "GraphoMatch.Data\\Repositories\\AnalysisRepository.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAD4vxIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T17:45:02.061Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "DataContext.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\DataContext.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Data\\DataContext.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\DataContext.cs",
-              "RelativeToolTip": "GraphoMatch.Data\\DataContext.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAswCAAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T18:58:58.168Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 26,
               "Title": "FeedbackRepository.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Repositories\\FeedbackRepository.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Data\\Repositories\\FeedbackRepository.cs",
               "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Repositories\\FeedbackRepository.cs",
               "RelativeToolTip": "GraphoMatch.Data\\Repositories\\FeedbackRepository.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAzwBsAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAwBsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-11T19:29:53.015Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 27,
               "Title": "20250311192428_CreateDB2.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Migrations\\20250311192428_CreateDB2.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Data\\Migrations\\20250311192428_CreateDB2.cs",
@@ -541,7 +622,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 31,
               "Title": "FeedbackController.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Controllers\\FeedbackController.cs",
               "RelativeDocumentMoniker": "GraphoMatch.API\\Controllers\\FeedbackController.cs",
@@ -553,7 +634,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 30,
               "Title": "AnalysisController.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Controllers\\AnalysisController.cs",
               "RelativeDocumentMoniker": "GraphoMatch.API\\Controllers\\AnalysisController.cs",
@@ -565,7 +646,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 29,
               "Title": "HandWritingController.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Controllers\\HandWritingController.cs",
               "RelativeDocumentMoniker": "GraphoMatch.API\\Controllers\\HandWritingController.cs",
@@ -577,7 +658,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 28,
               "Title": "IService.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Services\\IService.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Core\\Services\\IService.cs",
@@ -589,43 +670,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "IUserServices.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Services\\IUserServices.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Core\\Services\\IUserServices.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Services\\IUserServices.cs",
-              "RelativeToolTip": "GraphoMatch.Core\\Services\\IUserServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T14:03:03.337Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Repository.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Repositories\\Repository.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Data\\Repositories\\Repository.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Repositories\\Repository.cs",
-              "RelativeToolTip": "GraphoMatch.Data\\Repositories\\Repository.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAxwBUAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T17:45:10.746Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\UserService.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Service\\UserService.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\UserService.cs",
-              "RelativeToolTip": "GraphoMatch.Service\\UserService.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAAwCMAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T21:47:05.067Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 32,
               "Title": "IFeedbackService.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Services\\IFeedbackService.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Core\\Services\\IFeedbackService.cs",
@@ -637,7 +682,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 33,
               "Title": "IFeedbackRepository.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Repositories\\IFeedbackRepository.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Core\\Repositories\\IFeedbackRepository.cs",
@@ -649,7 +694,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 34,
               "Title": "IAnalysisRepository.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Repositories\\IAnalysisRepository.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Core\\Repositories\\IAnalysisRepository.cs",
@@ -661,7 +706,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 35,
               "Title": "IHandWritingService.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Services\\IHandWritingService.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Core\\Services\\IHandWritingService.cs",
@@ -673,7 +718,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 36,
               "Title": "IAnalysisService.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Services\\IAnalysisService.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Core\\Services\\IAnalysisService.cs",
@@ -685,7 +730,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 37,
               "Title": "IManagerRepository.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Repositories\\IManagerRepository.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Core\\Repositories\\IManagerRepository.cs",
@@ -697,7 +742,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 38,
               "Title": "IHandWritingRepository.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Repositories\\IHandWritingRepository.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Core\\Repositories\\IHandWritingRepository.cs",
@@ -709,7 +754,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 39,
               "Title": "MappingProfile.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\MappingProfile.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Core\\MappingProfile.cs",
@@ -721,7 +766,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 40,
               "Title": "IRepository.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Repositories\\IRepository.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Core\\Repositories\\IRepository.cs",
@@ -733,19 +778,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "IUserRepository.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Repositories\\IUserRepository.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Core\\Repositories\\IUserRepository.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\Repositories\\IUserRepository.cs",
-              "RelativeToolTip": "GraphoMatch.Core\\Repositories\\IUserRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T16:20:37.616Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "20250311171434_CreateDB.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Migrations\\20250311171434_CreateDB.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Data\\Migrations\\20250311171434_CreateDB.cs",
@@ -756,7 +789,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "HandWritingDto.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\DTOs\\HandWritingDto.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Core\\DTOs\\HandWritingDto.cs",
@@ -768,43 +801,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "UserDto.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\DTOs\\UserDto.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Core\\DTOs\\UserDto.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\DTOs\\UserDto.cs",
-              "RelativeToolTip": "GraphoMatch.Core\\DTOs\\UserDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T17:31:12.467Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 43,
-              "Title": "MappingPostProfile.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\MappingPostProfile.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.API\\MappingPostProfile.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\MappingPostProfile.cs",
-              "RelativeToolTip": "GraphoMatch.API\\MappingPostProfile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T15:59:52.805Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "ExtensionDependency.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\ExtensionDependency.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.API\\ExtensionDependency.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\ExtensionDependency.cs",
-              "RelativeToolTip": "GraphoMatch.API\\ExtensionDependency.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAA6wCEAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T15:56:33.487Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
               "Title": "HandWritingPostModel.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Models\\HandWritingPostModel.cs",
               "RelativeDocumentMoniker": "GraphoMatch.API\\Models\\HandWritingPostModel.cs",
@@ -816,7 +813,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 44,
               "Title": "FeedbackPostModel.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Models\\FeedbackPostModel.cs",
               "RelativeDocumentMoniker": "GraphoMatch.API\\Models\\FeedbackPostModel.cs",
@@ -828,7 +825,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 45,
               "Title": "AnalysisPostModel.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Models\\AnalysisPostModel.cs",
               "RelativeDocumentMoniker": "GraphoMatch.API\\Models\\AnalysisPostModel.cs",
@@ -840,7 +837,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 46,
               "Title": "20250310194538_createDB.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Data\\Migrations\\20250310194538_createDB.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Data\\Migrations\\20250310194538_createDB.cs",
@@ -851,19 +848,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 47,
               "Title": "FeedbackDto.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\DTOs\\FeedbackDto.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Core\\DTOs\\FeedbackDto.cs",
               "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\DTOs\\FeedbackDto.cs",
               "RelativeToolTip": "GraphoMatch.Core\\DTOs\\FeedbackDto.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAIBJwA4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBZwA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-10T17:37:47.897Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 48,
               "Title": "AnalysisDto.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Core\\DTOs\\AnalysisDto.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Core\\DTOs\\AnalysisDto.cs",

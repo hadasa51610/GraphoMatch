@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraphoMatch.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250320115513_CreateDB")]
-    partial class CreateDB
+    [Migration("20250325210350_FixDB")]
+    partial class FixDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,7 +37,7 @@ namespace GraphoMatch.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreateAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("HandWritingId")
@@ -47,7 +47,7 @@ namespace GraphoMatch.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UploadAt")
+                    b.Property<DateTime>("UploadedAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -79,7 +79,7 @@ namespace GraphoMatch.Data.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UploadAt")
+                    b.Property<DateTime>("UploadedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
@@ -103,7 +103,7 @@ namespace GraphoMatch.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreateAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FileName")
@@ -182,7 +182,7 @@ namespace GraphoMatch.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");

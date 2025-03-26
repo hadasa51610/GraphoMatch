@@ -27,5 +27,13 @@ namespace GraphoMatch.Core.Models
         public int Rating {  get; set; }
         public string Comment {  get; set; }
         public DateTime CreatedAt { get; set; }
+        public DateTime UploadedAt { get; set; }
+        public Feedback()
+        {
+            User = new User();
+            Analysis = new Analysis();
+            CreatedAt = DateTime.Now;
+            UploadedAt = DateTime.Now;
+        }
     }
 }

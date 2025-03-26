@@ -15,6 +15,7 @@ namespace GraphoMatch.Core.Models
         public int Id {  get; set; }
         public string FileName { get; set; }
         public string Url { get; set; }
+        public DateTime CreatedAt { get; set; }
         public DateTime UploadedAt { get; set; }
 
         //one to many - handwritings to user
@@ -26,5 +27,12 @@ namespace GraphoMatch.Core.Models
         //[ForeignKey(nameof(Id))]
         //public int? AnalysisId {  get; set; }
         public Analysis? Analysis { get; set; }
+        public HandWriting()
+        {
+            Analysis = new Analysis();
+            User = new User();
+            CreatedAt= DateTime.Now;
+            UploadedAt= DateTime.Now;
+        }
     }
 }

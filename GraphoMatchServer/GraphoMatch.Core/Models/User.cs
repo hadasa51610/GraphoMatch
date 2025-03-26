@@ -27,7 +27,10 @@ namespace GraphoMatch.Core.Models
 
         [Required]
         [MaxLength(128)]
-        public string PasswordHash { get; set; }
+        public string Password { get; set; }
+        public string Phone { get; set; }
+        public string Profession { get; set; }
+
         //One to one - user to role
         public List<Role> Roles { get; set; }
         public DateTime CreatedAt { get; set; }
@@ -40,5 +43,14 @@ namespace GraphoMatch.Core.Models
         //[ForeignKey(nameof(Id))]
         //public int? FeedbackId {  get; set; }
         public List<Feedback> Feedback { get; set; }
+
+        public User()
+        {
+            Feedback= new List<Feedback>();
+            HandWritings= new List<HandWriting>();
+            Roles= new List<Role>();
+            CreatedAt= DateTime.Now;
+            UpdateAt=DateTime.Now;
+        }
     }
 }

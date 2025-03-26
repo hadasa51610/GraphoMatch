@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraphoMatch.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250320120318_FixDB")]
-    partial class FixDB
+    [Migration("20250325203059_CreateDB")]
+    partial class CreateDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,12 +33,12 @@ namespace GraphoMatch.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("AnalysisDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("AnalysisResult")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("HandWritingId")
                         .HasColumnType("int");
@@ -46,9 +46,6 @@ namespace GraphoMatch.Data.Migrations
                     b.Property<string>("Recommendation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UploadAt")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -79,9 +76,6 @@ namespace GraphoMatch.Data.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UploadAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -102,9 +96,6 @@ namespace GraphoMatch.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreateAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("FileName")
                         .IsRequired()
@@ -144,8 +135,7 @@ namespace GraphoMatch.Data.Migrations
 
                     b.Property<string>("RoleName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");

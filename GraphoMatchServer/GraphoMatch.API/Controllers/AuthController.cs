@@ -37,24 +37,6 @@ namespace GraphoMatch.API.Controllers
                 return Unauthorized();
             }
             return Ok(user);
-            //// כאן יש לבדוק את שם המשתמש והסיסמה מול מסד הנתונים
-            //if (model.Name == "" && model.Email == "")
-            //{
-            //    var token = _authService.GenerateJwtToken(model.Name, new[] { "Admin" });
-            //    return Ok(new { Token = token });
-            //}
-            //else if (model.Name == "editor" && model.Email == "editor123")
-            //{
-            //    var token = _authService.GenerateJwtToken(model.Name, new[] { "Editor" });
-            //    return Ok(new { Token = token });
-            //}
-            //else if (model.Name == "viewer" && model.Email == "viewer123")
-            //{
-            //    var token = _authService.GenerateJwtToken(model.Name, new[] { "Viewer" });
-            //    return Ok(new { Token = token });
-            //}
-
-            //return Unauthorized();
         }
         [HttpPost("register")]
         public async Task<ActionResult<LoginResDto>> RegisterAsync([FromBody] UserPostModel user)

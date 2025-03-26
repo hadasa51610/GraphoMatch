@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraphoMatch.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250320140012_FixPasswordField")]
-    partial class FixPasswordField
+    [Migration("20250325210711_FixDB2")]
+    partial class FixDB2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,7 +37,7 @@ namespace GraphoMatch.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreateAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("HandWritingId")
@@ -47,7 +47,7 @@ namespace GraphoMatch.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UploadAt")
+                    b.Property<DateTime>("UploadedAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -79,7 +79,7 @@ namespace GraphoMatch.Data.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UploadAt")
+                    b.Property<DateTime>("UploadedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
@@ -103,7 +103,7 @@ namespace GraphoMatch.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreateAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FileName")

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraphoMatch.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250315212651_CreateDB")]
-    partial class CreateDB
+    [Migration("20250325205524_FixPasswordField")]
+    partial class FixPasswordField
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -145,8 +145,6 @@ namespace GraphoMatch.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Role");
                 });
 
@@ -166,12 +164,16 @@ namespace GraphoMatch.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
@@ -182,6 +184,21 @@ namespace GraphoMatch.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("RoleUser", b =>
+                {
+                    b.Property<int>("RolesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RolesId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("RoleUser");
                 });
 
             modelBuilder.Entity("GraphoMatch.Core.Models.Analysis", b =>
@@ -225,15 +242,19 @@ namespace GraphoMatch.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("GraphoMatch.Core.Models.Role", b =>
+            modelBuilder.Entity("RoleUser", b =>
                 {
-                    b.HasOne("GraphoMatch.Core.Models.User", "User")
-                        .WithMany("Roles")
-                        .HasForeignKey("UserId")
+                    b.HasOne("GraphoMatch.Core.Models.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.HasOne("GraphoMatch.Core.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GraphoMatch.Core.Models.Analysis", b =>
@@ -251,8 +272,6 @@ namespace GraphoMatch.Data.Migrations
                     b.Navigation("Feedback");
 
                     b.Navigation("HandWritings");
-
-                    b.Navigation("Roles");
                 });
 #pragma warning restore 612, 618
         }

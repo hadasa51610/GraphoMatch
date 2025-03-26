@@ -5,7 +5,7 @@
 namespace GraphoMatch.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class FixDB : Migration
+    public partial class FixDB2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

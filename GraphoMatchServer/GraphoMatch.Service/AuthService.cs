@@ -84,7 +84,7 @@ namespace GraphoMatch.Service
                 FirstName = userDto.FirstName,
                 LastName = userDto.LastName,
                 Email = userDto.Email,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password),
+                Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password),
                 CreatedAt = DateTime.UtcNow,
                 UpdateAt = DateTime.UtcNow,
                 Roles = new List<Role> { new Role { RoleName = "Editor" } }

@@ -16,6 +16,6 @@ namespace GraphoMatch.Core.Models
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
-        public Role Roles { get; set; }
+        public Role Roles { get; set; }=new Role();
     }
 }
