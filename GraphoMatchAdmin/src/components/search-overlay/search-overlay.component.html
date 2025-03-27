@@ -1,0 +1,20 @@
+<div class="absolute inset-x-0 top-0 z-20 bg-gray-900 p-4 border-b border-gray-800">
+    <div class="container mx-auto flex items-center">
+      <div class="relative flex-1">
+        <mat-form-field appearance="outline" class="w-full" dir="rtl">
+          <mat-label>חפש במערכת...</mat-label>
+          <input matInput type="search" autofocus>
+          <mat-icon matPrefix>search</mat-icon>
+        </mat-form-field>
+      </div>
+      <button 
+        mat-icon-button
+        (click)="closeSearch()"
+        class="mr-4 text-gray-400 hover:text-white"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+  
+  

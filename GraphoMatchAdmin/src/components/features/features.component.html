@@ -1,0 +1,37 @@
+<section id="features" class="py-16 bg-gray-900/50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 @fadeInUp
+                class="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+                תכונות מרכזיות
+            </h2>
+            <p @fadeInUp class="text-lg text-gray-300 max-w-2xl mx-auto">
+                המערכת שלנו מציעה מגוון רחב של כלים ויכולות שיעזרו לך לנהל את העסק שלך ביעילות ובקלות
+            </p>
+        </div>
+
+        @for (feature of features; track $index) {
+        <div class="grid md:grid-cols-3 gap-8">
+            <ng-container>
+                <mat-card @fadeInUp
+                    class="bg-gray-900/70 border-gray-800 h-full hover:border-gray-700 transition-colors">
+                    <mat-card-content class="p-6 flex flex-col h-full">
+                        <div
+                            class="h-12 w-12 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center mb-4">
+                            <mat-icon class="text-white">check_circle</mat-icon>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-white">{{ feature.title }}</h3>
+                        <p class="text-gray-400 flex-grow">{{ feature.description }}</p>
+                        <div class="mt-4">
+                            <a href="#" class="text-blue-400 text-sm flex items-center hover:text-blue-300">
+                                למד עוד
+                                <mat-icon class="ml-1 h-4 w-4">arrow_left</mat-icon>
+                            </a>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </ng-container>
+        </div>
+        }
+    </div>
+</section>

@@ -1,0 +1,16 @@
+<div class="w-full">
+    @for (tab of tabs; track $index) {
+    <div class="grid w-full grid-cols-2 mb-8 bg-gray-800 rounded-md p-1">
+        <ng-container>
+            <button type="button" [class.bg-gray-700]="tab.tabId === activeTab"
+                [class.text-white]="tab.tabId === activeTab" [class.text-gray-400]="tab.tabId !== activeTab"
+                class="px-3 py-2 text-sm font-medium rounded-md transition-colors" (click)="selectTab(tab.tabId)">
+                {{ tab.title }}
+            </button>
+        </ng-container>
+    </div>
+    }
+    <div class="tab-content">
+        <ng-content></ng-content>
+    </div>
+</div>
