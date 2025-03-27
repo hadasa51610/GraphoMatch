@@ -24,7 +24,6 @@ namespace GraphoMatch.Core.Models
         public DateTime UploadedAt { get; set; }
         public Feedback()
         {
-            User = new User();
             CreatedAt = DateTime.Now;
             UploadedAt = DateTime.Now;
         }

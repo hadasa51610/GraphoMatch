@@ -20,7 +20,7 @@ namespace GraphoMatch.Data
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             builder.UseSqlServer("Data Source=DESKTOP-OP3HLHL; Initial Catalog=GraphoMatch; Integrated Security=True; TrustServerCertificate=True");
-           
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,7 +32,11 @@ namespace GraphoMatch.Data
                 .WithMany(u => u.Feedback)
                 .HasForeignKey(f => f.UserId)
                 .OnDelete(DeleteBehavior.Restrict); // לא לאפשר מחיקה של משתמש עם פידבקים
-
+            modelBuilder.Entity<HandWriting>()
+                .HasOne(h => h.User)  // HandWriting has one User
+                .WithMany()           // User can have many HandWritings (if that’s your design)
+                .HasForeignKey(h => h.UserId) // Specifies the foreign key
+                .OnDelete(DeleteBehavior.Cascade);
         }
 
     }

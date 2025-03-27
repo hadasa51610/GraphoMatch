@@ -17,8 +17,8 @@ namespace GraphoMatch.API
             //services.AddScoped<IUserService,UserService>();
             services.AddScoped<IUserRepository,UserRepository>();
 
-            services.AddScoped<IService<HandWritingDto>,HandWritingService>();
-            //services.AddScoped<IHandWritingService,HandWritingService>();
+            //services.AddScoped<IService<HandWritingDto>,HandWritingService>();
+            services.AddScoped<IHandWritingService,HandWritingService>();
             services.AddScoped<IHandWritingRepository,HandWritingRepository>();
 
             services.AddScoped<IService<AnalysisDto>,AnalysisService>();

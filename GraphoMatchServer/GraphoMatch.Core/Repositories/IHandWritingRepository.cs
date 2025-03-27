@@ -9,6 +9,6 @@ namespace GraphoMatch.Core.Repositories
 {
     public interface IHandWritingRepository:IRepository<HandWriting>
     {
-        Task<HandWriting?> GetByUserId(int userId);
+        Task<IEnumerable<HandWriting>> GetByUserId(int userId);
     }
 }

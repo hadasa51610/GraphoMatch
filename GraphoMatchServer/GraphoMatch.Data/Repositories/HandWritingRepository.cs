@@ -17,9 +17,9 @@ namespace GraphoMatch.Data.Repositories
             _handWriters = context.Set<HandWriting>();
         }
 
-        public async Task<HandWriting?> GetByUserId(int userId)
+        public async Task<IEnumerable<HandWriting>> GetByUserId(int userId)
         {
-            return await _handWriters.FirstOrDefaultAsync(x => x.UserId == userId);
+            return await _handWriters.Where(x => x.UserId == userId).ToListAsync();
         }
     }
 }

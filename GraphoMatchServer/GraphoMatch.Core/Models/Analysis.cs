@@ -25,7 +25,6 @@ namespace GraphoMatch.Core.Models
 
         public Analysis()
         {
-            HandWriting = new HandWriting();
             CreatedAt = DateTime.Now;
             UploadedAt = DateTime.Now;
         }

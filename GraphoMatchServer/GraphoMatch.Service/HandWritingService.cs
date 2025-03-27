@@ -3,6 +3,7 @@ using GraphoMatch.Core.DTOs;
 using GraphoMatch.Core.Models;
 using GraphoMatch.Core.Repositories;
 using GraphoMatch.Core.Services;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,12 @@ using System.Threading.Tasks;
 
 namespace GraphoMatch.Service
 {
-    public class HandWritingService : IService<HandWritingDto>, IHandWritingService
+    public class HandWritingService : IHandWritingService
     {
         private readonly IManagerRepository _manager;
         private readonly IMapper _mapper;
+        readonly CloudinaryService _cloudinaryService = new CloudinaryService();
+
 
         public HandWritingService(IManagerRepository manager, IMapper mapper)
         {
@@ -34,10 +37,10 @@ namespace GraphoMatch.Service
             return _mapper.Map<HandWritingDto>(handWriting);
         }
 
-        public async Task<HandWritingDto?> GetByUserId(int userId)
+        public async Task<IEnumerable<HandWritingDto>> GetByUserId(int userId)
         {
-            var handWriting = await _manager._handWriting.GetByUserId(userId);
-            return _mapper.Map<HandWritingDto>(handWriting);
+            var handWritings = await _manager._handWriting.GetByUserId(userId);
+            return _mapper.Map<IEnumerable<HandWritingDto>>(handWritings);
         }
 
         public async Task<bool> RemoveAsync(int id)
@@ -53,21 +56,28 @@ namespace GraphoMatch.Service
             return deleted;
         }
 
-        public async Task<HandWritingDto> UpdateAsync(int id, HandWritingDto entity)
+        public async Task<HandWritingDto> AddAsync(HandWritingDto entity, IFormFile image)
         {
             var dto = _mapper.Map<HandWriting>(entity);
-            dto.Analysis = await _manager._analysis.GetByHandWritingIdAsync(id);
+            dto.Analysis = null;
+            var url = await _cloudinaryService.UploadFileAsync(image,dto.UserId,dto.Type);
+            if (url == null)
+                return null;
+            dto.Url = url.ToString();
+            dto.User = await _manager._users.GetByIdAsync(dto.UserId);
+            dto = await _manager._handWriting.AddAsync(dto);
             if (dto != null) await _manager.SaveAsync();
             return _mapper.Map<HandWritingDto>(dto);
         }
 
-        public async Task<HandWritingDto> AddAsync(HandWritingDto entity)
+        public Task<HandWritingDto> UpdateAsync(int id, HandWritingDto entity)
         {
-            var dto = _mapper.Map<HandWriting>(entity);
-            dto.Analysis = null;
-            dto = await _manager._handWriting.AddAsync(dto);
-            if (dto != null) await _manager.SaveAsync();
-            return _mapper.Map<HandWritingDto>(dto);
+            throw new NotImplementedException();
+        }
+
+        public Task<HandWritingDto> AddAsync(HandWritingDto entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -13,6 +13,7 @@ namespace GraphoMatch.Core.DTOs
         public int Id { get; set; }
         public string FileName { get; set; }
         public string Url { get; set; }
+        public string Type { get; set; }
         public DateTime UploadedAt { get; set; }
         public int UserId { get; set; }
         public int AnalysisId { get; set; }

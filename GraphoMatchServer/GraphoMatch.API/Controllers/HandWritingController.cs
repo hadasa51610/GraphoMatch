@@ -13,10 +13,10 @@ namespace GraphoMatch.API.Controllers
     [ApiController]
     public class HandWritingController : ControllerBase
     {
-        private readonly IService<HandWritingDto> _handWriting;
+        private readonly IHandWritingService _handWriting;
         private readonly IMapper _mapper;
 
-        public HandWritingController(IService<HandWritingDto> handWriting, IMapper mapper)
+        public HandWritingController(IHandWritingService handWriting, IMapper mapper)
         {
             _handWriting = handWriting;
             _mapper = mapper;
@@ -39,14 +39,22 @@ namespace GraphoMatch.API.Controllers
             return handWriting == null ? NotFound() : Ok(handWriting);
         }
 
+        // GET api/<HandWritingController>/5
+        [HttpGet("ByUser/{userId}")]
+        public async Task<ActionResult<IEnumerable<HandWritingDto>>> GetByUserId(int userId)
+        {
+            var handWritings = await _handWriting.GetByUserId(userId);
+            return handWritings == null ? NotFound() : Ok(handWritings);
+        }
+
         // POST api/<HandWritingController>
         [HttpPost]
-        public async Task<ActionResult<HandWritingDto>> Post([FromBody] HandWritingPostModel handWriting)
+        public async Task<ActionResult<HandWritingDto>> Post([FromForm] HandWritingPostModel handWriting)
         {
             if (handWriting == null) return BadRequest("HandWriting data is required");
             var dto = _mapper.Map<HandWritingDto>(handWriting);
             dto.UploadedAt = DateTime.Now;
-            dto = await _handWriting.AddAsync(dto);
+            dto = await _handWriting.AddAsync(dto,handWriting.ImageFile);
             return Ok(dto);
         }
 

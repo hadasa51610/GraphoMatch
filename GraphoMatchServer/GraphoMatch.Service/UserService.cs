@@ -48,12 +48,11 @@ namespace GraphoMatch.Service
                 if(succeed) await _managerRepository.SaveAsync();
                 feedbacks = await _managerRepository._feedback.GetByUserIdAsync(id);
             }
-            var handwriting= await _managerRepository._handWriting.GetByUserId(id);
-            while(handwriting != null)
+            var handwritings= await _managerRepository._handWriting.GetByUserId(id);
+            foreach (var handwriting in handwritings)
             {
                 bool succeed= await _managerRepository._handWriting.DeleteAsync(handwriting.Id);
                 if(succeed) await _managerRepository.SaveAsync();
-                handwriting=await _managerRepository._handWriting.GetByUserId(id);
             }
             bool deleted = await _managerRepository._users.DeleteAsync(id);
             if (deleted) await _managerRepository.SaveAsync();
