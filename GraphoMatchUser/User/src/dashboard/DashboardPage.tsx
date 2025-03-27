@@ -2,7 +2,7 @@ import type React from "react"
 
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { FileText, Upload, User, Check, AlertCircle} from "lucide-react"
+import { FileText, Upload, User, Check, AlertCircle } from "lucide-react"
 
 import { Button } from "@/components/ui/Button"
 import { Card } from "@/components/ui/Card"
@@ -13,9 +13,11 @@ import { Input } from "@/components/ui/Input"
 import { Label } from "@/components/ui/Label"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/store/store"
-import {  GetUser, Update } from "@/store/slices/userSlice"
+import { GetUser, Update } from "@/store/slices/userSlice"
 import { UserType } from "@/types/UserType"
 import { SuccessNotification } from "@/components/SuccessNotification"
+import { AddFile, GetFiles } from "@/store/slices/fileSlice"
+import { FileType } from "@/types/FileType"
 
 export default function ProfilePage() {
   const [resumeFile, setResumeFile] = useState<File | null>(null)
@@ -36,15 +38,59 @@ export default function ProfilePage() {
     }
   }, [dispatch]);
 
+  useEffect(()=>{
+    const userId = sessionStorage.getItem('userId');
+    if (userId) {
+      dispatch(GetFiles(Number(userId))).then((result: any) => {
+        if (result.payload) {
+          result.payload.map((item: any) => {
+            const file: FileType = {
+              name: item.fileName, 
+              type: item.type,    
+              file: new File([], item.fileName) 
+          };
+            if (file.type === 'image') {
+              setHandwritingFile(file.file);
+            }
+            else {
+              setResumeFile(file.file);
+            }
+          })
+        }
+      })
+    }
+  },[dispatch])
+
   const handleResumeUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setResumeFile(e.target.files[0])
+      const uploadedFile = e.target.files[0];
+      setResumeFile(uploadedFile)
+      const userId = sessionStorage.getItem('userId');
+
+      if (userId) {
+        if (uploadedFile) {
+          dispatch(AddFile({ data: uploadedFile, userId: Number(userId) }))
+            .then((result: any) => {
+              if (result.payload) {
+                console.log(result.payload);
+
+              }
+            });
+        }
+      }
     }
   }
 
   const handleHandwritingUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setHandwritingFile(e.target.files[0])
+      const uploadedFile = e.target.files[0];
+      setHandwritingFile(uploadedFile)
+      const userId = sessionStorage.getItem('userId');
+      if (userId) {
+        if (uploadedFile) {
+          dispatch(AddFile({ data: uploadedFile, userId: Number(userId) }))
+        }
+      }
     }
   }
 
@@ -162,80 +208,80 @@ export default function ProfilePage() {
           <Card className="bg-gradient-to-br from-gray-900 to-black border border-white/10 backdrop-blur-xl overflow-hidden mb-8">
             <div className="p-6">
               <h3 className="text-xl font-bold mb-4 text-white">Personal Information</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2 text-gray-300">
-                    <Label htmlFor="first-name">First Name</Label>
-                    <Input
-                      id="first-name"
-                      defaultValue={user?.firstName}
-                      onChange={(e) => {
-                        if (user) {
-                          setUser({ ...user, firstName: e.target.value });
-                        }
-                      }}
-                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
-                    />
-                  </div>
-
-                  <div className="space-y-2 text-gray-300">
-                    <Label htmlFor="last-name">Last Name</Label>
-                    <Input
-                      id="last-name"
-                      defaultValue={user?.lastName}
-                      onChange={(e) => {
-                        if (user) {
-                          setUser({ ...user, lastName: e.target.value })
-                        }
-                      }}
-                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
-                    />
-                  </div>
-
-                  <div className="space-y-2 text-gray-300">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      defaultValue={user?.email}
-                      onChange={(e) => {
-                        if (user) {
-                          setUser({ ...user, email: e.target.value })
-                        }
-                      }}
-                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
-                    />
-                  </div>
-
-                  <div className="space-y-2 text-gray-300">
-                    <Label htmlFor="phone">Phone</Label>
-                    <Input
-                      id="phone"
-                      defaultValue={user?.phone}
-                      onChange={(e) => {
-                        if (user) {
-                          setUser({ ...user, phone: e.target.value })
-                        }
-                      }}
-                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
-                    />
-                  </div>
-
-                  <div className="space-y-2 md:col-span-2 text-gray-300">
-                    <Label htmlFor="profession">Current Profession</Label>
-                    <Input
-                      id="profession"
-                      defaultValue={user?.profession}
-                      onChange={(e) => {
-                        if (user) {
-                          setUser({ ...user, profession: e.target.value })
-                        }
-                      }}
-                      className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
-                    />
-                  </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2 text-gray-300">
+                  <Label htmlFor="first-name">First Name</Label>
+                  <Input
+                    id="first-name"
+                    defaultValue={user?.firstName}
+                    onChange={(e) => {
+                      if (user) {
+                        setUser({ ...user, firstName: e.target.value });
+                      }
+                    }}
+                    className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
+                  />
                 </div>
 
-                <div className="mt-6 flex justify-end">
+                <div className="space-y-2 text-gray-300">
+                  <Label htmlFor="last-name">Last Name</Label>
+                  <Input
+                    id="last-name"
+                    defaultValue={user?.lastName}
+                    onChange={(e) => {
+                      if (user) {
+                        setUser({ ...user, lastName: e.target.value })
+                      }
+                    }}
+                    className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
+                  />
+                </div>
+
+                <div className="space-y-2 text-gray-300">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    defaultValue={user?.email}
+                    onChange={(e) => {
+                      if (user) {
+                        setUser({ ...user, email: e.target.value })
+                      }
+                    }}
+                    className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
+                  />
+                </div>
+
+                <div className="space-y-2 text-gray-300">
+                  <Label htmlFor="phone">Phone</Label>
+                  <Input
+                    id="phone"
+                    defaultValue={user?.phone}
+                    onChange={(e) => {
+                      if (user) {
+                        setUser({ ...user, phone: e.target.value })
+                      }
+                    }}
+                    className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
+                  />
+                </div>
+
+                <div className="space-y-2 md:col-span-2 text-gray-300">
+                  <Label htmlFor="profession">Current Profession</Label>
+                  <Input
+                    id="profession"
+                    defaultValue={user?.profession}
+                    onChange={(e) => {
+                      if (user) {
+                        setUser({ ...user, profession: e.target.value })
+                      }
+                    }}
+                    className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
+                  />
+                </div>
+              </div>
+
+              <div className="mt-6 flex justify-end">
                 <Button
                   className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white border-0 rounded-lg"
                   onClick={handleSaveProfile}
