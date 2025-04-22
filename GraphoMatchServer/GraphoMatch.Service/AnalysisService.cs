@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace GraphoMatch.Service
@@ -15,11 +16,13 @@ namespace GraphoMatch.Service
     {
         private readonly IManagerRepository _managerRepository;
         private readonly IMapper _mapper;
+        private readonly HttpClient _httpClient;
 
-        public AnalysisService(IManagerRepository managerRepository, IMapper mapper)
+        public AnalysisService(IManagerRepository managerRepository, IMapper mapper, HttpClient httpClient)
         {
             _managerRepository = managerRepository;
             _mapper = mapper;
+            _httpClient = httpClient;
         }
         public async Task<IEnumerable<AnalysisDto>> GetAsync()
         {
@@ -61,5 +64,24 @@ namespace GraphoMatch.Service
             if (analysisDto != null) await _managerRepository.SaveAsync();
             return _mapper.Map<AnalysisDto>(analysisDto);
         }
+
+        public async Task<string> AnalyzeHandwritingAsync(string imageUrl)
+        {
+            var requestData = new
+            {
+                imageUrl = imageUrl
+            };
+
+            var json = JsonSerializer.Serialize(requestData);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            if(_managerRepository._analysis.)
+
+            var response = await _httpClient.PostAsync("http://192.168.0.111:5000/analyze", content);
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadAsStringAsync();
+        }
+
     }
 }

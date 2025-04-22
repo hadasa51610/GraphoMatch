@@ -10,5 +10,6 @@ namespace GraphoMatch.Core.Repositories
     public interface IAnalysisRepository:IRepository<Analysis>
     {
         Task<Analysis?> GetByHandWritingIdAsync(int handwritingId);
+        Task<Analysis> SaveResultAsync(Analysis result);
     }
 }

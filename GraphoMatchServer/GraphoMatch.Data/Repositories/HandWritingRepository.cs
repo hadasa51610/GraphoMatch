@@ -19,7 +19,7 @@ namespace GraphoMatch.Data.Repositories
 
         public async Task<IEnumerable<HandWriting>> GetByUserId(int userId)
         {
-            return await _handWriters.Where(x => x.UserId == userId).ToListAsync();
+            return await _handWriters.Where(x => x.UserId == userId && (x.FileName.Contains(".png") || x.FileName.Contains(".JPG"))).ToListAsync();
         }
     }
 }

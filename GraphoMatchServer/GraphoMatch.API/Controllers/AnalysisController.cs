@@ -12,10 +12,11 @@ namespace GraphoMatch.API.Controllers
     [ApiController]
     public class AnalysisController : ControllerBase
     {
-        private readonly IService<AnalysisDto> _analysis;
+        //private readonly IService<AnalysisDto> _analysis;
+        private readonly IAnalysisService _analysis;
         private readonly IMapper _mapper;
 
-        public AnalysisController(IService<AnalysisDto> analysis, IMapper mapper)
+        public AnalysisController(IAnalysisService analysis, IMapper mapper)
         {
             _analysis = analysis;
             _mapper = mapper;
@@ -65,5 +66,20 @@ namespace GraphoMatch.API.Controllers
             if (await _analysis.GetByIdAsync(id) == null) return NotFound();
             return Ok(await _analysis.RemoveAsync(id));
         }
+
+        [HttpPost("analyze")]
+        public async Task<IActionResult> Analyze([FromBody] string imageUrl)
+        {
+            try
+            {
+                var result = await _analysis.AnalyzeHandwritingAsync(imageUrl);
+                return Ok(result); 
+            }
+            catch (HttpRequestException ex)
+            {
+                return StatusCode(500, $"Error calling Python service: {ex.Message}");
+            }
+        }
+
     }
 }

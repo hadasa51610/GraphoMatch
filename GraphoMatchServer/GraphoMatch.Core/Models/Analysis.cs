@@ -19,7 +19,7 @@ namespace GraphoMatch.Core.Models
         public int HandWritingId { get; set; }
         public HandWriting HandWriting { get; set; }
         public string AnalysisResult {  get; set; }
-        public string Recommendation {  get; set; }
+        //public string Recommendation {  get; set; }
         public DateTime CreatedAt {  get; set; }
         public DateTime UploadedAt { get; set; }
 
