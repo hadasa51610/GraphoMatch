@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CloudinaryDotNet;
 using GraphoMatch.Core.DTOs;
 using GraphoMatch.Core.Models;
 using GraphoMatch.Core.Repositories;
@@ -45,30 +46,66 @@ namespace GraphoMatch.Service
 
         public async Task<bool> RemoveAsync(int id)
         {
-            var analysis=await _manager._analysis.GetByHandWritingIdAsync(id);
+            var analysis = await _manager._analysis.GetByHandWritingIdAsync(id);
             if (analysis != null)
             {
-                var handwriting = await _manager._analysis.DeleteAsync(analysis.Id);
-                if (handwriting) await _manager.SaveAsync();
+                var deleted = await _manager._analysis.DeleteAsync(analysis.Id);
+                if (deleted) await _manager.SaveAsync();
             }
-            bool deleted = await _manager._handWriting.DeleteAsync(id);
-            if (deleted) await _manager.SaveAsync();
-            return deleted;
+            var handwriting = await _manager._handWriting.GetByIdAsync(id);
+            bool succeed = await _manager._handWriting.DeleteAsync(id);
+            if (succeed) await _manager.SaveAsync();
+            return succeed;
         }
 
         public async Task<HandWritingDto> AddAsync(HandWritingDto entity, IFormFile image)
         {
-            var dto = _mapper.Map<HandWriting>(entity);
-            dto.Analysis = null;
-            var url = await _cloudinaryService.UploadFileAsync(image,dto.UserId,dto.Type);
+            // טען את הקובץ הקיים לפי UserId
+            var existing = await _manager._handWriting.GetByUserId(entity.UserId);
+
+            // אם קיים – מחק מהDB ומהענן
+            if (existing != null)
+            {
+                foreach (var item in existing)
+                {
+                    // מחיקת ניתוח אם יש
+                    var analysis = await _manager._analysis.GetByHandWritingIdAsync(item.Id);
+                    if (analysis != null)
+                    {
+                        await _manager._analysis.DeleteAsync(analysis.Id);
+                    }
+                    // מחיקת קובץ מהענן
+                    if (!string.IsNullOrEmpty(item.Url) && item.Type == entity.Type)
+                    {
+                        await _cloudinaryService.DeleteFileAsync(item.Url);
+                    }
+
+                    // מחיקת רשומת הטופס
+                    if (item.Type == entity.Type)
+                    {
+                        await _manager._handWriting.DeleteAsync(item.Id);
+                    }
+                    await _manager.SaveAsync();
+                }
+            }
+
+            // העלאת קובץ חדש לענן
+            var url = await _cloudinaryService.UploadFileAsync(image, entity.UserId, entity.Type);
             if (url == null)
                 return null;
-            dto.Url = url.ToString();
-            dto.User = await _manager._users.GetByIdAsync(dto.UserId);
-            dto = await _manager._handWriting.AddAsync(dto);
-            if (dto != null) await _manager.SaveAsync();
-            return _mapper.Map<HandWritingDto>(dto);
+
+            // מיפוי והוספה
+            var newEntity = _mapper.Map<HandWriting>(entity);
+            newEntity.Url = url.ToString();
+            newEntity.User = await _manager._users.GetByIdAsync(entity.UserId);
+            newEntity.Analysis = null;
+
+            var added = await _manager._handWriting.AddAsync(newEntity);
+            if (added != null) await _manager.SaveAsync();
+
+            return _mapper.Map<HandWritingDto>(added);
         }
+
 
         public Task<HandWritingDto> UpdateAsync(int id, HandWritingDto entity)
         {

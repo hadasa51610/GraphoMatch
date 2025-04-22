@@ -68,11 +68,11 @@ namespace GraphoMatch.API.Controllers
         }
 
         [HttpPost("analyze")]
-        public async Task<IActionResult> Analyze([FromBody] string imageUrl)
+        public async Task<IActionResult> Analyze([FromBody] int userId)
         {
             try
             {
-                var result = await _analysis.AnalyzeHandwritingAsync(imageUrl);
+                var result = await _analysis.AnalyzeHandwritingAsync(userId);
                 return Ok(result); 
             }
             catch (HttpRequestException ex)

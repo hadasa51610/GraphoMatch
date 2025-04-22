@@ -36,27 +36,7 @@ namespace GraphoMatch.Service
 
             if (file.Length == 0) return null;
             using var stream = file.OpenReadStream();
-            //ImageUploadResult uploadResult;
-            //if (type == "image")
-            //{
-            //    var uploadParams = new ImageUploadParams
-            //    {
-            //        File = new FileDescription(file.FileName, stream),
-            //        Transformation = new Transformation().Crop("fill").Gravity("face").Width(500).Height(500)
-            //    };
-            //    uploadResult = await cloudinary.UploadAsync(uploadParams);
-            //}
-            //else
-            //{
-            //    var uploadParams = new RawUploadParams
-            //    {
-            //        File = new FileDescription(file.FileName, stream)
-            //    };
-            //    uploadResult = (ImageUploadResult)await cloudinary.UploadAsync(uploadParams);
-            //}
-
-            //if (uploadResult.Error != null) return null;
-            //return uploadResult.SecureUrl.AbsoluteUri;
+           
             UploadResult uploadResult;
 
             if (type == "image")
@@ -64,7 +44,7 @@ namespace GraphoMatch.Service
                 var uploadParams = new ImageUploadParams
                 {
                     File = new FileDescription(file.FileName, stream),
-                    Transformation = new Transformation().Crop("fill").Gravity("face").Width(500).Height(500)
+                    Transformation = new Transformation().Crop("fill").Gravity("face")
                 };
                 uploadResult = await cloudinary.UploadAsync(uploadParams);
             }
@@ -82,35 +62,41 @@ namespace GraphoMatch.Service
             return uploadResult.SecureUrl.AbsoluteUri;
 
         }
+
+        public string ExtractPublicIdFromUrl(string url)
+        {
+            var uri = new Uri(url);
+            var segments = uri.AbsolutePath.Split('/', StringSplitOptions.RemoveEmptyEntries);
+            var uploadIndex = Array.IndexOf(segments, "upload");
+            if (uploadIndex < 0 || uploadIndex + 1 >= segments.Length)
+                throw new Exception("Invalid Cloudinary URL");
+
+            var publicId = string.Join("/", segments.Skip(uploadIndex + 2)); // skip version
+            return Path.ChangeExtension(publicId, null); // remove extension
+        }
+
+
+        public async Task<bool> DeleteFileAsync(string url)
+        {
+            Env.Load();
+            var cloudName = Environment.GetEnvironmentVariable("CLOUDINARY_CLOUD_NAME");
+            var apiKey = Environment.GetEnvironmentVariable("CLOUDINARY_API_KEY");
+            var apiSecret = Environment.GetEnvironmentVariable("CLOUDINARY_API_SECRET");
+            var account = new Account(
+                cloudName,
+                apiKey,
+                apiSecret
+            );
+            var cloudinary = new Cloudinary(account);
+            cloudinary.Api.Secure = true;
+            var deletionParams = new DeletionParams(ExtractPublicIdFromUrl(url));
+            var deletionResult = await cloudinary.DestroyAsync(deletionParams);
+            if (deletionResult.Result == "ok")
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }
-
-
-
-
-    //public async Task<bool> DeleteFileAsync(int fileId, string userId)
-    //{
-    //    var file = await _dbContext.UserFiles.FindAsync(fileId);
-    //    if (file == null || file.UserId != userId) return false;
-
-    //    var fileName = Path.GetFileNameWithoutExtension(new Uri(file.FileUrl).AbsolutePath);
-    //    var deletionParams = new DeletionParams(fileName)
-    //    {
-    //        ResourceType = file.FileType == "image" ? "image" : "raw"
-    //    };
-
-    //    var deletionResult = await _cloudinary.DestroyAsync(deletionParams);
-    //    if (deletionResult.Result == "ok")
-    //    {
-    //        _dbContext.UserFiles.Remove(file);
-    //        await _dbContext.SaveChangesAsync();
-    //        return true;
-    //    }
-    //    return false;
-    //}
-
-//    public async Task<List<UserFile>> GetUserFilesAsync(string userId)
-//    {
-//        return await _dbContext.UserFiles.Where(f => f.UserId == userId).ToListAsync();
-//    }
-//}

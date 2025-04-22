@@ -10,6 +10,6 @@ namespace GraphoMatch.Core.Services
     public interface IAnalysisService:IService<AnalysisDto>
     {
         Task<AnalysisDto?> GetByHandWritingIdAsync(int handwritingId);
-        Task<string> AnalyzeHandwritingAsync(string imageUrl);
+        Task<string> AnalyzeHandwritingAsync(int userId);
     }
 }

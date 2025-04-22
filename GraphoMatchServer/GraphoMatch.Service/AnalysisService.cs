@@ -65,22 +65,27 @@ namespace GraphoMatch.Service
             return _mapper.Map<AnalysisDto>(analysisDto);
         }
 
-        public async Task<string> AnalyzeHandwritingAsync(string imageUrl)
+        public async Task<string> AnalyzeHandwritingAsync(int userId)
         {
+            var handwriting = await _managerRepository._handWriting.GetByUserId(userId);
+            if(handwriting == null || !handwriting.Any()) { return null; }
+            var analysis = await _managerRepository._analysis.GetByHandWritingIdAsync(handwriting.First().Id);
+            if (analysis != null)
+                return analysis.AnalysisResult.ToString();
             var requestData = new
             {
-                imageUrl = imageUrl
+                imageUrl = handwriting.First().Url
             };
 
             var json = JsonSerializer.Serialize(requestData);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            if(_managerRepository._analysis.)
-
             var response = await _httpClient.PostAsync("http://192.168.0.111:5000/analyze", content);
             response.EnsureSuccessStatusCode();
 
-            return await response.Content.ReadAsStringAsync();
+            var result = await response.Content.ReadAsStringAsync();
+            analysis = new Analysis { AnalysisResult = result, HandWritingId = handwriting.First().Id };
+            return result;
         }
 
     }
