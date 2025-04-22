@@ -3,6 +3,7 @@ import { authSlice } from "./slices/authSlice";
 import { userSlice } from "./slices/userSlice";
 import { feedbackSlice } from "./slices/feedbackSlice";
 import { fileSlice } from "./slices/fileSlice";
+import { analysisSlice } from "./slices/analysisSlice";
 
 
 export const store = configureStore({
@@ -10,7 +11,8 @@ export const store = configureStore({
         auth: authSlice.reducer,
         user: userSlice.reducer,
         feedback: feedbackSlice.reducer,
-        file: fileSlice.reducer
+        file: fileSlice.reducer,
+        analysis: analysisSlice.reducer
     },
 });
 

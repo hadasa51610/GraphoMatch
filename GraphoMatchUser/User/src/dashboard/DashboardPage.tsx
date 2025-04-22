@@ -93,7 +93,7 @@ export default function ProfilePage() {
       }
     }
   }
-
+  
   const profileCompletion = resumeFile && handwritingFile ? 100 : resumeFile || handwritingFile ? 50 : 0
 
   const handleSaveProfile = (e: React.FormEvent) => {
@@ -154,10 +154,9 @@ export default function ProfilePage() {
                   <span className="text-sm text-gray-400">Profile Completion</span>
                   <span className="text-sm font-medium text-white">{profileCompletion}%</span>
                 </div>
-                <Progress
+                <Progress 
                   value={profileCompletion}
-                  className="h-2 bg-white/10"
-                  indicatorClassName="bg-gradient-to-r from-purple-500 to-pink-500"
+                  className="h-2 bg-white/10 bg-gradient-to-r from-purple-500 to-pink-500"
                 />
 
                 <div className="pt-4 space-y-3">
