@@ -74,3 +74,76 @@
   animation: float 6s ease-in-out infinite;
 }
 
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Improved scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Handwriting font */
+@font-face {
+  font-family: "Handwriting";
+  src: url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-handwriting {
+  font-family: "Caveat", cursive, sans-serif;
+}
+
+/* Custom tab styling */
+.tabs-gradient {
+  background: linear-gradient(to right, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+}
+
+[data-state="active"].tab-trigger {
+  background: linear-gradient(to right, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+  border-bottom: 2px solid #8b5cf6;
+  color: white;
+}
+
+.tab-trigger {
+  transition: all 0.2s ease;
+}
+
+.tab-trigger:hover:not([data-state="active"]) {
+  background: rgba(255, 255, 255, 0.05);
+}

@@ -114,7 +114,12 @@ const DashboardLayout = () => {
             </div>
 
             <Link to="/">
-              <Button variant="ghost" size="icon" className="text-black hover:bg-white/10 rounded-full">
+              <Button variant="ghost" size="icon" className="text-black hover:bg-white/10 rounded-full"
+              onClick={() => {
+                sessionStorage.removeItem('userId');
+                sessionStorage.removeItem('auth_token');
+                sessionStorage.removeItem('analysisVisited')
+              }}>
                 <LogOut className="h-5 w-5" />
               </Button>
             </Link>
