@@ -242,8 +242,7 @@
               "RelativeToolTip": "GraphoMatch.API\\Controllers\\AnalysisController.cs",
               "ViewState": "AgIAADYAAAAAAAAAAAAowEoAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T18:25:02.533Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T18:25:02.533Z"
             },
             {
               "$type": "Document",
@@ -291,8 +290,7 @@
               "RelativeToolTip": "GraphoMatch.API\\Controllers\\HandWritingController.cs",
               "ViewState": "AgIAACYAAAAAAAAAAAAgwC4AAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T16:24:09.196Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-11T16:24:09.196Z"
             },
             {
               "$type": "Document",
@@ -300,9 +298,9 @@
               "Title": "HandWritingService.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\HandWritingService.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Service\\HandWritingService.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\HandWritingService.cs*",
-              "RelativeToolTip": "GraphoMatch.Service\\HandWritingService.cs*",
-              "ViewState": "AgIAACgAAAAAAAAAAAAQwDcAAAAAAAAAAAAAAA==",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\HandWritingService.cs",
+              "RelativeToolTip": "GraphoMatch.Service\\HandWritingService.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAkwEMAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-10T15:40:28.876Z",
               "EditorCaption": ""
@@ -317,8 +315,7 @@
               "RelativeToolTip": "GraphoMatch.Core\\Services\\IAnalysisService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T17:25:34.995Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T17:25:34.995Z"
             },
             {
               "$type": "Document",
@@ -330,8 +327,7 @@
               "RelativeToolTip": "GraphoMatch.Data\\Repositories\\AnalysisRepository.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAiwBIAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T18:50:10.048Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T18:50:10.048Z"
             },
             {
               "$type": "Document",
