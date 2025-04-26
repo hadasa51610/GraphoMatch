@@ -8,7 +8,7 @@ import { GetAnalysis } from "@/store/slices/analysisSlice"
 import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { BrainCircuit, Edit, ArrowRight, Download, Printer } from "lucide-react"
-import { HandwritingAnimationLoader } from "@/components/handwritingAnimationLoader"
+import { HandwritingAnimationLoader } from "@/components/HandwritingAnimationLoader"
 import { GetFiles } from "@/store/slices/fileSlice"
 
 interface AnalysisData {

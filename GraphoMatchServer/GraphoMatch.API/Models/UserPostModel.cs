@@ -10,6 +10,5 @@ namespace GraphoMatch.API.Models
         public string Password { get; set; }
         public string Phone { get; set; }
         public string Profession { get; set; }
-        public int FeedbackId { get; set; }
     }
 }

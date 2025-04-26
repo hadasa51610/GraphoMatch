@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Link, PenLine } from "lucide-react";
 import { Button } from "./ui/Button";
 import { useEffect, useState } from "react";
-// import Link from 'next/link';
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false)
@@ -70,7 +69,7 @@ const Header = () => {
                     >
                         <Button
                             variant="ghost"
-                            className="text-white hover:bg-white/10 rounded-full"
+                            className="text-black hover:bg-white/10 rounded-full"
                             onClick={() => setLoginOpen(true)}
                         >  Login
                         </Button>
@@ -83,7 +82,7 @@ const Header = () => {
                 </nav>
 
                 <div className="md:hidden">
-                    <Button variant="ghost" className="text-white hover:bg-white/10" onClick={() => setLoginOpen(true)}>
+                    <Button variant="ghost" className="text-black hover:bg-white/10" onClick={() => setLoginOpen(true)}>
                         Login
                     </Button>
                 </div>
