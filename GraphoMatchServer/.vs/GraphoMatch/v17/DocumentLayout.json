@@ -240,7 +240,7 @@
               "RelativeDocumentMoniker": "GraphoMatch.API\\Controllers\\AuthController.cs",
               "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Controllers\\AuthController.cs",
               "RelativeToolTip": "GraphoMatch.API\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAQwCoAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAQwCUAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-15T22:04:51.773Z",
               "EditorCaption": ""
@@ -255,8 +255,7 @@
               "RelativeToolTip": "GraphoMatch.Service\\HandWritingService.cs",
               "ViewState": "AgIAAFYAAAAAAAAAAAAgwGsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T15:40:28.876Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T15:40:28.876Z"
             },
             {
               "$type": "Document",
@@ -268,8 +267,7 @@
               "RelativeToolTip": "GraphoMatch.Core\\DTOs\\UserDto.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T17:31:12.467Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T17:31:12.467Z"
             },
             {
               "$type": "Document",
@@ -281,8 +279,7 @@
               "RelativeToolTip": "GraphoMatch.Core\\Models\\User.cs",
               "ViewState": "AgIAACYAAAAAAAAAAAAAwDUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T16:51:17.692Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T16:51:17.692Z"
             },
             {
               "$type": "Document",
@@ -294,8 +291,7 @@
               "RelativeToolTip": "GraphoMatch.Service\\AuthService.cs",
               "ViewState": "AgIAAEgAAAAAAAAAAAAgwFgAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T21:47:17.077Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-15T21:47:17.077Z"
             },
             {
               "$type": "Document",
@@ -307,8 +303,7 @@
               "RelativeToolTip": "GraphoMatch.Data\\Repositories\\UserRepository.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAjwBcAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T20:49:08.213Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T20:49:08.213Z"
             },
             {
               "$type": "Document",
@@ -320,8 +315,7 @@
               "RelativeToolTip": "GraphoMatch.Core\\Models\\Role.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAA4wB4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T19:59:35.091Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-15T19:59:35.091Z"
             },
             {
               "$type": "Document",
@@ -333,8 +327,7 @@
               "RelativeToolTip": "GraphoMatch.API\\Models\\LoginPostModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T22:03:18.968Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-15T22:03:18.968Z"
             },
             {
               "$type": "Document",
@@ -346,8 +339,7 @@
               "RelativeToolTip": "GraphoMatch.API\\Models\\UserPostModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T12:57:28.42Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T12:57:28.42Z"
             },
             {
               "$type": "Document",
@@ -359,8 +351,7 @@
               "RelativeToolTip": "GraphoMatch.Data\\Repositories\\ManagerRepository.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAvwBwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T16:20:35.778Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-11T16:20:35.778Z"
             },
             {
               "$type": "Document",
@@ -372,8 +363,7 @@
               "RelativeToolTip": "GraphoMatch.API\\Controllers\\UserController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T19:20:28.991Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-11T19:20:28.991Z"
             },
             {
               "$type": "Document",
