@@ -1,76 +1,102 @@
+import { useState, useEffect, useRef } from "react"
+import { motion } from "framer-motion"
+import { BrainCircuit, Edit, ArrowRight, Download, Printer, AlertCircle } from "lucide-react"
+import { useDispatch, useSelector } from "react-redux"
+import type { AppDispatch, StoreType } from "@/store/store"
+import { GetAnalysis } from "@/store/slices/analysisSlice"
+import { GetFiles } from "@/store/slices/fileSlice"
+
 import { Card } from "@/components/ui/Card"
 import { Button } from "@/components/ui/Button"
 import { Badge } from "@/components/ui/Badge"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/Tabs"
-import { useDispatch, useSelector } from "react-redux"
-import { AppDispatch, StoreType } from "@/store/store"
-import { GetAnalysis } from "@/store/slices/analysisSlice"
-import { useState, useEffect, useRef } from "react"
-import { motion } from "framer-motion"
-import { BrainCircuit, Edit, ArrowRight, Download, Printer } from "lucide-react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { HandwritingAnimationLoader } from "@/components/HandwritingAnimationLoader"
-import { GetFiles } from "@/store/slices/fileSlice"
+import { ImagePreviewDialog } from "@/components/ImagePreview"
+import { useReactToPrint } from "react-to-print";
+import { generatePDF } from "@/pages/PDFGenerator"
+import { generateHebrewPDF } from "@/pages/HebrewPDFGenerator"
 
-interface AnalysisData {
-  personalityTraits: { trait: string; matchLevel: string; description: string }[];
-  recommendations: { profession: string; matchLevel: string; reason: string }[];
+export interface AnalysisData {
+  personalityTraits: { trait: string; matchLevel: string; description: string }[]
+  recommendations: { profession: string; matchLevel: string; reason: string }[]
 }
 
 export default function AnalysisPage() {
-  const dispatch = useDispatch<AppDispatch>();
-  const analysisFromStore = useSelector((state: StoreType) => state.analysis.list);
-  const [analysis, setAnalysis] = useState<AnalysisData | null>(null);
-  const [imgUrl, setImgUrl] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState("overview");
+  const dispatch = useDispatch<AppDispatch>()
+  const analysisFromStore = useSelector((state: StoreType) => state.analysis.list)
+  const [analysis, setAnalysis] = useState<AnalysisData | null>(null)
+  const [imgUrl, setImgUrl] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [activeTab, setActiveTab] = useState("overview")
+  const [error, setError] = useState<string | null>(null)
+  const [previewOpen, setPreviewOpen] = useState(false) // Always open by default
 
-  const isFirstVisit = useRef(sessionStorage.getItem('analysisVisited') !== 'true');
+  const isFirstVisit = useRef(sessionStorage.getItem("analysisVisited") !== "true")
 
   useEffect(() => {
-    const userId = sessionStorage.getItem('userId');
-    if (!userId) return;
+    const userId = sessionStorage.getItem("userId")
+    if (!userId) return
 
-    if (analysisFromStore.personalityTraits.length > 0) {
-      setAnalysis(analysisFromStore);
-      setLoading(false);
-      return;
+    // If we already have analysis data in the store, use it
+    if (analysisFromStore && analysisFromStore.personalityTraits && analysisFromStore.personalityTraits.length > 0) {
+      setAnalysis(analysisFromStore)
+      return
     }
 
-    if (isFirstVisit.current) {
-      sessionStorage.setItem('analysisVisited', 'true');
+    // Set loading state and fetch data
+    setLoading(true)
+    setError(null)
 
-      setLoading(true);
+    // First get the files to display the handwriting image
+    dispatch(GetFiles(Number(userId)))
+      .then((fileResult: any) => {
+        if (fileResult.payload && fileResult.payload.length > 0) {
+          setImgUrl(fileResult.payload[0].url)
 
-      const timeout = setTimeout(() => {
-        setLoading(false);
-      }, 20000);
+          // Then get the analysis data
+          return dispatch(GetAnalysis(Number(userId)))
+        } else {
+          throw new Error("No handwriting samples found")
+        }
+      })
+      .then((analysisResult: any) => {
+        if (analysisResult.payload) {
+          setAnalysis(analysisResult.payload)
 
-      dispatch(GetFiles(Number(userId))).then((result: any) => {
-        setImgUrl(result.payload[0].url);
-        dispatch(GetAnalysis(Number(userId))).then((result: any) => {
-          clearTimeout(timeout);
-
-          if (result.payload) {
-            setAnalysis(result.payload);
-          } else {
-            alert("No analysis data available");
+          // Mark as visited only on successful analysis
+          if (isFirstVisit.current) {
+            sessionStorage.setItem("analysisVisited", "true")
           }
-          setLoading(false);
-        })
-      });
-    } else {
-      if (!analysisFromStore) {
-        dispatch(GetFiles(Number(userId))).then((result: any) => {
-          setImgUrl(result.payload[0].url);
-          dispatch(GetAnalysis(Number(userId))).then((result: any) => {
-            if (result.payload) {
-              setAnalysis(result.payload);
-            }
-          });
-        })
-      }
-    }
-  }, [dispatch, analysisFromStore]);
+        } else {
+          throw new Error("No analysis data available")
+        }
+      })
+      .catch((err: any) => {
+        console.error("Error fetching analysis:", err)
+        setError(err.message || "Failed to load analysis data")
+
+        // Reset the visited flag on error so user can try again
+        sessionStorage.removeItem("analysisVisited")
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }, [dispatch, analysisFromStore])
+
+  // This function now just ensures the dialog is open
+  const handleImagePreview = () => {
+    setPreviewOpen(true)
+  }
+
+  // Function to close the dialog (though we'll keep it open by default)
+  const handleClosePreview = () => {
+    setPreviewOpen(false)
+  }
+
+  const handlePrint = useReactToPrint({
+    // content: () => printRef.current,
+  });
 
 
   const getMatchLevelColor = (level: string) => {
@@ -103,10 +129,38 @@ export default function AnalysisPage() {
     return colors[level] || colors["Medium"]
   }
 
+  // Show loading animation while fetching data
   if (loading) {
     return <HandwritingAnimationLoader />
   }
 
+  // Show error message if there was a problem
+  if (error) {
+    return (
+      <div className="max-w-5xl mx-auto">
+        <Card className="bg-gradient-to-br from-gray-900 to-black border border-white/10 backdrop-blur-xl overflow-hidden p-8">
+          <Alert variant="destructive" className="bg-red-500/10 border-red-500/20 text-white">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+          <div className="flex justify-center mt-6">
+            <Button
+              onClick={() => {
+                sessionStorage.removeItem("analysisVisited")
+                window.location.reload()
+              }}
+              className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white border-0 rounded-full"
+            >
+              Try Again
+            </Button>
+          </div>
+        </Card>
+      </div>
+    )
+  }
+
+  // Show message if no analysis data is available
   if (!analysis) {
     return (
       <div className="max-w-5xl mx-auto">
@@ -119,8 +173,7 @@ export default function AnalysisPage() {
       </div>
     )
   }
-  console.log("analysis.recommendations", analysis.recommendations);
-  console.log("analysis.personalityTraits", analysis.personalityTraits);
+
   return (
     <div className="max-w-5xl mx-auto">
       <motion.div
@@ -165,7 +218,6 @@ export default function AnalysisPage() {
           </TabsTrigger>
         </TabsList>
 
-
         <TabsContent value="overview" className="mt-6">
           <div className="space-y-8">
             <Card className="bg-gradient-to-br from-gray-900 to-black border border-white/10 backdrop-blur-xl overflow-hidden">
@@ -179,29 +231,37 @@ export default function AnalysisPage() {
                       </div>
                     </div>
                     <h3 className="text-2xl font-bold text-white">Handwriting Analysis</h3>
+                    <div
+                      className="flex items-center gap-2 text-green-400 cursor-pointer hover:text-green-300 transition-colors bg-white/5 p-3 rounded-lg"
+                      onClick={handleImagePreview}
+                    >
+                      <span className="text-xs text-gray-400 ml-2 underline">Click to preview</span>
+                    </div>
+                    <ImagePreviewDialog
+                      isOpen={previewOpen}
+                      onClose={handleClosePreview}
+                      imageUrl={imgUrl || ""}
+                    />
                   </div>
                   <div className="flex gap-3">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="border-white/10 bg-white/5 text-black rounded-full"
-                    >
+                    <Button variant="outline" size="sm" className="border-white/10 bg-white/5 text-black rounded-full"
+                      onClick={() => { generatePDF(analysis); generateHebrewPDF(analysis) }}>
                       <Download className="h-4 w-4 mr-2" />
                       <span>Download</span>
                     </Button>
                   </div>
                 </div>
 
-                <div className="relative rounded-xl border border-white/10 mb-8 group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-300"></div>
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
-                  <div className="relative p-6 flex justify-center">
-                    <img
-                      src={imgUrl || undefined}
-                      alt="Handwriting Sample"
-                      className="max-w-full h-auto rounded-lg shadow-lg"
-                    />
-                  </div>
+                <div className="space-y-4">
+                  <p className="text-gray-300 leading-relaxed">
+                    Thank you for providing your handwriting sample. Based on a general analysis of the writing style,
+                    certain personality traits may be inferred. However, please keep in mind that this is not a
+                    scientific diagnosis.
+                  </p>
+                  <p className="text-gray-300 leading-relaxed">
+                    The insights provided are intended for guidance and reflection only. We encourage you to consider
+                    them thoughtfully, while also taking into account your unique context and individuality.
+                  </p>
                 </div>
 
                 <div className="mt-8 flex justify-end">
@@ -229,6 +289,7 @@ export default function AnalysisPage() {
                 <Button
                   variant="outline"
                   size="sm"
+                  onClick={handlePrint}
                   className="border-white/10 bg-white/5 hover:bg-white/10 text-black rounded-full"
                 >
                   <Printer className="h-4 w-4 mr-2" />
@@ -244,7 +305,7 @@ export default function AnalysisPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {analysis.personalityTraits.map((trait, index) => {
+                {analysis?.personalityTraits.map((trait, index) => {
                   const colorScheme = getMatchLevelColor(trait.matchLevel)
                   return (
                     <motion.div
@@ -306,6 +367,7 @@ export default function AnalysisPage() {
                 <Button
                   variant="outline"
                   size="sm"
+                  onClick={handlePrint}
                   className="border-white/10 bg-white/5 hover:bg-white/10 text-black rounded-full"
                 >
                   <Printer className="h-4 w-4 mr-2" />
@@ -349,9 +411,13 @@ export default function AnalysisPage() {
                                   className={`h-full rounded-full bg-gradient-to-r ${colorScheme.gradient}`}
                                   style={{
                                     width:
-                                      rec.matchLevel === "Very High" ? "95%"
-                                        : rec.matchLevel === "High" ? "80%"
-                                          : rec.matchLevel === "Medium" ? "60%" : "40%",
+                                      rec.matchLevel === "Very High"
+                                        ? "95%"
+                                        : rec.matchLevel === "High"
+                                          ? "80%"
+                                          : rec.matchLevel === "Medium"
+                                            ? "60%"
+                                            : "40%",
                                   }}
                                 ></div>
                               </div>

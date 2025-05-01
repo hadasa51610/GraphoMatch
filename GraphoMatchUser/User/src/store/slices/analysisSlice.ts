@@ -3,7 +3,7 @@ import axios from "axios";
 
 const baseUrl = 'https://localhost:7134/api'
 
-export const GetAnalysis = createAsyncThunk('data/post',
+export const GetAnalysis = createAsyncThunk('analysis/getAnalysis',
     async (userId: number, thunkAPI) => {
         try {
             const response = await axios.post(`${baseUrl}/Analysis/analyze`, JSON.stringify(userId), {
@@ -33,7 +33,7 @@ export const GetAnalysis = createAsyncThunk('data/post',
 
 
 export const analysisSlice = createSlice({
-    name: 'data',
+    name: 'analysis',
     initialState: {
         list: {
             personalityTraits: [],

@@ -4,7 +4,7 @@ import axios from "axios";
 
 const baseUrl = 'https://localhost:7134/api'
 
-export const Get = createAsyncThunk('data/get',
+export const Get = createAsyncThunk('feedback/get',
     async (_, thunkAPI) => {
         try {
             const response = await axios.get(`${baseUrl}/Feedback`)
@@ -18,7 +18,7 @@ export const Get = createAsyncThunk('data/get',
     }
 )
 
-export const Add = createAsyncThunk('data/post',
+export const Add = createAsyncThunk('feedback/add',
     async (data: FeedbackType, thunkAPI) => {
         try {
             const response = await axios.post(`${baseUrl}/Feedback`, {
@@ -36,7 +36,7 @@ export const Add = createAsyncThunk('data/post',
 )
 
 export const feedbackSlice = createSlice({
-    name: 'data',
+    name: 'feedback',
     initialState: { list: [] as FeedbackType[], loading: true, error: null as string | null },
     reducers: {},
     extraReducers: (builder) => {

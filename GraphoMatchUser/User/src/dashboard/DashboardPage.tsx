@@ -19,32 +19,26 @@ import { DocumentUpload } from "@/dashboard/profile/DocumentUpload"
 import { useNavigate } from "react-router-dom"
 
 export default function ProfilePage() {
-  // File states
-  const [resumeFile, setResumeFile] = useState<File | null>(null)
   const [handwritingFile, setHandwritingFile] = useState<File | null>(null)
   const [handwritingImageUrl, setHandwritingImageUrl] = useState<string | null>(null)
-  const navigate = useNavigate()
+  const router = useNavigate()
 
-  // Previous state for rollback on failure
   const [previousUser, setPreviousUser] = useState<UserType | null>(null)
-  const [previousResumeFile, setPreviousResumeFile] = useState<File | null>(null)
   const [previousHandwritingFile, setPreviousHandwritingFile] = useState<File | null>(null)
 
-  // Loading states
   const [isLoadingUser, setIsLoadingUser] = useState(false)
-  const [isUploadingResume, setIsUploadingResume] = useState(false)
   const [isUploadingHandwriting, setIsUploadingHandwriting] = useState(false)
   const [isSavingProfile, setIsSavingProfile] = useState(false)
 
-  // Error states
   const [userError, setUserError] = useState<string | null>(null)
-  const [resumeError, setResumeError] = useState<string | null>(null)
   const [handwritingError, setHandwritingError] = useState<string | null>(null)
   const [profileError, setProfileError] = useState<string | null>(null)
 
   const dispatch = useDispatch<AppDispatch>()
   const [user, setUser] = useState<UserType | null>(null)
   const [showProfileSuccess, setShowProfileSuccess] = useState(false)
+
+  // Always show the preview dialog when an image is available
   const [isPreviewOpen, setIsPreviewOpen] = useState(false)
 
   // Initial data loading
@@ -90,11 +84,6 @@ export default function ProfilePage() {
                 const file = new File([], item.fileName)
                 setHandwritingFile(file)
                 setPreviousHandwritingFile(file)
-              } else {
-                // For resume files
-                const file = new File([], item.fileName)
-                setResumeFile(file)
-                setPreviousResumeFile(file)
               }
             })
           }
@@ -104,40 +93,6 @@ export default function ProfilePage() {
         })
     }
   }, [dispatch])
-
-  const handleResumeUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const uploadedFile = e.target.files[0]
-      const userId = sessionStorage.getItem("userId")
-
-      if (userId) {
-        // Save previous state for rollback
-        setPreviousResumeFile(resumeFile)
-
-        // Update UI immediately for better UX
-        setResumeFile(uploadedFile)
-        setIsUploadingResume(true)
-        setResumeError(null)
-
-        dispatch(AddFile({ data: uploadedFile, userId: Number(userId) }))
-          .then((result: any) => {
-            if (!result.payload) {
-              // Rollback on failure
-              setResumeFile(previousResumeFile)
-              setResumeError("Failed to upload resume")
-            }
-          })
-          .catch((error) => {
-            // Rollback on error
-            setResumeFile(previousResumeFile)
-            setResumeError(error.message || "Failed to upload resume")
-          })
-          .finally(() => {
-            setIsUploadingResume(false)
-          })
-      }
-    }
-  }
 
   const handleHandwritingUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -161,6 +116,8 @@ export default function ProfilePage() {
               const fileData = result.payload
               if (fileData.url) {
                 setHandwritingImageUrl(fileData.url)
+                // Open the preview dialog when a new image is uploaded
+                setIsPreviewOpen(true)
               }
             } else {
               // Rollback on failure
@@ -218,14 +175,20 @@ export default function ProfilePage() {
   }
 
   const handleSubmitForAnalysis = () => {
-    if (!resumeFile || (!handwritingFile && !handwritingImageUrl)) {
+    if (!handwritingFile && !handwritingImageUrl) {
       return
     }
-    navigate('/dashboard/analysis')
+    router("/dashboard/analysis")
   }
 
+  // This function now just ensures the dialog is open
   const handleImagePreview = () => {
     setIsPreviewOpen(true)
+  }
+
+  // Function to close the dialog (though we'll keep it open by default)
+  const handleClosePreview = () => {
+    setIsPreviewOpen(false)
   }
 
   return (
@@ -244,7 +207,7 @@ export default function ProfilePage() {
         </div>
         <div>
           <h1 className="text-3xl font-bold">Your Profile</h1>
-          <p className="text-gray-400">Manage your information and documents</p>
+          <p className="text-gray-400">Manage your information and document</p>
         </div>
       </motion.div>
 
@@ -273,11 +236,9 @@ export default function ProfilePage() {
           <UserProfileCard
             user={user}
             isLoadingUser={isLoadingUser}
-            resumeFile={resumeFile}
             handwritingFile={handwritingFile || (handwritingImageUrl ? new File([], "cloud-image.jpg") : null)}
+            handwritingImageUrl={handwritingImageUrl}
           />
-
-          {/* Add a card for entering image URL */}
         </motion.div>
 
         <motion.div
@@ -297,16 +258,11 @@ export default function ProfilePage() {
           />
 
           <DocumentUpload
-            resumeFile={resumeFile}
             handwritingFile={handwritingFile}
             handwritingImageUrl={handwritingImageUrl}
-            isUploadingResume={isUploadingResume}
             isUploadingHandwriting={isUploadingHandwriting}
-            resumeError={resumeError}
             handwritingError={handwritingError}
-            onResumeUpload={handleResumeUpload}
             onHandwritingUpload={handleHandwritingUpload}
-            onClearResumeError={() => setResumeError(null)}
             onClearHandwritingError={() => setHandwritingError(null)}
             onImagePreview={handleImagePreview}
             onSubmitForAnalysis={handleSubmitForAnalysis}
@@ -322,10 +278,9 @@ export default function ProfilePage() {
         color="purple"
       />
       <ImagePreviewDialog
-        open={isPreviewOpen}
-        onOpenChange={setIsPreviewOpen}
-        file={handwritingFile}
-        imageUrl={handwritingImageUrl}
+        isOpen={isPreviewOpen}
+        onClose={handleClosePreview}
+         imageUrl={handwritingImageUrl || ""}
       />
     </div>
   )

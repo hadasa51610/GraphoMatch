@@ -1,6 +1,6 @@
 import type React from "react"
 
-import { FileText, Upload, Check, AlertCircle, Loader2, X, ImageIcon } from "lucide-react"
+import { Upload, Check, AlertCircle, Loader2, X, ImageIcon } from "lucide-react"
 import { Card } from "@/components/ui/Card"
 import { Button } from "@/components/ui/Button"
 import { Input } from "@/components/ui/Input"
@@ -8,32 +8,22 @@ import { Label } from "@/components/ui/Label"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
 interface DocumentUploadProps {
-    resumeFile: File | null
     handwritingFile: File | null
     handwritingImageUrl?: string | null
-    isUploadingResume: boolean
     isUploadingHandwriting: boolean
-    resumeError: string | null
     handwritingError: string | null
-    onResumeUpload: (e: React.ChangeEvent<HTMLInputElement>) => void
     onHandwritingUpload: (e: React.ChangeEvent<HTMLInputElement>) => void
-    onClearResumeError: () => void
     onClearHandwritingError: () => void
     onImagePreview: () => void
     onSubmitForAnalysis: () => void
 }
 
 export function DocumentUpload({
-    resumeFile,
     handwritingFile,
     handwritingImageUrl,
-    isUploadingResume,
     isUploadingHandwriting,
-    resumeError,
     handwritingError,
-    onResumeUpload,
     onHandwritingUpload,
-    onClearResumeError,
     onClearHandwritingError,
     onImagePreview,
     onSubmitForAnalysis,
@@ -45,69 +35,11 @@ export function DocumentUpload({
             <div className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-white">Document Upload</h3>
                 <p className="text-gray-400 mb-6">
-                    Upload your resume and a handwriting sample for analysis. The handwriting sample should be at least one
+                    Upload your handwriting sample for analysis. The handwriting sample should be at least one
                     paragraph written on unlined paper.
                 </p>
 
                 <div className="space-y-6">
-                    <div className="border border-dashed border-white/20 rounded-lg p-6 bg-white/5">
-                        {resumeError && (
-                            <Alert variant="destructive" className="bg-red-900/20 border-red-900/50 text-red-50 mb-4">
-                                <AlertCircle className="h-4 w-4" />
-                                <AlertDescription className="ml-2">{resumeError}</AlertDescription>
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="ml-auto h-5 w-5 p-0 text-red-50 hover:bg-red-900/30"
-                                    onClick={onClearResumeError}
-                                >
-                                    <X className="h-3 w-3" />
-                                </Button>
-                            </Alert>
-                        )}
-
-                        <div className="flex flex-col items-center justify-center text-center">
-                            {isUploadingResume ? (
-                                <div className="flex flex-col items-center gap-2 text-gray-400">
-                                    <Loader2 className="h-10 w-10 animate-spin mb-2" />
-                                    <span>Uploading resume...</span>
-                                </div>
-                            ) : resumeFile ? (
-                                <div className="flex items-center gap-2 text-green-400">
-                                    <Check className="h-5 w-5" />
-                                    <span>{resumeFile.name}</span>
-                                </div>
-                            ) : (
-                                <>
-                                    <FileText className="h-10 w-10 text-gray-400 mb-2" />
-                                    <h4 className="font-medium mb-1 text-white">Resume</h4>
-                                    <p className="text-sm text-gray-400 mb-4">Upload your CV or resume (PDF, DOCX)</p>
-                                </>
-                            )}
-
-                            <Label
-                                htmlFor="resume-upload"
-                                className={`cursor-pointer inline-flex items-center gap-2 px-4 py-2 rounded-lg ${isUploadingResume
-                                    ? "bg-white/5 text-gray-400 cursor-not-allowed"
-                                    : resumeFile
-                                        ? "bg-white/10 hover:bg-white/20 text-white"
-                                        : "bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white"
-                                    }`}
-                            >
-                                {isUploadingResume ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Upload className="h-4 w-4" />}
-                                <span>{resumeFile ? "Change File" : "Upload Resume"}</span>
-                            </Label>
-                            <Input
-                                id="resume-upload"
-                                type="file"
-                                accept=".pdf,.docx,.doc"
-                                className="hidden"
-                                onChange={onResumeUpload}
-                                disabled={isUploadingResume}
-                            />
-                        </div>
-                    </div>
-
                     <div className="border border-dashed border-white/20 rounded-lg p-6 bg-white/5">
                         {handwritingError && (
                             <Alert variant="destructive" className="bg-red-900/20 border-red-900/50 text-red-50 mb-4">
@@ -194,12 +126,12 @@ export function DocumentUpload({
                         </div>
                     </div>
 
-                    {!resumeFile || !hasHandwritingSample ? (
+                    {!hasHandwritingSample ? (
                         <div className="flex items-start gap-3 bg-yellow-500/10 text-yellow-400 p-4 rounded-lg">
                             <AlertCircle className="h-5 w-5 mt-0.5" />
                             <div>
-                                <p className="font-medium">Documents Required</p>
-                                <p className="text-sm">Both your resume and handwriting sample are needed for a complete analysis.</p>
+                                <p className="font-medium">Document Required</p>
+                                <p className="text-sm">Your handwriting sample is needed for a complete analysis.</p>
                             </div>
                         </div>
                     ) : (
@@ -207,7 +139,7 @@ export function DocumentUpload({
                             <Button
                                 className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white border-0 rounded-lg"
                                 onClick={onSubmitForAnalysis}
-                                disabled={isUploadingResume || isUploadingHandwriting}
+                                disabled={isUploadingHandwriting}
                             >
                                 Submit for Analysis
                             </Button>

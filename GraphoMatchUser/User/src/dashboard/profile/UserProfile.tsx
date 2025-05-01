@@ -1,6 +1,4 @@
-"use client"
-
-import { Loader2, User, FileText } from "lucide-react"
+import { Loader2, User } from "lucide-react"
 import { Card } from "@/components/ui/Card"
 import { Progress } from "@/components/ui/Progress"
 import { Badge } from "@/components/ui/Badge"
@@ -10,12 +8,12 @@ import type { UserType } from "@/types/UserType"
 interface UserProfileCardProps {
   user: UserType | null
   isLoadingUser: boolean
-  resumeFile: File | null
   handwritingFile: File | null
+  handwritingImageUrl: string | null; 
 }
 
-export function UserProfileCard({ user, isLoadingUser, resumeFile, handwritingFile }: UserProfileCardProps) {
-  const profileCompletion = resumeFile && handwritingFile ? 100 : resumeFile || handwritingFile ? 50 : 0
+export function UserProfileCard({ user, isLoadingUser, handwritingFile }: UserProfileCardProps) {
+  const profileCompletion = handwritingFile ? 100 : 50
 
   return (
     <Card className="bg-gradient-to-br from-gray-900 to-black border border-white/10 backdrop-blur-xl overflow-hidden">
@@ -59,31 +57,14 @@ export function UserProfileCard({ user, isLoadingUser, resumeFile, handwritingFi
                       <User className="h-5 w-5 text-purple-400" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-white">Personal Info</p>
+                      <p className="text-sm font-medium text-white">Personal Handwriting</p>
                     </div>
                   </div>
                   <Badge
                     variant="outline"
-                    className={`${user ? "bg-green-500/10 text-green-400 border-green-500/20" : "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"}`}
+                    className={`${handwritingFile ? "bg-green-500/10 text-green-400 border-green-500/20" : "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"}`}
                   >
-                    {user ? "Complete" : "Required"}
-                  </Badge>
-                </div>
-
-                <div className="flex items-center justify-between bg-white/5 rounded-lg p-3">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-pink-500/20 p-2 rounded-lg">
-                      <FileText className="h-5 w-5 text-pink-400" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-white">Documents</p>
-                    </div>
-                  </div>
-                  <Badge
-                    variant="outline"
-                    className={`${resumeFile && handwritingFile ? "bg-green-500/10 text-green-400 border-green-500/20" : "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"}`}
-                  >
-                    {resumeFile && handwritingFile ? "Complete" : "Required"}
+                    {handwritingFile ? "Complete" : "Required"}
                   </Badge>
                 </div>
               </div>

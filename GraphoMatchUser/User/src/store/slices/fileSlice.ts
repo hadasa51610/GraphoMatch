@@ -4,7 +4,7 @@ import axios from "axios";
 
 const baseUrl = 'https://localhost:7134/api'
 
-export const AddFile = createAsyncThunk('data/post',
+export const AddFile = createAsyncThunk('file/addFile',
     async ({ data, userId }: { data: File, userId: number }, thunkAPI) => {
         try {
             const formData = new FormData();
@@ -29,7 +29,7 @@ export const AddFile = createAsyncThunk('data/post',
     }
 )
 
-export const GetFiles = createAsyncThunk('data/get',
+export const GetFiles = createAsyncThunk('file/getFiles',
     async (userId: number, thunkAPI) => {
         try {
             const response = await axios.get(`${baseUrl}/HandWriting/ByUser/${userId}`)
@@ -45,7 +45,7 @@ export const GetFiles = createAsyncThunk('data/get',
 
 
 export const fileSlice = createSlice({
-    name: 'data',
+    name: 'file',
     initialState: { list: [] as FileType[], loading: true, error: null as string | null },
     reducers: {},
     extraReducers: (builder) => {
