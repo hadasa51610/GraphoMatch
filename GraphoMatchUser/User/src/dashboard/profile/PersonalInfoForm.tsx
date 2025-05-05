@@ -1,5 +1,3 @@
-"use client"
-
 import type React from "react"
 import { Loader2, AlertCircle, X } from "lucide-react"
 import { Card } from "@/components/ui/Card"

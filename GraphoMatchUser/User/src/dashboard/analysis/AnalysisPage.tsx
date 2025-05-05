@@ -16,6 +16,7 @@ import { ImagePreviewDialog } from "@/components/ImagePreview"
 import { useReactToPrint } from "react-to-print";
 import { generatePDF } from "@/pages/PDFGenerator"
 import { generateHebrewPDF } from "@/pages/HebrewPDFGenerator"
+import { useNavigate } from "react-router-dom"
 
 export interface AnalysisData {
   personalityTraits: { trait: string; matchLevel: string; description: string }[]
@@ -30,13 +31,16 @@ export default function AnalysisPage() {
   const [loading, setLoading] = useState(false)
   const [activeTab, setActiveTab] = useState("overview")
   const [error, setError] = useState<string | null>(null)
-  const [previewOpen, setPreviewOpen] = useState(false) // Always open by default
+  const [previewOpen, setPreviewOpen] = useState(false) 
+  const router = useNavigate()
 
   const isFirstVisit = useRef(sessionStorage.getItem("analysisVisited") !== "true")
 
   useEffect(() => {
     const userId = sessionStorage.getItem("userId")
-    if (!userId) return
+    if(!userId) {
+      router("/")
+    }
 
     // If we already have analysis data in the store, use it
     if (analysisFromStore && analysisFromStore.personalityTraits && analysisFromStore.personalityTraits.length > 0) {

@@ -44,6 +44,9 @@ export default function ProfilePage() {
   // Initial data loading
   useEffect(() => {
     const userId = sessionStorage.getItem("userId")
+    if(!userId) {
+      router("/")
+    }
     if (userId) {
       setIsLoadingUser(true)
       setUserError(null)
@@ -69,6 +72,9 @@ export default function ProfilePage() {
   // Load files
   useEffect(() => {
     const userId = sessionStorage.getItem("userId")
+    if(!userId) {
+      router("/")
+    }
     if (userId) {
       dispatch(GetFiles(Number(userId)))
         .then((result: any) => {
@@ -98,7 +104,9 @@ export default function ProfilePage() {
     if (e.target.files && e.target.files[0]) {
       const uploadedFile = e.target.files[0]
       const userId = sessionStorage.getItem("userId")
-
+      if(!userId) {
+        router("/")
+      }
       if (userId) {
         // Save previous state for rollback
         setPreviousHandwritingFile(handwritingFile)
@@ -144,6 +152,9 @@ export default function ProfilePage() {
 
     if (user) {
       const userId = sessionStorage.getItem("userId")
+      if(!userId) {
+        router("/")
+      }
       if (userId) {
         // Save previous state for rollback
         setPreviousUser({ ...user })

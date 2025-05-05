@@ -12,6 +12,7 @@ import type { AppDispatch } from "@/store/store"
 import type { FeedbackType } from "@/types/FeedbackType"
 import { Add, Get } from "@/store/slices/feedbackSlice"
 import { GetUser } from "@/store/slices/userSlice"
+import { useNavigate } from "react-router-dom"
 
 export default function FeedbackPage() {
   const [feedback, setFeedback] = useState("")
@@ -19,6 +20,7 @@ export default function FeedbackPage() {
   const dispatch = useDispatch<AppDispatch>()
   const [allFeedbacks, setAllFeedbacks] = useState<FeedbackType[] | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const router = useNavigate()
 
   // Fetch all feedbacks
   useEffect(() => {
@@ -34,20 +36,20 @@ export default function FeedbackPage() {
     const fetchUsers = async () => {
       const updatedFeedbacks = allFeedbacks
         ? await Promise.all(
-            allFeedbacks.map(async (item) => {
-              if (item.userId !== undefined) {
-                const res = await dispatch(GetUser(item.userId as number))
-                if (res.payload) {
-                  return {
-                    ...item,
-                    userFirstName: res.payload.firstName || "",
-                    userLastName: res.payload.lastName || "",
-                  }
+          allFeedbacks.map(async (item) => {
+            if (item.userId !== undefined) {
+              const res = await dispatch(GetUser(item.userId as number))
+              if (res.payload) {
+                return {
+                  ...item,
+                  userFirstName: res.payload.firstName || "",
+                  userLastName: res.payload.lastName || "",
                 }
               }
-              return item
-            }),
-          )
+            }
+            return item
+          }),
+        )
         : []
 
       // Process feedbacks to get only one per user (the most recent)
@@ -76,6 +78,9 @@ export default function FeedbackPage() {
     if (feedback.trim()) {
       setIsSubmitting(true)
       const id = sessionStorage.getItem("userId")
+      if (!id) {
+        router("/")
+      }
       if (id) {
         const data: FeedbackType = {
           userId: Number(id),

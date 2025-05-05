@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useLocation, Link } from "react-router-dom"
 import { motion } from "framer-motion"
-import { PenLine, User, BrainCircuit, Briefcase, MessageSquare, LogOut, Bell } from "lucide-react"
+import { PenLine, User, BrainCircuit, Briefcase, MessageSquare, LogOut } from "lucide-react"
 
 import { Button } from "@/components/ui/Button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
@@ -15,7 +15,6 @@ import { GetUser } from "@/store/slices/userSlice"
 
 const DashboardLayout = () => {
   const [scrolled, setScrolled] = useState(false)
-  const [notifications,] = useState(3)
   const { pathname } = useLocation()
   const dispatch = useDispatch<AppDispatch>();
   const [user, setUser] = useState<UserType | null>(null);
@@ -91,17 +90,6 @@ const DashboardLayout = () => {
           </nav>
 
           <div className="flex items-center gap-4">
-            <div className="relative">
-              <Button variant="ghost" size="icon" className="text-black hover:bg-white/10 rounded-full relative">
-                <Bell className="h-5 w-5" />
-                {notifications > 0 && (
-                  <span className="absolute top-0 right-0 h-4 w-4 bg-red-500 rounded-full flex items-center justify-center text-[10px] font-bold">
-                    {notifications}
-                  </span>
-                )}
-              </Button>
-            </div>
-
             <div className="flex items-center gap-2">
               <Avatar className="h-9 w-9 border-2 border-purple-500">
                 <AvatarImage src="/placeholder.svg?height=36&width=36" alt="User" />
