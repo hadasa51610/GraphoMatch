@@ -14,6 +14,7 @@ namespace GraphoMatch.Data
         public DbSet<HandWriting> HandWritings { get; set; }
         public DbSet<Analysis> Analysis { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<Job> jobs { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 

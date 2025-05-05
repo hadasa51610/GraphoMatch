@@ -10,7 +10,7 @@ import { Card } from "@/components/ui/Card"
 import { Button } from "@/components/ui/Button"
 import { Badge } from "@/components/ui/Badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/Alert"
 import { HandwritingAnimationLoader } from "@/components/HandwritingAnimationLoader"
 import { ImagePreviewDialog } from "@/components/ImagePreview"
 import { useReactToPrint } from "react-to-print";

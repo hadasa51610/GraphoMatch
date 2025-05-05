@@ -12,11 +12,11 @@ namespace GraphoMatch.Data.Repositories
 {
     public class AnalysisRepository : Repository<Analysis>, IAnalysisRepository
     {
-        private readonly DbSet<Analysis> _dbSet;
+        //private readonly DbSet<Analysis> _dbSet;
 
         public AnalysisRepository(DataContext context) : base(context)
         {
-            _dbSet = context.Set<Analysis>();
+            //_dbSet = context.Set<Analysis>();
         }
 
         public async Task<Analysis?> GetByHandWritingIdAsync(int handwritingId)

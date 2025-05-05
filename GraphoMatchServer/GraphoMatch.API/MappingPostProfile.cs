@@ -12,6 +12,7 @@ namespace GraphoMatch.API
             CreateMap<HandWritingPostModel, HandWritingDto>();
             CreateMap<AnalysisPostModel, AnalysisDto>();
             CreateMap<FeedbackPostModel, FeedbackDto>();
+            CreateMap<JobPostModel,JobDTO>();
         }
     }
 }

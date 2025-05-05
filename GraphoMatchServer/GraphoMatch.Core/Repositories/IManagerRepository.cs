@@ -12,6 +12,7 @@ namespace GraphoMatch.Core.Repositories
         IHandWritingRepository _handWriting { get; }
         IAnalysisRepository _analysis { get; }
         IFeedbackRepository _feedback { get; }
+        IJobRepository _jobs { get; }
         Task SaveAsync();
     }
 }

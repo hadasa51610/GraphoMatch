@@ -10,7 +10,7 @@ import type { AppDispatch } from "@/store/store"
 import { useDispatch } from "react-redux"
 import { Login } from "@/store/slices/authSlice"
 import { useNavigate } from "react-router-dom"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Alert, AlertDescription } from "@/components/ui/Alert"
 
 interface LoginDialogProps {
   open: boolean

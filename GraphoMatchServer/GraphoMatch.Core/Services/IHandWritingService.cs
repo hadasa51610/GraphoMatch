@@ -17,5 +17,6 @@ namespace GraphoMatch.Core.Services
         Task<HandWritingDto?> GetByIdAsync(int id);
         Task<HandWritingDto> AddAsync(HandWritingDto entity,IFormFile image);
         Task<bool> RemoveAsync(int id);
+        Task<string> AnalyzeHandwritingAsync(int userId);
     }
 }

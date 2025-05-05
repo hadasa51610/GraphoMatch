@@ -75,5 +75,19 @@ namespace GraphoMatch.API.Controllers
             if (await _handWriting.GetByIdAsync(id) == null) return NotFound();
             return Ok(await _handWriting.RemoveAsync(id));
         }
+
+        [HttpPost("analyze")]
+        public async Task<IActionResult> Analyze([FromBody] int userId)
+        {
+            try
+            {
+                var result = await _handWriting.AnalyzeHandwritingAsync(userId);
+                return Ok(result);
+            }
+            catch (HttpRequestException ex)
+            {
+                return StatusCode(500, $"Error calling Python service: {ex.Message}");
+            }
+        }
     }
 }

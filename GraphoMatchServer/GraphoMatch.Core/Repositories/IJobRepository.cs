@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GraphoMatch.Core.Repositories
 {
-    public interface IHandWritingRepository:IRepository<HandWriting>
+    public interface IJobRepository : IRepository<Job>
     {
-        Task<IEnumerable<HandWriting>> GetByUserId(int userId);
-        //Task<string> AnalyzeHandwritingAsync(int userId);
+        Task<IEnumerable<User>> GetAllSeekers(int id);
+        Task<User> AddSeeker(int id,User user);
     }
 }

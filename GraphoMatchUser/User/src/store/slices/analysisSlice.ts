@@ -6,7 +6,7 @@ const baseUrl = 'https://localhost:7134/api'
 export const GetAnalysis = createAsyncThunk('analysis/getAnalysis',
     async (userId: number, thunkAPI) => {
         try {
-            const response = await axios.post(`${baseUrl}/Analysis/analyze`, JSON.stringify(userId), {
+            const response = await axios.post(`${baseUrl}/HandWriting/analyze`, JSON.stringify(userId), {
                 headers: {
                     'Content-Type': 'application/json',
                 },

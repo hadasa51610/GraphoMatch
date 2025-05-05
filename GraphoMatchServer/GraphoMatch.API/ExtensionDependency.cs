@@ -25,6 +25,9 @@ namespace GraphoMatch.API
             services.AddScoped<IAnalysisService,AnalysisService>();
             services.AddScoped<IAnalysisRepository,AnalysisRepository>();
 
+            services.AddScoped<IJobService, JobService>();
+            services.AddScoped<IJobRepository, JobRepository>();
+
             services.AddScoped<IService<FeedbackDto>, FeedbackService>();
             //services.AddScoped<IFeedbackService,FeedbackService>();
             services.AddScoped<IFeedbackRepository,FeedbackRepository>();

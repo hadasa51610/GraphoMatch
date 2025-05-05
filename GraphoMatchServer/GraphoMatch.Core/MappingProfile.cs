@@ -17,6 +17,7 @@ namespace GraphoMatch.Core
             CreateMap<HandWriting, HandWritingDto>().ReverseMap();
             CreateMap<Analysis, AnalysisDto>().ReverseMap();
             CreateMap<Feedback, FeedbackDto>().ReverseMap();
+            CreateMap<Job,JobDTO>().ReverseMap();
         }
     }
 }

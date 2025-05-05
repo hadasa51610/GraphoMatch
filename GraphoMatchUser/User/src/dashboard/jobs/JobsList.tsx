@@ -1,9 +1,9 @@
 import { motion } from "framer-motion"
 import { JobCard } from "./JobCard"
-import type { Job } from "./JobsPage"
+import { JobType } from "@/types/JobType"
 
 interface JobsListProps {
-  jobs: Job[]
+  jobs: JobType[]
   expandedJobId: number | null
   setExpandedJobId: (id: number | null) => void
   toggleFilter: (tag: string) => void
@@ -16,7 +16,7 @@ export function JobsList({ jobs, expandedJobId, setExpandedJobId, toggleFilter, 
       {jobs.map((job, index) => (
         <JobCard
           key={job.id}
-          job={job}
+          jobCard={job}
           index={index}
           isExpanded={expandedJobId === job.id}
           toggleExpand={() => setExpandedJobId(expandedJobId === job.id ? null : job.id)}

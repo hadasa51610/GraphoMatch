@@ -1,5 +1,3 @@
-"use client"
-
 import { motion } from "framer-motion"
 import { MapPin, Clock, DollarSign, ChevronDown, Star, Building } from "lucide-react"
 import { Card } from "@/components/ui/Card"
@@ -8,10 +6,10 @@ import { Button } from "@/components/ui/Button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import type { Job } from "./JobsPage"
+import { JobType } from "@/types/JobType"
 
 interface JobCardProps {
-  job: Job
+  jobCard: JobType
   index: number
   isExpanded: boolean
   toggleExpand: () => void
@@ -19,7 +17,7 @@ interface JobCardProps {
   activeFilters: string[]
 }
 
-export function JobCard({ job, index, isExpanded, toggleExpand, toggleFilter, activeFilters }: JobCardProps) {
+export function JobCard({ jobCard, index, isExpanded, toggleExpand, toggleFilter, activeFilters }: JobCardProps) {
   // Helper function to get color based on match level
   const getMatchLevelColor = (level: string) => {
     const colors: Record<
@@ -62,7 +60,7 @@ export function JobCard({ job, index, isExpanded, toggleExpand, toggleFilter, ac
     return colors[level] || colors["Medium"]
   }
 
-  const colorScheme = getMatchLevelColor(job.matchLevel)
+  const colorScheme = getMatchLevelColor("Medium")
 
   return (
     <motion.div
@@ -74,11 +72,11 @@ export function JobCard({ job, index, isExpanded, toggleExpand, toggleFilter, ac
       <Collapsible open={isExpanded} onOpenChange={toggleExpand}>
         <div className="relative">
           <div
-            className={`absolute -inset-0.5 rounded-xl blur opacity-${job.matchLevel === "Very High" ? "30" : job.matchLevel === "High" ? "20" : "10"} group-hover:opacity-100 transition-opacity`}
+            className={`absolute -inset-0.5 rounded-xl blur opacity-${jobCard.matchLevel === "Very High" ? "30" : jobCard.matchLevel === "High" ? "20" : "10"} group-hover:opacity-100 transition-opacity`}
           ></div>
 
           <Card
-            className={`relative bg-gradient-to-br from-gray-900 to-black border ${job.matchLevel === "Very High" ? "border-white/20" : "border-white/10"} backdrop-blur-xl overflow-hidden group-hover:border-white/20 transition-all ${colorScheme.shadow}`}
+            className={`relative bg-gradient-to-br from-gray-900 to-black border ${jobCard.matchLevel === "Very High" ? "border-white/20" : "border-white/10"} backdrop-blur-xl overflow-hidden group-hover:border-white/20 transition-all ${colorScheme.shadow}`}
           >
             <CollapsibleTrigger asChild>
               <div className="p-4 cursor-pointer">
@@ -86,25 +84,25 @@ export function JobCard({ job, index, isExpanded, toggleExpand, toggleFilter, ac
                   <Avatar
                     className={`h-10 w-10 border ${colorScheme.border} bg-gradient-to-br from-gray-800 to-gray-900`}
                   >
-                    <AvatarImage src={job.logo || "/placeholder.svg"} alt={job.company} />
+                    <AvatarImage src={jobCard.logo || "/placeholder.svg"} alt={jobCard.company} />
                     <AvatarFallback className={`bg-gradient-to-br ${colorScheme.gradient} text-white text-xs`}>
-                      {job.company.substring(0, 2)}
+                      {jobCard.company.substring(0, 2)}
                     </AvatarFallback>
                   </Avatar>
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-semibold text-white text-base truncate">{job.title}</h3>
+                      <h3 className="font-semibold text-white text-base truncate">{jobCard.title}</h3>
                       <div className="flex items-center gap-1 ml-2 shrink-0">
                         <div className={`h-2 w-2 rounded-full bg-gradient-to-r ${colorScheme.gradient}`}></div>
                         <Badge className={`${colorScheme.bg} ${colorScheme.text} border ${colorScheme.border} text-xs`}>
-                          {job.matchLevel}
+                          {jobCard.matchLevel}
                         </Badge>
                       </div>
                     </div>
 
                     <div className="flex items-center justify-between mt-1">
-                      <p className="text-sm text-gray-400 truncate">{job.company}</p>
+                      <p className="text-sm text-gray-400 truncate">{jobCard.company}</p>
                       <ChevronDown
                         className={`h-4 w-4 text-gray-400 transition-transform ${isExpanded ? "rotate-180" : ""}`}
                       />
@@ -115,15 +113,15 @@ export function JobCard({ job, index, isExpanded, toggleExpand, toggleFilter, ac
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-xs text-gray-400">
                   <div className="flex items-center gap-1">
                     <MapPin className="h-3 w-3" />
-                    <span>{job.location}</span>
+                    <span>{jobCard.location}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <DollarSign className="h-3 w-3" />
-                    <span>{job.salary}</span>
+                    <span>{jobCard.salary}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Clock className="h-3 w-3" />
-                    <span>{job.posted}</span>
+                    <span>{jobCard.posted}</span>
                   </div>
                 </div>
               </div>
@@ -132,7 +130,7 @@ export function JobCard({ job, index, isExpanded, toggleExpand, toggleFilter, ac
             <CollapsibleContent>
               <div className="px-4 pb-4 pt-1 border-t border-white/5">
                 <div className="flex flex-wrap gap-1.5 mb-3">
-                  {job.tags.map((tag, index) => (
+                  {jobCard.tags.map((tag, index) => (
                     <Badge
                       key={index}
                       variant="outline"
@@ -147,7 +145,7 @@ export function JobCard({ job, index, isExpanded, toggleExpand, toggleFilter, ac
                   ))}
                 </div>
 
-                <p className="text-sm text-gray-300 mb-3">{job.description}</p>
+                <p className="text-sm text-gray-300 mb-3">{jobCard.description}</p>
 
                 <div className="flex items-center gap-2">
                   <Button

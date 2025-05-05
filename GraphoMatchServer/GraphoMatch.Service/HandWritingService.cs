@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace GraphoMatch.Service
@@ -17,13 +19,15 @@ namespace GraphoMatch.Service
     {
         private readonly IManagerRepository _manager;
         private readonly IMapper _mapper;
+        private readonly HttpClient _httpClient;
         readonly CloudinaryService _cloudinaryService = new CloudinaryService();
 
 
-        public HandWritingService(IManagerRepository manager, IMapper mapper)
+        public HandWritingService(IManagerRepository manager, IMapper mapper, HttpClient httpClient)
         {
             _manager = manager;
             _mapper = mapper;
+            _httpClient = httpClient;
         }
 
         public async Task<IEnumerable<HandWritingDto>> GetAsync()
@@ -115,6 +119,28 @@ namespace GraphoMatch.Service
         public Task<HandWritingDto> AddAsync(HandWritingDto entity)
         {
             throw new NotImplementedException();
+        }
+        public async Task<string> AnalyzeHandwritingAsync(int userId)
+        {
+            var handwriting = await _manager._handWriting.GetByUserId(userId);
+            if (handwriting == null || !handwriting.Any()) { return null; }
+            var analysis = handwriting.First().AnalysisResult;
+            if (analysis != "")
+                return analysis;
+            var requestData = new
+            {
+                imageUrl = handwriting.First().Url
+            };
+
+            var json = JsonSerializer.Serialize(requestData);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync("http://192.168.0.111:5000/analyze", content);
+            response.EnsureSuccessStatusCode();
+
+            var result = await response.Content.ReadAsStringAsync();
+            handwriting.First().AnalysisResult = result;
+            return result;
         }
     }
 }
