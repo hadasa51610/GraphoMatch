@@ -42,13 +42,6 @@ export default function AnalysisPage() {
       router("/")
     }
 
-    // If we already have analysis data in the store, use it
-    if (analysisFromStore && analysisFromStore.personalityTraits && analysisFromStore.personalityTraits.length > 0) {
-      setAnalysis(analysisFromStore)
-      return
-    }
-
-    // Set loading state and fetch data
     setLoading(true)
     setError(null)
 

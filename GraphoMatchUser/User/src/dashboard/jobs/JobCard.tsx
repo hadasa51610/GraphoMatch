@@ -60,7 +60,8 @@ export function JobCard({ jobCard, index, isExpanded, toggleExpand, toggleFilter
     return colors[level] || colors["Medium"]
   }
 
-  const colorScheme = getMatchLevelColor("Medium")
+  const colorScheme = getMatchLevelColor(jobCard.matchLevel)
+console.log("jobCard", jobCard.logo);
 
   return (
     <motion.div

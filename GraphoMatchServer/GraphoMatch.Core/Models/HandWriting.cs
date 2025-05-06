@@ -28,11 +28,12 @@ namespace GraphoMatch.Core.Models
         //one to one - result
         //[ForeignKey(nameof(Id))]
         //public int? AnalysisId {  get; set; }
-        public Analysis? Analysis { get; set; }
+        //public Analysis? Analysis { get; set; }
         public HandWriting()
         {
             CreatedAt= DateTime.Now;
             UploadedAt= DateTime.Now;
+            AnalysisResult = "";
         }
     }
 }

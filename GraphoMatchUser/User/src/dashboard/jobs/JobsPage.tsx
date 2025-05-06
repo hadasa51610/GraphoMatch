@@ -11,121 +11,82 @@ import { JobType } from "@/types/JobType"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/store/store"
 import { GetJobs } from "@/store/slices/jobSlice"
+import { useNavigate } from "react-router-dom"
+import { GetFiles } from "@/store/slices/fileSlice"
 
-export type CareerRecommendation= { profession: string; matchLevel: string; reason: string }[]
+export type CareerRecommendation = { profession: string; matchLevel: string; reason: string }
 
 export default function JobsPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
-  const [recommendations, setRecommendations] = useState<CareerRecommendation>([])
+  const [recommendations, setRecommendations] = useState<CareerRecommendation[]>([])
   const [loading, setLoading] = useState(true)
   const [activeFilters, setActiveFilters] = useState<string[]>([])
   const [expandedJobId, setExpandedJobId] = useState<number | null>(null)
+  const router = useNavigate()
 
   const dispatch = useDispatch<AppDispatch>()
   const [allJobs, setAllJobs] = useState<JobType[]>([])
 
-  // useEffect(() => {
-  //   const userId = sessionStorage.getItem("userId")
-  //   if (userId) {
-  //     setIsLoadingUser(true)
-  //     setUserError(null)
-
-  //     dispatch(GetUser(Number(userId)))
-  //       .then((result: any) => {
-  //         if (result.payload) {
-  //           setUser(result.payload as UserType)
-  //           setPreviousUser(result.payload as UserType)
-  //         } else {
-  //           setUserError("Failed to load user data")
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         setUserError(error.message || "Failed to load user data")
-  //       })
-  //       .finally(() => {
-  //         setIsLoadingUser(false)
-  //       })
-  //   }
-  // }, [dispatch])
-
   useEffect(() => {
     setLoading(true)
+    const userId = sessionStorage.getItem("userId")
+    if (!userId) {
+      router("/")
+      return;
+    }
+
+    dispatch(GetFiles(Number(userId)))
+      .then((result: any) => {
+        if (result.payload) {
+          result.payload.forEach((item: any) => {
+            if (item.type === "image") {
+              try {
+                const outer = JSON.parse(item.analysisResult);
+                const jsonMatch = outer.analysis.match(/```json\s*([\s\S]*?)\s*```/);
+                if (!jsonMatch || jsonMatch.length < 2) {
+                  throw new Error("Could not extract JSON block from analysis");
+                }
+
+                const parsed = JSON.parse(jsonMatch[1]);
+                setRecommendations([...parsed.recommendations]);
+
+              } catch (err) {
+                console.error("Error processing analysisResult:", err);
+              }
+            }
+          })
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to load files:", error)
+      })
+
+
     dispatch(GetJobs()).then((result: any) => {
       if (result.payload) {
-        setAllJobs([...result.payload])
+        const jobs = result.payload;
+
+        jobs.forEach((jobCard: JobType) => {
+          const match = recommendations.find((r) => r.profession.toLowerCase().trim() === jobCard.title.toLowerCase().trim());
+          if (match) {
+            const level = match.matchLevel;
+            if (level === "Low" || level === "Medium" || level === "High" || level === "Very High") {
+              jobCard.matchLevel = level;
+            } else {
+              jobCard.matchLevel = "Low"; 
+            }
+
+          }
+        });
+
+        setAllJobs([...jobs]); // async update
       }
     }).finally(() => {
       setLoading(false)
     })
   }, [dispatch])
 
-  // Mock data fetch - in a real app, this would be an API call
-  // useEffect(() => {
-  //   // Simulate API call
-  //   setTimeout(() => {
-  //     setRecommendations([
-  //       {
-  //         profession: "Graphic Designer / Calligrapher / Artist",
-  //         matchLevel: "Very High",
-  //         reason:
-  //           "The creative flair, attention to detail, and aesthetic sensibility evident in the handwriting's stylized and rounded forms suggest a talent for visual expression.",
-  //       },
-  //     ])
-  //     setLoading(false)
-  //   }, 1000)
-  // }, [])
-
-  // Generate jobs based on recommendations
-  // const generateJobs = () => {
-  //   const jobs: Job[] = []
-
-  //   // Generate jobs for each recommendation
-  //   recommendations.forEach((rec, index) => {
-  //     const professions = rec.profession.split(" / ")
-
-  //     professions.forEach((profession, i) => {
-  //       const jobId = index * 10 + i + 1
-
-  //       // Generate tags based on profession
-  //       const tags: string[] = []
-  //       if (profession.includes("Designer") || profession.includes("Artist")) {
-  //         tags.push("Creative", "Visual", "Design")
-  //       } else if (profession.includes("Therapist") || profession.includes("Counselor")) {
-  //         tags.push("Healthcare", "Psychology", "Empathy")
-  //       } else if (profession.includes("Writer") || profession.includes("Editor")) {
-  //         tags.push("Content", "Communication", "Media")
-  //       } else if (profession.includes("Architect")) {
-  //         tags.push("Design", "Technical", "Spatial")
-  //       } else if (profession.includes("Marketing")) {
-  //         tags.push("Communication", "Strategy", "Media")
-  //       }
-
-  //       // Add a unique tag
-  //       tags.push(profession)
-
-  //       // Create job
-  //       jobs.push({
-  //         id: jobId,
-  //         title: profession,
-  //         company: `${["Creative", "Global", "Modern", "Elite", "Premier"][Math.floor(Math.random() * 5)]} ${["Solutions", "Group", "Partners", "Associates", "Studios"][Math.floor(Math.random() * 5)]}`,
-  //         location: ["Tel Aviv, Israel", "Jerusalem, Israel", "Haifa, Israel", "Remote", "Hybrid"][
-  //           Math.floor(Math.random() * 5)
-  //         ],
-  //         tags: tags,
-  //         salary: `₪${(Math.floor(Math.random() * 20) + 20) * 1000} - ₪${(Math.floor(Math.random() * 20) + 30) * 1000}`,
-  //         posted: ["Just now", "1 day ago", "3 days ago", "1 week ago", "2 weeks ago"][Math.floor(Math.random() * 5)],
-  //         logo: `/placeholder.svg?height=40&width=40&text=${profession.substring(0, 2).toUpperCase()}`,
-  //         matchLevel: rec.matchLevel,
-  //         description: `This position requires a talented ${profession} with excellent ${tags.join(", ")} skills. ${rec.reason}`,
-  //       })
-  //     })
-  //   })
-
-  //   return jobs
-  // }
-
-  // const allJobs = generateJobs()
 
   const toggleFilter = (tag: string) => {
     if (activeFilters.includes(tag)) {
@@ -141,9 +102,8 @@ export default function JobsPage() {
     setSelectedCategory("all")
   }
 
-  
-  const filteredJobs = allJobs.filter((jobCard:JobType) => {
-    console.log("jobCard", jobCard)
+
+  const filteredJobs = allJobs.filter((jobCard: JobType) => {
 
     // Filter by search query
     const matchesSearch =

@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { User, AlertCircle, X } from "lucide-react"
 
 import { Button } from "@/components/ui/Button"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Alert, AlertDescription } from "@/components/ui/Alert"
 import { useDispatch } from "react-redux"
 import type { AppDispatch } from "@/store/store"
 import { GetUser, Update } from "@/store/slices/userSlice"
