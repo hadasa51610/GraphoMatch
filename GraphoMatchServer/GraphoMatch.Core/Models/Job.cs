@@ -17,14 +17,14 @@ namespace GraphoMatch.Core.Models
         public string Title { get; set; }
 
         [Required]
-        public string Company {  get; set; }    
+        public string Company { get; set; }
 
         [Required]
         public string Description { get; set; }
 
         [Required]
         public string Location { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime Posted { get; set; }
 
         public List<string> Tags { get; set; }
 
@@ -35,7 +35,7 @@ namespace GraphoMatch.Core.Models
 
         public Job()
         {
-            CreatedAt= DateTime.Now;
+            Posted = DateTime.Now;
             Tags = new List<string>();
             Seekers = new List<User>();
         }

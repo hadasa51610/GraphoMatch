@@ -60,7 +60,13 @@ namespace GraphoMatch.API.Controllers
         [HttpPut("{id}/seeker/{userId}")]
         public async Task<ActionResult<UserDto>> Put(int id,int userId)
         {
-            var user = await _jobService.AddSeeker(id,userId);
+            var job = await _jobService.GetAllSeekers(id);
+            var user= job.FirstOrDefault(u=>u.Id == userId);
+            if (user != null)
+            {
+                return BadRequest("Apply already exists");
+            }
+            user = await _jobService.AddSeeker(id,userId);
             return user == null ? NotFound() : Ok(User);
         }
 

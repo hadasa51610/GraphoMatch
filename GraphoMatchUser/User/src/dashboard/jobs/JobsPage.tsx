@@ -28,67 +28,91 @@ export default function JobsPage() {
   const dispatch = useDispatch<AppDispatch>()
   const [allJobs, setAllJobs] = useState<JobType[]>([])
 
+  const normalize = (word: string) => {
+    return word
+      .toLowerCase()
+      .replace(/(ing|er|ors|or|s|ion|ment|al|ive|ed|y)$/g, ''); // סיומות נפוצות
+  };
+  
+
   useEffect(() => {
-    setLoading(true)
-    const userId = sessionStorage.getItem("userId")
+    setLoading(true);
+    const userId = sessionStorage.getItem("userId");
     if (!userId) {
-      router("/")
+      router("/");
       return;
     }
-
+  
     dispatch(GetFiles(Number(userId)))
       .then((result: any) => {
         if (result.payload) {
-          result.payload.forEach((item: any) => {
-            if (item.type === "image") {
-              try {
-                const outer = JSON.parse(item.analysisResult);
-                const jsonMatch = outer.analysis.match(/```json\s*([\s\S]*?)\s*```/);
-                if (!jsonMatch || jsonMatch.length < 2) {
-                  throw new Error("Could not extract JSON block from analysis");
-                }
-
-                const parsed = JSON.parse(jsonMatch[1]);
-                setRecommendations([...parsed.recommendations]);
-
-              } catch (err) {
-                console.error("Error processing analysisResult:", err);
-              }
+          const imageItem = result.payload.find((item: any) => item.type === "image");
+          if (!imageItem) return;
+  
+          try {
+            const outer = JSON.parse(imageItem.analysisResult);
+            const jsonMatch = outer.analysis.match(/```json\s*([\s\S]*?)\s*```/);
+            if (!jsonMatch || jsonMatch.length < 2) {
+              throw new Error("Could not extract JSON block from analysis");
             }
-          })
+  
+            const parsed = JSON.parse(jsonMatch[1]);
+            const recs = parsed.recommendations;
+            setRecommendations(recs);
+
+            dispatch(GetJobs()).then((jobsResult: any) => {
+              if (jobsResult.payload) {
+                const jobs = jobsResult.payload.map((jobCard: any) => {
+                  const jobTitleWords = jobCard.title
+                    .toLowerCase()
+                    .trim()
+                    .split(/[\s\/\-]+/)
+                    .map(normalize);
+            
+                  const match = recs.find((r: any) => {
+                    const professionWords = r.profession
+                      .toLowerCase()
+                      .trim()
+                      .split(/[\s\/\-]+/)
+                      .map(normalize);
+            
+                    return professionWords.some((word:string) => jobTitleWords.includes(word)) ||
+                           jobTitleWords.some((word:string) => professionWords.includes(word));
+                  });
+            
+                  const level = match?.matchLevel;
+            
+                  return {
+                    ...jobCard,
+                    matchLevel:
+                      level === "Very High" || level === "High" || level === "Medium"
+                        ? level
+                        : "Low",
+                    logo: jobCard.logo || "",
+                  } as JobType;
+                });
+            
+                setAllJobs(jobs);
+              }
+            });
+            
+          } catch (err) {
+            console.error("Error processing analysisResult:", err);
+          }
         }
       })
-      .catch((error) => {
-        console.error("Failed to load files:", error)
-      })
-
-
-    dispatch(GetJobs()).then((result: any) => {
-      if (result.payload) {
-        const jobs = result.payload;
-
-        jobs.forEach((jobCard: JobType) => {
-          const match = recommendations.find((r) => r.profession.toLowerCase().trim() === jobCard.title.toLowerCase().trim());
-          if (match) {
-            const level = match.matchLevel;
-            if (level === "Low" || level === "Medium" || level === "High" || level === "Very High") {
-              jobCard.matchLevel = level;
-            } else {
-              jobCard.matchLevel = "Low"; 
-            }
-
-          }
-        });
-
-        setAllJobs([...jobs]); // async update
-      }
-    }).finally(() => {
-      setLoading(false)
-    })
-  }, [dispatch])
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [dispatch]);
+  
 
 
   const toggleFilter = (tag: string) => {
+    console.log("all jobs", allJobs);
+    console.log("recommendations", recommendations);
+    
+    
     if (activeFilters.includes(tag)) {
       setActiveFilters(activeFilters.filter((t) => t !== tag))
     } else {

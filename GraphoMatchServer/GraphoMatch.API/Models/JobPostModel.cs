@@ -9,8 +9,9 @@
         public List<string> Tags { get; set; }
         public string Salary { get; set; }
 
-        public JobPostModel() { 
-            Tags=new List<string>();
+        public JobPostModel()
+        {
+            Tags = new List<string>();
         }
     }
 }

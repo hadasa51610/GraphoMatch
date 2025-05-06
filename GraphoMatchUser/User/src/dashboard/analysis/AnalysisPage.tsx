@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { BrainCircuit, Edit, ArrowRight, Download, Printer, AlertCircle } from "lucide-react"
 import { useDispatch, useSelector } from "react-redux"
@@ -34,8 +34,6 @@ export default function AnalysisPage() {
   const [previewOpen, setPreviewOpen] = useState(false) 
   const router = useNavigate()
 
-  const isFirstVisit = useRef(sessionStorage.getItem("analysisVisited") !== "true")
-
   useEffect(() => {
     const userId = sessionStorage.getItem("userId")
     if(!userId) {
@@ -60,11 +58,6 @@ export default function AnalysisPage() {
       .then((analysisResult: any) => {
         if (analysisResult.payload) {
           setAnalysis(analysisResult.payload)
-
-          // Mark as visited only on successful analysis
-          if (isFirstVisit.current) {
-            sessionStorage.setItem("analysisVisited", "true")
-          }
         } else {
           throw new Error("No analysis data available")
         }
@@ -72,9 +65,6 @@ export default function AnalysisPage() {
       .catch((err: any) => {
         console.error("Error fetching analysis:", err)
         setError(err.message || "Failed to load analysis data")
-
-        // Reset the visited flag on error so user can try again
-        sessionStorage.removeItem("analysisVisited")
       })
       .finally(() => {
         setLoading(false)
