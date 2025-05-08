@@ -8,7 +8,6 @@ export function HandwritingAnimationLoader() {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const [isCanvasReady, setIsCanvasReady] = useState(false)
 
-    // Stages of the animation
     const stages = [
         { name: "Handwriting Analysis", duration: 6000 },
         { name: "Personality Traits", duration: 6000 },
@@ -16,7 +15,6 @@ export function HandwritingAnimationLoader() {
         { name: "Finalizing Results", duration: 2000 },
     ]
 
-    // Progress through stages
     useEffect(() => {
         if (currentStage >= stages.length) return
 
@@ -30,7 +28,6 @@ export function HandwritingAnimationLoader() {
     }, [currentStage])   
 
 
-    // Ink flow animation on canvas
     useEffect(() => {
         if (!canvasRef.current) return
 
@@ -38,12 +35,10 @@ export function HandwritingAnimationLoader() {
         const ctx = canvas.getContext("2d")
         if (!ctx) return
 
-        // Set canvas dimensions
         canvas.width = canvas.offsetWidth
         canvas.height = canvas.offsetHeight
         setIsCanvasReady(true)
 
-        // Create ink particles
         const particles: any[] = []
         const particleCount = 100
 
@@ -59,7 +54,6 @@ export function HandwritingAnimationLoader() {
             })
         }
 
-        // Create flowing lines
         const lines: any[] = []
         const lineCount = 15
 
@@ -84,30 +78,25 @@ export function HandwritingAnimationLoader() {
             })
         }
 
-        // Animation loop
         let animationFrameId: number
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-            // Draw particles
             particles.forEach((particle, index) => {
                 ctx.beginPath()
                 ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
                 ctx.fillStyle = particle.color
                 ctx.fill()
 
-                // Update position
                 particle.x += particle.speedX
                 particle.y += particle.speedY
 
-                // Bounce off edges
                 if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1
                 if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1
 
                 particles[index] = particle
             })
 
-            // Draw flowing lines
             lines.forEach((line, index) => {
                 if (line.progress < 1) {
                     const currentX = line.startX + (line.endX - line.startX) * line.progress
@@ -122,7 +111,6 @@ export function HandwritingAnimationLoader() {
 
                     line.progress += line.speed
                 } else {
-                    // Reset line with new position and direction
                     const startX = Math.random() * canvas.width
                     const startY = Math.random() * canvas.height
                     const length = Math.random() * 100 + 50
@@ -154,7 +142,6 @@ export function HandwritingAnimationLoader() {
         }
     }, [])
 
-    // Fade out ink drops over time
     useEffect(() => {
         if (inkDrops.length === 0) return
 
