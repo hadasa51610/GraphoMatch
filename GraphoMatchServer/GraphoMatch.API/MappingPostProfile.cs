@@ -10,7 +10,6 @@ namespace GraphoMatch.API
         {
             CreateMap<UserPostModel, UserDto>();
             CreateMap<HandWritingPostModel, HandWritingDto>();
-            CreateMap<AnalysisPostModel, AnalysisDto>();
             CreateMap<FeedbackPostModel, FeedbackDto>();
             CreateMap<JobPostModel,JobDTO>();
         }

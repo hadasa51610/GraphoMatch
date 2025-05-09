@@ -50,66 +50,12 @@ namespace GraphoMatch.Service
 
         public async Task<bool> RemoveAsync(int id)
         {
-            var analysis = await _manager._analysis.GetByHandWritingIdAsync(id);
-            if (analysis != null)
-            {
-                var deleted = await _manager._analysis.DeleteAsync(analysis.Id);
-                if (deleted) await _manager.SaveAsync();
-            }
             var handwriting = await _manager._handWriting.GetByIdAsync(id);
             bool succeed = await _manager._handWriting.DeleteAsync(id);
             if (succeed) await _manager.SaveAsync();
             return succeed;
         }
 
-        //public async Task<HandWritingDto> AddAsync(HandWritingDto entity, IFormFile image)
-        //{
-        //    // טען את הקובץ הקיים לפי UserId
-        //    var existing = await _manager._handWriting.GetByUserId(entity.UserId);
-
-        //    // אם קיים – מחק מהDB ומהענן
-        //    if (existing != null)
-        //    {
-        //        foreach (var item in existing)
-        //        {
-        //            // מחיקת ניתוח אם יש
-        //            var analysis = await _manager._analysis.GetByHandWritingIdAsync(item.Id);
-        //            if (analysis != null)
-        //            {
-        //                await _manager._analysis.DeleteAsync(analysis.Id);
-        //            }
-        //            // מחיקת קובץ מהענן
-        //            if (!string.IsNullOrEmpty(item.Url) && item.Type == entity.Type)
-        //            {
-        //            await _cloudinaryService.DeleteFileAsync(item.Url);
-        //        }
-
-        //        // מחיקת רשומת הטופס
-        //        if (item.Type == entity.Type)
-        //        {
-        //            await _manager._handWriting.DeleteAsync(item.Id);
-        //        }
-        //        await _manager.SaveAsync();
-        //    }
-        //}
-
-        //    // העלאת קובץ חדש לענן
-        //    var url = await _cloudinaryService.UploadFileAsync(image, entity.UserId, entity.Type);
-        //    if (url == null)
-        //        return null;
-
-        //    // מיפוי והוספה
-        //    var newEntity = _mapper.Map<HandWriting>(entity);
-        //    newEntity.Url = url.ToString();
-        //    newEntity.User = await _manager._users.GetByIdAsync(entity.UserId);
-        //    newEntity.AnalysisResult = "none";
-        //    //newEntity.Analysis = null;
-
-        //    var added = await _manager._handWriting.AddAsync(newEntity);
-        //    if (added != null) await _manager.SaveAsync();
-
-        //    return _mapper.Map<HandWritingDto>(added);
-        //}
         public async Task<HandWritingDto> AddAsync(HandWritingDto entity, IFormFile image)
         {
             // Delete previous handwriting (if exists)
@@ -145,13 +91,6 @@ namespace GraphoMatch.Service
 
             foreach (var item in toDelete)
             {
-                deleteTasks.Add(Task.Run(async () =>
-                {
-                    var analysis = await _manager._analysis.GetByHandWritingIdAsync(item.Id);
-                    if (analysis != null)
-                        await _manager._analysis.DeleteAsync(analysis.Id);
-                }));
-
                 if (!string.IsNullOrEmpty(item.Url))
                     deleteTasks.Add(_cloudinaryService.DeleteFileAsync(item.Url));
 
@@ -177,7 +116,7 @@ namespace GraphoMatch.Service
             var handwriting = await _manager._handWriting.GetByUserId(userId);
             if (handwriting == null || !handwriting.Any()) { return null; }
             var analysis = handwriting.First().AnalysisResult;
-            if (analysis != "none")
+            if (analysis != "none" && analysis!="")
                 return analysis;
             var requestData = new
             {

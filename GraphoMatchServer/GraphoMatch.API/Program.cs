@@ -1,7 +1,10 @@
+using FluentAssertions.Common;
 using GraphoMatch.API;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Configuration;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -13,6 +16,13 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     options.JsonSerializerOptions.WriteIndented = true;
+});
+
+builder.Services.AddDbContext<GraphoMatch.Data.DataContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("GraphoMatchDB");
+    options.UseMySql(connectionString, ServerVersion.Parse("8.0.41-mysql"));
+    //options.UseMySql(Configuration.GetConnectionString("GraphoMatchDB"), ServerVersion.AutoDetect(...));
 });
 
 builder.Services.AddCors(options =>

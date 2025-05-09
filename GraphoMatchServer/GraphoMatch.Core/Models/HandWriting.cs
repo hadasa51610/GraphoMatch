@@ -25,10 +25,6 @@ namespace GraphoMatch.Core.Models
         public int UserId {  get; set; }
         public User User { get; set; }
 
-        //one to one - result
-        //[ForeignKey(nameof(Id))]
-        //public int? AnalysisId {  get; set; }
-        //public Analysis? Analysis { get; set; }
         public HandWriting()
         {
             CreatedAt= DateTime.Now;

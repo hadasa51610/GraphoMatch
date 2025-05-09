@@ -21,10 +21,6 @@ namespace GraphoMatch.API
             services.AddScoped<IHandWritingService,HandWritingService>();
             services.AddScoped<IHandWritingRepository,HandWritingRepository>();
 
-            //services.AddScoped<IService<AnalysisDto>,AnalysisService>();
-            services.AddScoped<IAnalysisService,AnalysisService>();
-            services.AddScoped<IAnalysisRepository,AnalysisRepository>();
-
             services.AddScoped<IJobService, JobService>();
             services.AddScoped<IJobRepository, JobRepository>();
 
@@ -43,7 +39,9 @@ namespace GraphoMatch.API
             services.AddAutoMapper(typeof(MappingPostProfile));
             services.AddAutoMapper(typeof(MappingProfile));
 
-            services.AddHttpClient<IAnalysisService, AnalysisService>();
+            services.AddHttpClient<IHandWritingService, HandWritingService>();
+
+            //services.AddHttpClient<IAnalysisService, AnalysisService>();
         }
     }
 }

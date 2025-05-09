@@ -37,16 +37,15 @@ namespace GraphoMatch.Core.Models
         public DateTime UpdateAt { get; set; }
 
         // One-to-many relationship with HandWriting
-        public HandWriting HandWriting { get; set; }
+        public List<HandWriting> HandWritings { get; set; }
 
         public List<Job> Jobs { get; set; }
 
-        //one to one - feedback to user
-        //[ForeignKey(nameof(Id))]
         public List<Feedback> Feedback { get; set; }
 
         public User()
         {
+            HandWritings = new List<HandWriting>();
             Feedback= new List<Feedback>();
             Roles= new List<Role>();
             Jobs= new List<Job>();

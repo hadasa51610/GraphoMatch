@@ -13,16 +13,14 @@ namespace GraphoMatch.Data.Repositories
         public IUserRepository _users { get; }
         public IHandWritingRepository _handWriting { get; }
         public IFeedbackRepository _feedback { get; }
-        public IAnalysisRepository _analysis { get; }
         public IJobRepository _jobs { get; }
 
-        public ManagerRepository(DataContext context, IUserRepository users, IHandWritingRepository handWriting, IFeedbackRepository feedback, IAnalysisRepository analysis, IJobRepository jobs)
+        public ManagerRepository(DataContext context, IUserRepository users, IHandWritingRepository handWriting, IFeedbackRepository feedback, IJobRepository jobs)
         {
             _context = context;
             _users = users;
             _handWriting = handWriting;
             _feedback = feedback;
-            _analysis = analysis;
             _jobs = jobs;
         }
 

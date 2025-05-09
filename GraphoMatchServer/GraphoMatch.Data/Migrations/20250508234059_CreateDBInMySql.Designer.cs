@@ -4,6 +4,7 @@ using GraphoMatch.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraphoMatch.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250508234059_CreateDBInMySql")]
+    partial class CreateDBInMySql
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,9 +86,15 @@ namespace GraphoMatch.Data.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserId1")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1")
+                        .IsUnique();
 
                     b.ToTable("HandWriting");
                 });
@@ -130,32 +139,6 @@ namespace GraphoMatch.Data.Migrations
                     b.ToTable("Job");
                 });
 
-            modelBuilder.Entity("GraphoMatch.Core.Models.Permission", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("RolesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RolesId");
-
-                    b.ToTable("Permission");
-                });
-
             modelBuilder.Entity("GraphoMatch.Core.Models.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -165,25 +148,24 @@ namespace GraphoMatch.Data.Migrations
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("DATETIME");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("RoleDescription")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("RoleName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("DATETIME");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Role");
                 });
@@ -249,6 +231,21 @@ namespace GraphoMatch.Data.Migrations
                     b.ToTable("JobUser");
                 });
 
+            modelBuilder.Entity("RoleUser", b =>
+                {
+                    b.Property<int>("RolesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RolesId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("RoleUser");
+                });
+
             modelBuilder.Entity("GraphoMatch.Core.Models.Feedback", b =>
                 {
                     b.HasOne("GraphoMatch.Core.Models.User", "User")
@@ -263,32 +260,14 @@ namespace GraphoMatch.Data.Migrations
             modelBuilder.Entity("GraphoMatch.Core.Models.HandWriting", b =>
                 {
                     b.HasOne("GraphoMatch.Core.Models.User", "User")
-                        .WithMany("HandWritings")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("GraphoMatch.Core.Models.Permission", b =>
-                {
-                    b.HasOne("GraphoMatch.Core.Models.Role", "Roles")
-                        .WithMany("Permissions")
-                        .HasForeignKey("RolesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Roles");
-                });
-
-            modelBuilder.Entity("GraphoMatch.Core.Models.Role", b =>
-                {
-                    b.HasOne("GraphoMatch.Core.Models.User", "User")
-                        .WithMany("Roles")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("GraphoMatch.Core.Models.User", null)
+                        .WithOne("HandWriting")
+                        .HasForeignKey("GraphoMatch.Core.Models.HandWriting", "UserId1");
 
                     b.Navigation("User");
                 });
@@ -308,18 +287,27 @@ namespace GraphoMatch.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("GraphoMatch.Core.Models.Role", b =>
+            modelBuilder.Entity("RoleUser", b =>
                 {
-                    b.Navigation("Permissions");
+                    b.HasOne("GraphoMatch.Core.Models.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GraphoMatch.Core.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GraphoMatch.Core.Models.User", b =>
                 {
                     b.Navigation("Feedback");
 
-                    b.Navigation("HandWritings");
-
-                    b.Navigation("Roles");
+                    b.Navigation("HandWriting")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

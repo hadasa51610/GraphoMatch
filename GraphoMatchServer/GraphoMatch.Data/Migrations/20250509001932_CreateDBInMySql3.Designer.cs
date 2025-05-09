@@ -4,6 +4,7 @@ using GraphoMatch.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraphoMatch.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250509001932_CreateDBInMySql3")]
+    partial class CreateDBInMySql3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,9 +86,15 @@ namespace GraphoMatch.Data.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserId1")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1")
+                        .IsUnique();
 
                     b.ToTable("HandWriting");
                 });
@@ -263,10 +272,14 @@ namespace GraphoMatch.Data.Migrations
             modelBuilder.Entity("GraphoMatch.Core.Models.HandWriting", b =>
                 {
                     b.HasOne("GraphoMatch.Core.Models.User", "User")
-                        .WithMany("HandWritings")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("GraphoMatch.Core.Models.User", null)
+                        .WithOne("HandWriting")
+                        .HasForeignKey("GraphoMatch.Core.Models.HandWriting", "UserId1");
 
                     b.Navigation("User");
                 });
@@ -317,7 +330,8 @@ namespace GraphoMatch.Data.Migrations
                 {
                     b.Navigation("Feedback");
 
-                    b.Navigation("HandWritings");
+                    b.Navigation("HandWriting")
+                        .IsRequired();
 
                     b.Navigation("Roles");
                 });

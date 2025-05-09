@@ -10,7 +10,6 @@ namespace GraphoMatch.Core.Repositories
     {
         IUserRepository _users {  get; }
         IHandWritingRepository _handWriting { get; }
-        IAnalysisRepository _analysis { get; }
         IFeedbackRepository _feedback { get; }
         IJobRepository _jobs { get; }
         Task SaveAsync();
