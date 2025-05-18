@@ -165,18 +165,20 @@ namespace GraphoMatch.Data.Migrations
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("DATETIME");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("RoleDescription")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
 
                     b.Property<string>("RoleName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("DATETIME");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");

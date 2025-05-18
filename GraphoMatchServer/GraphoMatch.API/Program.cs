@@ -22,7 +22,6 @@ builder.Services.AddDbContext<GraphoMatch.Data.DataContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("GraphoMatchDB");
     options.UseMySql(connectionString, ServerVersion.Parse("8.0.41-mysql"));
-    //options.UseMySql(Configuration.GetConnectionString("GraphoMatchDB"), ServerVersion.AutoDetect(...));
 });
 
 builder.Services.AddCors(options =>
