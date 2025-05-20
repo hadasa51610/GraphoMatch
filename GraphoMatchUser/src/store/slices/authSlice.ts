@@ -2,8 +2,8 @@ import { UserLoginType } from "@/types/UserLoginType";
 import { UserType } from "@/types/UserType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseUrl } from "./userSlice";
 
-const baseUrl = 'https://localhost:7134/api'
 
 export const Login = createAsyncThunk('data/login',
     async (data: UserLoginType, thunkAPI) => {

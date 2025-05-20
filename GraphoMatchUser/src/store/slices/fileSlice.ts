@@ -1,8 +1,8 @@
 import { FileType } from "@/types/FileType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseUrl } from "./userSlice";
 
-const baseUrl = 'https://localhost:7134/api'
 
 export const AddFile = createAsyncThunk('file/addFile',
     async ({ data, userId }: { data: File, userId: number }, thunkAPI) => {

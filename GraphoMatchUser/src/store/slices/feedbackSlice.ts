@@ -1,8 +1,8 @@
 import { FeedbackType } from "@/types/FeedbackType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseUrl } from "./userSlice";
 
-const baseUrl = 'https://localhost:7134/api'
 
 export const Get = createAsyncThunk('feedback/get',
     async (_, thunkAPI) => {

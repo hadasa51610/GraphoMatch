@@ -2,7 +2,7 @@ import { UserType } from "@/types/UserType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseUrl = 'https://localhost:7134/api'
+export const baseUrl = import.meta.env.VITE_API_URL;
 
 export const GetUser = createAsyncThunk('data/get',
     async (userId: number, thunkAPI) => {
