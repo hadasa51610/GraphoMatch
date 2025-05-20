@@ -13,7 +13,7 @@ export const AddFile = createAsyncThunk('file/addFile',
             formData.append('type', data.type.includes('image') ? 'image' : 'raw');
             formData.append('imageFile', data);
 
-            const response = await axios.post(`${baseUrl}/HandWriting`, formData, {
+            const response = await axios.post(`${baseUrl}/api/HandWriting`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -32,7 +32,7 @@ export const AddFile = createAsyncThunk('file/addFile',
 export const GetFiles = createAsyncThunk('file/getFiles',
     async (userId: number, thunkAPI) => {
         try {
-            const response = await axios.get(`${baseUrl}/HandWriting/ByUser/${userId}`)
+            const response = await axios.get(`${baseUrl}/api/HandWriting/ByUser/${userId}`)
             return response.data;
         } catch (error) {
             if (error instanceof Error) {

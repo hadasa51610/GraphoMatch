@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'GraphoMatchUser' title`, () => {
+  it(`should have the 'GraphoMatchAdmin' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('GraphoMatchUser');
+    expect(app.title).toEqual('GraphoMatchAdmin');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, GraphoMatchUser');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, GraphoMatchAdmin');
   });
 });

@@ -7,7 +7,7 @@ export const baseUrl = import.meta.env.VITE_API_URL;
 export const GetUser = createAsyncThunk('data/get',
     async (userId: number, thunkAPI) => {
         try {
-            const response = await axios.get(`${baseUrl}/User/${userId}`)
+            const response = await axios.get(`${baseUrl}/api/User/${userId}`)
             return response.data
         } catch (error) {
             if (error instanceof Error) {
@@ -21,7 +21,7 @@ export const GetUser = createAsyncThunk('data/get',
 export const Update = createAsyncThunk('data/put',
     async ({ data, userId }: { data: UserType; userId: number }, thunkAPI) => {
         try {
-            const response = await axios.put(`${baseUrl}/User/${userId}`, {
+            const response = await axios.put(`${baseUrl}/api/User/${userId}`, {
                 FirstName: data.firstName,
                 LastName: data.lastName,
                 Email: data.email,

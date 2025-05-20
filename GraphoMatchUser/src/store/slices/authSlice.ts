@@ -9,7 +9,7 @@ export const Login = createAsyncThunk('data/login',
     async (data: UserLoginType, thunkAPI) => {
         try {
             console.log('In Login...');
-            const response = await axios.post(`${baseUrl}/Auth/login`, {
+            const response = await axios.post(`${baseUrl}/api/Auth/login`, {
                 Email: data.email,
                 Password: data.password
             });
@@ -30,7 +30,7 @@ export const Register = createAsyncThunk('data/register',
     async (data: UserType, thunkAPI) => {
         try {
             console.log('In Register...');
-            const response = await axios.post(`${baseUrl}/Auth/register`, {
+            const response = await axios.post(`${baseUrl}/api/Auth/register`, {
                 FirstName: data.firstName,
                 LastName: data.lastName,
                 Email: data.email,

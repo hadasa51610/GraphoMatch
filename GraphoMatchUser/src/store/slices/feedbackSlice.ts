@@ -7,7 +7,7 @@ import { baseUrl } from "./userSlice";
 export const Get = createAsyncThunk('feedback/get',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get(`${baseUrl}/Feedback`)
+            const response = await axios.get(`${baseUrl}/api/Feedback`)
             return response.data
         } catch (error) {
             if (error instanceof Error) {
@@ -21,7 +21,7 @@ export const Get = createAsyncThunk('feedback/get',
 export const Add = createAsyncThunk('feedback/add',
     async (data: FeedbackType, thunkAPI) => {
         try {
-            const response = await axios.post(`${baseUrl}/Feedback`, {
+            const response = await axios.post(`${baseUrl}/api/Feedback`, {
                 UserId: data.userId,
                 Content: data.content
             })

@@ -7,7 +7,7 @@ import { baseUrl } from "./userSlice";
 export const GetJobs = createAsyncThunk('job/getJobs',
     async (_, thunkAPI: { rejectWithValue: (value: string) => void }) => {
         try {
-            const response = await axios.get(`${baseUrl}/Job/`)
+            const response = await axios.get(`${baseUrl}/api/Job/`)
             return response.data
         } catch (error) {
             if (error instanceof Error) {
@@ -21,7 +21,7 @@ export const GetJobs = createAsyncThunk('job/getJobs',
 export const ApplyJob = createAsyncThunk('job/put',
     async ({ id, userId }: { id: number; userId: number }, thunkAPI) => {
         try {
-            const response = await axios.put(`${baseUrl}/Job/${id}/seeker/${userId}`)
+            const response = await axios.put(`${baseUrl}/api/Job/${id}/seeker/${userId}`)
             return response.data;
         } catch (error) {
             if (error instanceof Error) {
