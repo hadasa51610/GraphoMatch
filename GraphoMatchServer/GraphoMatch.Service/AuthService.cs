@@ -81,11 +81,9 @@ namespace GraphoMatch.Service
 
             var user = new User
             {
-                FirstName = userDto.FirstName,
-                LastName = userDto.LastName,
+                Name = userDto.Name,
                 Email = userDto.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password),
-                Phone = userDto.Phone,
                 Profession = userDto.Profession,
                 CreatedAt = DateTime.UtcNow,
                 UpdateAt = DateTime.UtcNow,

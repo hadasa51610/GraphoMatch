@@ -20,12 +20,10 @@ interface RegisterDialogProps {
 export const RegisterDialog = ({ open, onOpenChange }: RegisterDialogProps) => {
   const dispatch = useDispatch<AppDispatch>()
   const [isLoading, setIsLoading] = useState(false)
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
+  const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  const [phone, setPhone] = useState("")
   const [profession, setProfession] = useState("")
   const [error, setError] = useState<string | null>(null)
   const navigate = useNavigate()
@@ -95,34 +93,24 @@ export const RegisterDialog = ({ open, onOpenChange }: RegisterDialogProps) => {
         )}
 
         <form onSubmit={(e) => handleSubmit(e, {
-          firstName: firstName, lastName: lastName, email: email, password: password, phone: phone, profession: profession
+          name:name, email: email, password: password, profession: profession
         })}>
           <div className="grid gap-5 py-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="first-name" className="text-sm font-medium text-gray-300"> First name </Label>
+                <Label htmlFor="name" className="text-sm font-medium text-gray-300"> Name </Label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <User className="h-4 w-4 text-gray-500" />
                   </div>
                   <Input
-                    id="first-name"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     className="pl-10 bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
                     required
                   />
                 </div>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="last-name" className="text-sm font-medium text-gray-300"> Last name </Label>
-                <Input
-                  id="last-name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
-                  required
-                />
               </div>
             </div>
             <div className="space-y-2">
@@ -174,18 +162,6 @@ export const RegisterDialog = ({ open, onOpenChange }: RegisterDialogProps) => {
               />
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <div className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500">
-                  <Label htmlFor="phone" className="text-sm font-medium text-gray-300">Phone</Label>
-                  <Input
-                    id="phone"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
-                    required
-                  />
-                </div>
-              </div>
               <div className="space-y-2">
                 <div className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500">
                   <Label htmlFor="profession" className="text-sm font-medium text-gray-300">Current Profession</Label>

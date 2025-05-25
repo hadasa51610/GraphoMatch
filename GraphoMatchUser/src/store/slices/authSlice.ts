@@ -31,11 +31,9 @@ export const Register = createAsyncThunk('data/register',
         try {
             console.log('In Register...');
             const response = await axios.post(`${baseUrl}/api/Auth/register`, {
-                FirstName: data.firstName,
-                LastName: data.lastName,
+                Name: data.name,
                 Email: data.email,
                 Password: data.password,
-                Phone: data.phone,
                 Profession: data.profession
             });
             sessionStorage.setItem('auth_token', response.data.token);

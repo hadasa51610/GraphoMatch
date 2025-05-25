@@ -18,8 +18,7 @@ namespace GraphoMatch.Core.Models
 
         [Required]
         [MaxLength(50)]
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -28,7 +27,6 @@ namespace GraphoMatch.Core.Models
         [Required]
         [MaxLength(128)]
         public string Password { get; set; }
-        public string Phone { get; set; }
         public string Profession { get; set; }
 
         //One to one - user to role

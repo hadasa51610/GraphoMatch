@@ -14,10 +14,6 @@ namespace GraphoMatch.Core.Models
         [Required(ErrorMessage = "The 'RoleName' field is required.")]
         [MaxLength(255)] 
         public string RoleName { get; set; }
-
-        [MaxLength(1000)] 
-        public string RoleDescription { get; set; }
-
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 

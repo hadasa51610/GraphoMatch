@@ -34,7 +34,7 @@ builder.Services.AddDbContext<GraphoMatch.Data.DataContext>(options =>
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
-        builder => builder.WithOrigins("https://graphomatch.onrender.com", "https://localhost:7134")
+        builder => builder.WithOrigins("https://graphomatch.onrender.com", "https://localhost:7134", "http://localhost:5173")
                           .AllowAnyMethod()
                           .AllowAnyHeader()
                           .AllowCredentials());
