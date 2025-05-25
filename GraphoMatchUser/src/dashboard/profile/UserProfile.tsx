@@ -29,12 +29,11 @@ export function UserProfileCard({ user, isLoadingUser, handwritingFile }: UserPr
               <Avatar className="h-24 w-24 border-2 border-purple-500 mb-4">
                 <AvatarImage src="/placeholder.svg?height=96&width=96" alt="User" />
                 <AvatarFallback className="bg-purple-900 text-white text-2xl">
-                  {user?.firstName?.charAt(0).toUpperCase() || ""}
-                  {user?.lastName?.charAt(0).toUpperCase() || ""}
+                  {user?.name?.charAt(0).toUpperCase() || ""}
                 </AvatarFallback>
               </Avatar>
               <h2 className="text-xl font-bold text-white">
-                {user?.firstName} {user?.lastName}
+                {user?.name}
               </h2>
               <p className="text-gray-400">{user?.profession}</p>
             </div>

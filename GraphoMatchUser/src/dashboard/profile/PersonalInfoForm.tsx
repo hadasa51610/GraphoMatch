@@ -54,28 +54,13 @@ export function PersonalInfoForm({
           <form onSubmit={onSaveProfile}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2 text-gray-300">
-                <Label htmlFor="first-name">First Name</Label>
+                <Label htmlFor="name"> Name</Label>
                 <Input
-                  id="first-name"
-                  value={user?.firstName || ""}
+                  id="name"
+                  value={user?.name || ""}
                   onChange={(e) => {
                     if (user) {
-                      onUserChange({ ...user, firstName: e.target.value })
-                    }
-                  }}
-                  className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
-                  disabled={isSavingProfile}
-                />
-              </div>
-
-              <div className="space-y-2 text-gray-300">
-                <Label htmlFor="last-name">Last Name</Label>
-                <Input
-                  id="last-name"
-                  value={user?.lastName || ""}
-                  onChange={(e) => {
-                    if (user) {
-                      onUserChange({ ...user, lastName: e.target.value })
+                      onUserChange({ ...user, name: e.target.value })
                     }
                   }}
                   className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
@@ -92,21 +77,6 @@ export function PersonalInfoForm({
                   onChange={(e) => {
                     if (user) {
                       onUserChange({ ...user, email: e.target.value })
-                    }
-                  }}
-                  className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"
-                  disabled={isSavingProfile}
-                />
-              </div>
-
-              <div className="space-y-2 text-gray-300">
-                <Label htmlFor="phone">Phone</Label>
-                <Input
-                  id="phone"
-                  value={user?.phone || ""}
-                  onChange={(e) => {
-                    if (user) {
-                      onUserChange({ ...user, phone: e.target.value })
                     }
                   }}
                   className="bg-white/5 border-white/10 focus-visible:ring-purple-500 text-white"

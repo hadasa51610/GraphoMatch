@@ -93,10 +93,10 @@ const DashboardLayout = () => {
             <div className="flex items-center gap-2">
               <Avatar className="h-9 w-9 border-2 border-purple-500">
                 <AvatarImage src="/placeholder.svg?height=36&width=36" alt="User" />
-                <AvatarFallback className="bg-purple-900 text-white">{user?.firstName.charAt(0).toUpperCase()}{user?.lastName.charAt(0).toUpperCase()}</AvatarFallback>
+                <AvatarFallback className="bg-purple-900 text-white">{user?.name.charAt(0).toUpperCase()}</AvatarFallback>
               </Avatar>
               <div className="md:block">
-                <p className="text-sm font-medium">{user?.firstName} {user?.lastName}</p>
+                <p className="text-sm font-medium">{user?.name}</p>
                 <p className="text-xs text-gray-400">{user?.profession}</p>
               </div>
             </div>
