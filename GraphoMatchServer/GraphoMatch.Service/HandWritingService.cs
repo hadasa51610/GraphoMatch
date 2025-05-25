@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CloudinaryDotNet;
+using DotNetEnv;
 using GraphoMatch.Core.DTOs;
 using GraphoMatch.Core.Models;
 using GraphoMatch.Core.Repositories;
@@ -126,7 +127,8 @@ namespace GraphoMatch.Service
             var json = JsonSerializer.Serialize(requestData);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync("http://192.168.0.111:5000/analyze", content);
+            Env.Load();
+            var response = await _httpClient.PostAsync(Environment.GetEnvironmentVariable("PYTHON_URL"), content);
             response.EnsureSuccessStatusCode();
 
             var result = await response.Content.ReadAsStringAsync();
