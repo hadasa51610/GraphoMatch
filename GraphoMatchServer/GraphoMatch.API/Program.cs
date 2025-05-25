@@ -36,7 +36,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend",
         builder => builder.WithOrigins("https://graphomatch.onrender.com", "https://localhost:7134")
                           .AllowAnyMethod()
-                          .AllowAnyHeader());
+                          .AllowAnyHeader()
+                          .AllowCredentials());
 });
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

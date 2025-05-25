@@ -1,0 +1,49 @@
+<mat-toolbar color="primary" class="header-toolbar">
+  @if (isMobile) {
+  <button mat-icon-button (click)="onMenuToggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+}
+  
+  <h1 class="page-title">{{ getPageTitle() }}</h1>
+  
+  <div class="toolbar-spacer"></div>
+  
+  <button mat-icon-button (click)="onThemeToggle()">
+    <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+  </button>
+  
+  <button mat-icon-button [matBadge]="''" matBadgeSize="small" matBadgeColor="warn">
+    <mat-icon>notifications</mat-icon>
+  </button>
+  
+  <button mat-button [matMenuTriggerFor]="userMenu" class="user-menu-button">
+    <div class="avatar">
+      <span>{{ currentUser?.name?.charAt(0) || 'A' }}</span>
+    </div>
+    <span class="username">{{ currentUser?.name || 'Admin User' }}</span>
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  
+  <mat-menu #userMenu="matMenu" xPosition="before">
+    <div class="user-menu-header">
+      <p class="user-name">{{ currentUser?.name || 'Admin User' }}</p>
+      <p class="user-email">{{ currentUser?.email || 'admin@graphomatch.com' }}</p>
+    </div>
+    <mat-divider></mat-divider>
+    <button mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="onLogout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+
+</mat-toolbar>

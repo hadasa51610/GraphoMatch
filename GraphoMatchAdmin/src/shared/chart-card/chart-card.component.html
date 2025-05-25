@@ -1,0 +1,123 @@
+<mat-card class="chart-card">
+  <mat-card-header>
+    <mat-card-title>{{ title }}</mat-card-title>
+    @if(subtitle) {
+    <mat-card-subtitle>{{ subtitle }}</mat-card-subtitle>
+    }
+    
+    <div class="chart-actions">
+      @if (showFilter && filterData.length > 0) {
+      <mat-form-field appearance="outline" class="filter-field">
+        <mat-select [value]="selectedFilter" (selectionChange)="onFilterChange($event)">
+          @for (filter of filterData; track $index) {
+          <mat-option [value]="filter.value">
+            {{ filter.label }}
+          </mat-option>
+        }
+        </mat-select>
+      </mat-form-field>
+    }
+    </div>
+  </mat-card-header>
+  
+  <mat-card-content class="chart-content"> 
+    @if (isLoading) {
+    <div class="loading-container">
+      <mat-spinner diameter="40"></mat-spinner>
+    </div>
+  }
+    
+  @if (!isLoading) {
+    <div class="chart-container">
+      <!-- Line Chart -->
+       @if (chartType === 'line') {
+      <ngx-charts-line-chart
+        [results]="chartData"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [scheme]="scheme"
+        [animations]="animations"
+        [autoScale]="autoScale"
+        [legendPosition]="legendPosition"
+        (select)="onSelect($event)">
+      </ngx-charts-line-chart>
+    }
+    @if (chartType === 'area') {
+      <!-- Area Chart -->
+      <ngx-charts-area-chart
+        [results]="chartData"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [scheme]="scheme"
+        [animations]="animations"
+        [autoScale]="autoScale"
+        [legendPosition]="legendPosition"
+        (select)="onSelect($event)">
+      </ngx-charts-area-chart>
+    }
+    @if (chartType === 'bar') {
+      <!-- Bar Chart -->
+      <ngx-charts-bar-horizontal
+        [results]="chartData"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [scheme]="scheme"
+        [animations]="animations"
+        [roundEdges]="roundEdges"
+        (select)="onSelect($event)">
+      </ngx-charts-bar-horizontal>
+    }
+      
+    @if (chartType === 'vertical-bar') {
+      <!-- Vertical Bar Chart -->
+      <ngx-charts-bar-vertical
+        [results]="chartData"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [scheme]="scheme"
+        [animations]="animations"
+        [roundEdges]="roundEdges"
+        (select)="onSelect($event)">
+      </ngx-charts-bar-vertical>
+    }
+      
+    @if (chartType === 'pie') {
+      <!-- Pie Chart -->
+      <ngx-charts-pie-chart 
+        [results]="chartData"
+        [gradient]="gradient"
+        [legend]="showLegend"
+        [scheme]="scheme"
+        [animations]="animations"
+        [legendPosition]="legendPosition"
+        (select)="onSelect($event)">
+      </ngx-charts-pie-chart>
+    }
+    </div>
+  }
+  </mat-card-content>
+</mat-card>

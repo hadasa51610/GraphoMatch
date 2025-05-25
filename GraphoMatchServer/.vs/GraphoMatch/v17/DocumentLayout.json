@@ -109,9 +109,9 @@
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Program.cs",
               "RelativeDocumentMoniker": "GraphoMatch.API\\Program.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Program.cs*",
-              "RelativeToolTip": "GraphoMatch.API\\Program.cs*",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAAAG4AAAAIAAAAAAAAAA==",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Program.cs",
+              "RelativeToolTip": "GraphoMatch.API\\Program.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAYwCwAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-20T20:31:59.84Z",
               "EditorCaption": ""
@@ -124,8 +124,7 @@
               "ToolTip": "C:\\Users\\User\\AppData\\Roaming\\Microsoft\\UserSecrets\\c78cd962-c09a-43c2-b83a-6e9de9fee8a4\\secrets.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-20T17:20:49.064Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T17:20:49.064Z"
             },
             {
               "$type": "Document",

@@ -1,0 +1,93 @@
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: none;
+  height: 100%;
+}
+
+.stat-card-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+}
+
+.stat-card-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.stat-info {
+  flex: 1;
+}
+
+.stat-title {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0 0 8px;
+}
+
+.stat-value-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 8px 0 0;
+}
+
+.percent-change {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 16px;
+}
+
+.percent-change.positive {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #4caf50;
+}
+
+.percent-change.negative {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #f44336;
+}
+
+.previous-value {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0;
+}
+
+.stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+}
+
+.stat-icon mat-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.stat-chart {
+  height: 40px;
+  margin-top: -10px;
+}
+
+/* Dark theme styles */
+:host-context(.dark-theme) .stat-title,
+:host-context(.dark-theme) .previous-value {
+  color: rgba(255, 255, 255, 0.6);
+}

@@ -1,0 +1,16 @@
+<mat-nav-list class="nav-list">
+  <a mat-list-item *ngFor="let item of navItems" 
+     [routerLink]="item.path" 
+     routerLinkActive="active-link"
+     [class.active-link]="isActive(item.path)">
+    <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+    <span matListItemTitle>{{ item.label }}</span>
+  </a>
+</mat-nav-list>
+
+<div class="sidenav-footer">
+  <button mat-list-item class="logout-button" (click)="onLogout()">
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
+</div>

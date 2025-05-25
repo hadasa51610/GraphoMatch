@@ -1,0 +1,13 @@
+<app-chart-card
+  title="User Activity"
+  subtitle="Monthly user registrations"
+  [chartData]="formattedChartData"
+  chartType="area"
+  [showLegend]="false"
+  [showFilter]="true"
+  [filterData]="filterOptions"
+  [selectedFilter]="selectedFilter"
+  [gradient]="true"
+  [colorScheme]="{ domain: ['#673ab7', '#3f51b5', '#2196f3'] }"
+  [isLoading]="isLoading">
+</app-chart-card>
