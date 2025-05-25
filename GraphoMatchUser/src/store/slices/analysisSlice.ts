@@ -6,7 +6,7 @@ import { baseUrl } from "./userSlice";
 export const GetAnalysis = createAsyncThunk('analysis/getAnalysis',
     async (userId: number, thunkAPI) => {
         try {
-            const response = await axios.post(`${baseUrl}/api/HandWriting/analyze`, JSON.stringify(userId), {
+            const response = await axios.post(`${baseUrl}/api/HandWriting/analyze`, JSON.stringify({userId}), {
                 headers: {
                     'Content-Type': 'application/json',
                 },

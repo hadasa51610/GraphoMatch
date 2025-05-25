@@ -83,25 +83,31 @@ def analyze():
         {visual_features}
 
         Please provide a detailed assessment of the writer's personality traits as much as possible.
-        Also, return the 5 most recommended fields of study and professions based on the identified traits, and rank them according to the level of compatibility.
-        Return the response in the following format:
-        {{
-              "personalityTraits": [
-          {{
-            "trait": "Trait Name",
-            "matchLevel": "Low / Medium / High / Very High",
-            "description": "A detailed explanation of the trait and how it is reflected in the handwriting"
-          }},
-          ...
-        ],
-        "recommendations": [
-          {{
-            "profession": "Profession Name",
-            "matchLevel": "Low / Medium / High / Very High",
-            "reason": "Detailed explanation of why this profession fits the identified traits"
-          }},
-          ...
-        ]
+        Based on the detailed graphological features described above, provide a comprehensive analysis of the writer's personality traits. For each trait, explain in detail how it is reflected in the handwriting.
+
+            Then, based on the full combination of these traits — not individually — recommend 5 fields of study or professions that best suit the overall personality profile. Do not match each profession to a single trait, but rather to the full personality pattern.
+
+            Rank the recommendations by level of compatibility and provide a detailed explanation for each recommendation, explaining how it fits the overall personality.
+
+            Return the response in the following JSON format:
+            {
+            "personalityTraits": [
+                {
+                "trait": "Trait Name",
+                "matchLevel": "Low / Medium / High / Very High",
+                "description": "Detailed explanation of how this trait is reflected in the handwriting"
+                },
+                ...
+            ],
+            "recommendations": [
+                {
+                "profession": "Profession Name",
+                "matchLevel": "Low / Medium / High / Very High",
+                "reason": "Detailed explanation of why this profession matches the full personality profile"
+                },
+                ...
+            ]
+            }
 
             """
 

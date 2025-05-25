@@ -292,7 +292,7 @@ export default function AnalysisPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {analysis?.personalityTraits.map((trait, index) => {
+                {Array.isArray(analysis.personalityTraits) && analysis.personalityTraits.map((trait, index) => {
                   const colorScheme = getMatchLevelColor(trait.matchLevel)
                   return (
                     <motion.div
@@ -370,7 +370,7 @@ export default function AnalysisPage() {
               </div>
 
               <div className="space-y-6">
-                {analysis.recommendations.map((rec, index) => {
+                {Array.isArray(analysis.recommendations) && analysis.recommendations.map((rec, index) => {
                   const colorScheme = getMatchLevelColor(rec.matchLevel)
                   return (
                     <motion.div

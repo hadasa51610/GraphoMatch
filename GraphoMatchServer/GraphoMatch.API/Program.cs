@@ -24,17 +24,11 @@ builder.Services.AddDbContext<GraphoMatch.Data.DataContext>(options =>
     options.UseMySql(connectionString, ServerVersion.Parse("8.0.41-mysql"));
 });
 
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("AllowAllOrigins",
-//        builder => builder.AllowAnyOrigin()
-//                          .AllowAnyMethod()
-//                          .AllowAnyHeader());
-//});
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
-        builder => builder.WithOrigins("https://graphomatch.onrender.com", "https://localhost:7134", "http://localhost:5173")
+        builder => builder.WithOrigins("https://graphomatch.onrender.com", "http://localhost:5173")
                           .AllowAnyMethod()
                           .AllowAnyHeader()
                           .AllowCredentials());
@@ -91,7 +85,6 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// הוספת הרשאות מבוססות-תפקידים
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
@@ -110,7 +103,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.UseCors("AllowAllOrigins");
 app.UseCors("AllowFrontend");
 
 app.UseAuthentication();
