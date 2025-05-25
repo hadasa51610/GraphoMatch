@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from openai import OpenAI
 import base64
 import requests
@@ -6,6 +7,8 @@ from dotenv import load_dotenv
 import os
 
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:7134","https://graphomatchserver.onrender.com"], supports_credentials=True)
+
 
 load_dotenv()
 
