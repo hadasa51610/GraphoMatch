@@ -84,8 +84,7 @@ export default function FeedbackPage() {
       if (id) {
         const data: FeedbackType = {
           userId: Number(id),
-          userFirstName: "",
-          userLastName: "",
+          userName: "",
           content: feedback,
           createdAt: new Date(),
         }
@@ -240,8 +239,7 @@ export default function FeedbackPage() {
                         <Avatar className="h-12 w-12 border-2 border-white/10 relative">
                           <AvatarImage src="/placeholder.svg?height=96&width=96" alt="User" />
                           <AvatarFallback className={`bg-gradient-to-br ${getUserColor(item.userId as number)}`}>
-                            {item.userFirstName?.charAt(0).toUpperCase()}
-                            {item.userLastName?.charAt(0).toUpperCase()}
+                            {item.userName?.charAt(0).toUpperCase()}
                           </AvatarFallback>
                         </Avatar>
                       </div>
@@ -249,9 +247,7 @@ export default function FeedbackPage() {
                       <div className="flex-1">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <h4 className="font-medium text-white">
-                              {item.userFirstName} {item.userLastName}
-                            </h4>
+                            <h4 className="font-medium text-white"> {item.userName} </h4>
                             <div className="h-1.5 w-1.5 rounded-full bg-gray-500"></div>
                             <span className="text-xs text-gray-400">
                               {new Date(item.createdAt).toLocaleDateString(undefined, {

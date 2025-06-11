@@ -1,7 +1,6 @@
 export type FeedbackType={
     userId:number,
-    userFirstName:string,
-    userLastName:string,
+    userName:string,
     content:string,
     createdAt:Date
 }

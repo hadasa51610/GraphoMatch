@@ -256,7 +256,7 @@ export default function Home() {
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur opacity-50"></div>
                       <div className="relative rounded-full p-1 bg-black/50 backdrop-blur-sm border border-white/10">
                         <img
-                          src="/placeholder.svg?height=300&width=300"
+                          src="public/job_profile.jpg"
                           alt="Job seeker success"
                           className="w-64 h-64 rounded-full object-cover"
                         />
