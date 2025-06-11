@@ -29,11 +29,13 @@ export default function JobsPage() {
   const [allJobs, setAllJobs] = useState<JobType[]>([])
 
   const normalize = (word: string) => {
+    if (!word) return "";
+
     return word
       .toLowerCase()
-      .replace(/(ing|er|ors|or|s|ion|ment|al|ive|ed|y)$/g, ''); // סיומות נפוצות
+      .replace(/(ing|er|ors|or|s|ion|ment|al|ive|ed|y)$/g, '');
   };
-  
+
 
   useEffect(() => {
     setLoading(true);
@@ -42,24 +44,26 @@ export default function JobsPage() {
       router("/");
       return;
     }
-  
+
     dispatch(GetFiles(Number(userId)))
       .then((result: any) => {
         if (result.payload) {
           const imageItem = result.payload.find((item: any) => item.type === "image");
           if (!imageItem) return;
-  
-          try {
-            const outer = JSON.parse(imageItem.analysisResult);
-            const jsonMatch = outer.analysis.match(/```json\s*([\s\S]*?)\s*```/);
-            if (!jsonMatch || jsonMatch.length < 2) {
-              throw new Error("Could not extract JSON block from analysis");
-            }
-  
-            const parsed = JSON.parse(jsonMatch[1]);
-            const recs = parsed.recommendations;
-            setRecommendations(recs);
 
+          try {
+            let recs: any[] = [];
+            if (imageItem.analysisResult !== 'none') {
+              const outer = JSON.parse(imageItem.analysisResult);
+              const jsonMatch = outer.analysis.match(/```json\s*([\s\S]*?)\s*```/);
+              if (!jsonMatch || jsonMatch.length < 2) {
+                throw new Error("Could not extract JSON block from analysis");
+              }
+
+              const parsed = JSON.parse(jsonMatch[1]);
+              recs = parsed.recommendations;
+              setRecommendations(recs);
+            }
             dispatch(GetJobs()).then((jobsResult: any) => {
               if (jobsResult.payload) {
                 const jobs = jobsResult.payload.map((jobCard: any) => {
@@ -68,20 +72,20 @@ export default function JobsPage() {
                     .trim()
                     .split(/[\s\/\-]+/)
                     .map(normalize);
-            
+
                   const match = recs.find((r: any) => {
                     const professionWords = r.profession
                       .toLowerCase()
                       .trim()
                       .split(/[\s\/\-]+/)
                       .map(normalize);
-            
-                    return professionWords.some((word:string) => jobTitleWords.includes(word)) ||
-                           jobTitleWords.some((word:string) => professionWords.includes(word));
+
+                    return professionWords.some((word: string) => jobTitleWords.includes(word)) ||
+                      jobTitleWords.some((word: string) => professionWords.includes(word));
                   });
-            
+
                   const level = match?.matchLevel;
-            
+
                   return {
                     ...jobCard,
                     matchLevel:
@@ -91,11 +95,11 @@ export default function JobsPage() {
                     logo: jobCard.logo || "",
                   } as JobType;
                 });
-            
+
                 setAllJobs(jobs);
               }
             });
-            
+
           } catch (err) {
             console.error("Error processing analysisResult:", err);
           }
@@ -105,14 +109,14 @@ export default function JobsPage() {
         setLoading(false);
       });
   }, [dispatch]);
-  
+
 
 
   const toggleFilter = (tag: string) => {
     console.log("all jobs", allJobs);
     console.log("recommendations", recommendations);
-    
-    
+
+
     if (activeFilters.includes(tag)) {
       setActiveFilters(activeFilters.filter((t) => t !== tag))
     } else {

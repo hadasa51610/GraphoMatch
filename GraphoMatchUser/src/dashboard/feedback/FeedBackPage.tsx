@@ -237,17 +237,17 @@ export default function FeedbackPage() {
                           className={`absolute inset-0 bg-gradient-to-r ${getUserColor(item.userId as number)} rounded-full blur-sm opacity-70`}
                         ></div>
                         <Avatar className="h-12 w-12 border-2 border-white/10 relative">
-                          <AvatarImage src="public/bust-in-silhouette-48.png" alt="User" />
+                          <AvatarImage src="../avatars-30.png" alt="User"/>
                           <AvatarFallback className={`bg-gradient-to-br ${getUserColor(item.userId as number)}`}>
                             {item.userName?.charAt(0).toUpperCase()}
-                          </AvatarFallback>
+                          </AvatarFallback>{item.userName?.charAt(0).toUpperCase()}
                         </Avatar>
                       </div>
 
                       <div className="flex-1">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <h4 className="font-medium text-white"> {item.userName} </h4>
+                            <h4 className="font-medium text-white">{item.userName}</h4>
                             <div className="h-1.5 w-1.5 rounded-full bg-gray-500"></div>
                             <span className="text-xs text-gray-400">
                               {new Date(item.createdAt).toLocaleDateString(undefined, {
