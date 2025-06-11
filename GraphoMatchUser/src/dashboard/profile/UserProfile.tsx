@@ -27,7 +27,7 @@ export function UserProfileCard({ user, isLoadingUser, handwritingFile }: UserPr
           <>
             <div className="flex flex-col items-center text-center mb-6">
               <Avatar className="h-24 w-24 border-2 border-purple-500 mb-4">
-                <AvatarImage src="circled-user-male-skin-type-4-40.png" alt="User" />
+                <AvatarImage src="../circled-user-male-skin-type-4-40.png" alt="User" />
                 <AvatarFallback className="bg-purple-900 text-white text-2xl">
                   {user?.name?.charAt(0).toUpperCase() || ""}
                 </AvatarFallback>

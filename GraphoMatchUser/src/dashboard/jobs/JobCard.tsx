@@ -141,7 +141,7 @@ export function JobCard({ jobCard, index, isExpanded, toggleExpand, toggleFilter
                     <Avatar
                       className={`h-10 w-10 border ${colorScheme.border} bg-gradient-to-br from-gray-800 to-gray-900`}
                     >
-                      <AvatarImage src={jobCard.logo || "company-64.png"} alt={jobCard.company} />
+                      <AvatarImage src={jobCard.logo || "../company-64.png"} alt={jobCard.company} />
                       <AvatarFallback className={`bg-gradient-to-br ${colorScheme.gradient} text-white text-xs`}>
                         {jobCard.company.substring(0, 2)}
                       </AvatarFallback>

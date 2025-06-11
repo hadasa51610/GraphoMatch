@@ -15,7 +15,6 @@ import { HandwritingAnimationLoader } from "@/components/HandwritingAnimationLoa
 import { ImagePreviewDialog } from "@/components/ImagePreview"
 import { useReactToPrint } from "react-to-print";
 import { generatePDF } from "@/pages/PDFGenerator"
-import { generateHebrewPDF } from "@/pages/HebrewPDFGenerator"
 import { useNavigate } from "react-router-dom"
 
 export interface AnalysisData {
@@ -232,7 +231,7 @@ export default function AnalysisPage() {
                   </div>
                   <div className="flex gap-3">
                     <Button variant="outline" size="sm" className="border-white/10 bg-white/5 text-black rounded-full"
-                      onClick={() => { generatePDF(analysis); generateHebrewPDF(analysis) }}>
+                      onClick={() => { generatePDF(analysis); }}>
                       <Download className="h-4 w-4 mr-2" />
                       <span>Download</span>
                     </Button>
