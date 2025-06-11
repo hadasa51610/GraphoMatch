@@ -237,7 +237,7 @@ export default function FeedbackPage() {
                           className={`absolute inset-0 bg-gradient-to-r ${getUserColor(item.userId as number)} rounded-full blur-sm opacity-70`}
                         ></div>
                         <Avatar className="h-12 w-12 border-2 border-white/10 relative">
-                          <AvatarImage src="/placeholder.svg?height=96&width=96" alt="User" />
+                          <AvatarImage src="bust-in-silhouette-48.png" alt="User" />
                           <AvatarFallback className={`bg-gradient-to-br ${getUserColor(item.userId as number)}`}>
                             {item.userName?.charAt(0).toUpperCase()}
                           </AvatarFallback>

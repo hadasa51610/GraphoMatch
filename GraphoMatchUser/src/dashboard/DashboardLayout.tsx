@@ -92,7 +92,7 @@ const DashboardLayout = () => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <Avatar className="h-9 w-9 border-2 border-purple-500">
-                <AvatarImage src="/placeholder.svg?height=36&width=36" alt="User" />
+                <AvatarImage src="circled-user-male-skin-type-4-40.png" alt="User" />
                 <AvatarFallback className="bg-purple-900 text-white">{user?.name.charAt(0).toUpperCase()}</AvatarFallback>
               </Avatar>
               <div className="md:block">

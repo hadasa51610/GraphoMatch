@@ -41,7 +41,7 @@ export function JobProfileDialog({
                             <Avatar
                                 className={`h-16 w-16 border-2 ${colorScheme.border} bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg`}
                             >
-                                <AvatarImage src={job.logo || "/placeholder.svg"} alt={job.company} />
+                                <AvatarImage src={job.logo || "company-64.png"} alt={job.company} />
                                 <AvatarFallback className={`bg-gradient-to-br ${colorScheme.gradient} text-white text-lg`}>
                                     {job.company.substring(0, 2)}
                                 </AvatarFallback>
