@@ -68,10 +68,12 @@ export default function AnalysisPage() {
       });
   }, [files]);
 
+
   const handleImagePreview = () => {
     setPreviewOpen(true)
   }
 
+  // Function to close the dialog (though we'll keep it open by default)
   const handleClosePreview = () => {
     setPreviewOpen(false)
   }
@@ -418,15 +420,6 @@ export default function AnalysisPage() {
                       </motion.div>
                     )
                   })}
-                </div>
-                <div className="mt-10 flex justify-center">
-                  <Button
-                    className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white border-0 rounded-full group"
-                    onClick={() => (window.location.href = "/dashboard/jobs")}
-                  >
-                    View Job Opportunities
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
                 </div>
               </div>
             </Card>

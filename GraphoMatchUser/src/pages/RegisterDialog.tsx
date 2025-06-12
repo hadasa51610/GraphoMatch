@@ -93,7 +93,7 @@ export const RegisterDialog = ({ open, onOpenChange }: RegisterDialogProps) => {
         )}
 
         <form onSubmit={(e) => handleSubmit(e, {
-          name:name, email: email, password: password, profession: profession
+          name: name, email: email, password: password, profession: profession
         })}>
           <div className="grid gap-5 py-4">
             <div className="grid grid-cols-2 gap-4">
@@ -111,6 +111,18 @@ export const RegisterDialog = ({ open, onOpenChange }: RegisterDialogProps) => {
                     required
                   />
                 </div>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500">
+                <Label htmlFor="profession" className="text-sm font-medium text-gray-300">Current Profession</Label>
+                <Input
+                  id="profession"
+                  value={profession}
+                  onChange={(e) => setProfession(e.target.value)}
+                  className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
+                  required
+                />
               </div>
             </div>
             <div className="space-y-2">
@@ -161,20 +173,6 @@ export const RegisterDialog = ({ open, onOpenChange }: RegisterDialogProps) => {
                 required
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <div className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500">
-                  <Label htmlFor="profession" className="text-sm font-medium text-gray-300">Current Profession</Label>
-                  <Input
-                    id="profession"
-                    value={profession}
-                    onChange={(e) => setProfession(e.target.value)}
-                    className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
             <DialogFooter className="flex-col sm:flex-row gap-2">
               <Button
                 type="submit"
@@ -194,7 +192,7 @@ export const RegisterDialog = ({ open, onOpenChange }: RegisterDialogProps) => {
                 )}
               </Button>
             </DialogFooter>
-            </div>
+          </div>
         </form>
       </DialogContent>
     </Dialog>
