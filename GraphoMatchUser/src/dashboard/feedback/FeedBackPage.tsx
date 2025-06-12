@@ -22,14 +22,13 @@ export default function FeedbackPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useNavigate()
 
-  // Fetch all feedbacks
   useEffect(() => {
     dispatch(Get()).then((result: any) => {
       if (result.payload) {
         setAllFeedbacks([...result.payload])
       }
     })
-  }, [dispatch])
+  }, [])
 
   // Fetch user data for each feedback
   useEffect(() => {
@@ -72,7 +71,7 @@ export default function FeedbackPage() {
     if (allFeedbacks && allFeedbacks.length > 0) {
       fetchUsers()
     }
-  }, [allFeedbacks, dispatch])
+  }, [])
 
   const handleSubmitFeedback = () => {
     if (feedback.trim()) {
