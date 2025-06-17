@@ -29,6 +29,20 @@ export const AddFile = createAsyncThunk('file/addFile',
     }
 )
 
+export const DeleteFile = createAsyncThunk('file/deleteFile',
+    async (fileId: number, thunkAPI) => {
+        try {
+            const response = await axios.delete(`${baseUrl}/api/HandWriting/${fileId}`);
+            return response.data;
+        } catch (error) {
+            if (error instanceof Error) {
+                return thunkAPI.rejectWithValue(error.message);
+            }
+            return thunkAPI.rejectWithValue('An unknown error occurred');
+        }
+    }
+)
+
 export const GetFiles = createAsyncThunk('file/getFiles',
     async (userId: number, thunkAPI) => {
         try {
@@ -76,6 +90,19 @@ export const fileSlice = createSlice({
                 }
             ).addCase(AddFile.pending, (state) => {
                 console.log('Upload file...');
+                state.error = null;
+            }).addCase(DeleteFile.fulfilled,
+                (state, action) => {
+                    console.log('Delete file succeessfully');
+                    state.list = state.list.filter(file => file.id !== action.payload.id);
+                }
+            ).addCase(DeleteFile.rejected,
+                (state, action) => {
+                    console.log('Delete file failed');
+                    state.error = action.payload as string;
+                }
+            ).addCase(DeleteFile.pending, (state) => {
+                console.log('Delete file...');
                 state.error = null;
             })
     }

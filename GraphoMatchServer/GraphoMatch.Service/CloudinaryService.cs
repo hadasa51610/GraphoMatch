@@ -14,53 +14,137 @@ using System.ComponentModel.DataAnnotations.Schema;
 using DotNetEnv;
 
 
+//namespace GraphoMatch.Service
+//{
+//    public class CloudinaryService
+//    {
+//        public CloudinaryService() { }
+
+//        public async Task<string> UploadFileAsync(IFormFile file, int userId, string type)
+//        {
+//            if (type != "image")
+//            {
+//                return "The Type is not Image";
+//            }
+
+//            Env.Load();
+//            var cloudName = Environment.GetEnvironmentVariable("CLOUDINARY_CLOUD_NAME");
+//            var apiKey = Environment.GetEnvironmentVariable("CLOUDINARY_API_KEY");
+//            var apiSecret = Environment.GetEnvironmentVariable("CLOUDINARY_API_SECRET");
+//            var account = new Account(
+//                cloudName,
+//                apiKey,
+//                apiSecret
+//            );
+//            var cloudinary = new Cloudinary(account);
+//            cloudinary.Api.Secure = true;
+
+//            if (file.Length == 0) return null;
+//            try
+//            {
+//                using (var memoryStream = new MemoryStream())
+//                {
+//                    await file.CopyToAsync(memoryStream);
+//                    memoryStream.Position = 0;
+
+//                    var uploadParams = new ImageUploadParams()
+//                    {
+//                        File = new FileDescription(file.FileName, memoryStream),
+//                        PublicId = file.FileName,
+//                        Transformation = new Transformation().Crop("fill").Gravity("face")
+//                    };
+//                    var uploadResult = await cloudinary.UploadAsync(uploadParams);
+//                    return uploadResult.SecureUrl.AbsoluteUri;
+//                }
+//            }
+//            catch (Exception)
+//            {
+//                return null;
+//            }
+//        }
+
+//        public string ExtractPublicIdFromUrl(string url)
+//        {
+//            var uri = new Uri(url);
+//            var segments = uri.AbsolutePath.Split('/', StringSplitOptions.RemoveEmptyEntries);
+//            var uploadIndex = Array.IndexOf(segments, "upload");
+//            if (uploadIndex < 0 || uploadIndex + 1 >= segments.Length)
+//                throw new Exception("Invalid Cloudinary URL");
+
+//            var publicId = string.Join("/", segments.Skip(uploadIndex + 2));
+//            return Path.ChangeExtension(publicId, null);
+//        }
+
+
+//        public async Task<bool> DeleteFileAsync(string url)
+//        {
+//            Env.Load();
+//            var cloudName = Environment.GetEnvironmentVariable("CLOUDINARY_CLOUD_NAME");
+//            var apiKey = Environment.GetEnvironmentVariable("CLOUDINARY_API_KEY");
+//            var apiSecret = Environment.GetEnvironmentVariable("CLOUDINARY_API_SECRET");
+//            var account = new Account(
+//                cloudName,
+//                apiKey,
+//                apiSecret
+//            );
+//            var cloudinary = new Cloudinary(account);
+//            cloudinary.Api.Secure = true;
+//            var deletionParams = new DeletionParams(ExtractPublicIdFromUrl(url));
+//            var deletionResult = await cloudinary.DestroyAsync(deletionParams);
+//            if (deletionResult.Result == "ok")
+//            {
+//                return true;
+//            }
+//            return false;
+//        }
+
+//    }
+//}
 namespace GraphoMatch.Service
 {
     public class CloudinaryService
     {
-        public CloudinaryService() { }
+        private readonly Cloudinary _cloudinary;
 
-        public async Task<string> UploadFileAsync(IFormFile file,int userId, string type)
+        public CloudinaryService()
         {
             Env.Load();
+
             var cloudName = Environment.GetEnvironmentVariable("CLOUDINARY_CLOUD_NAME");
             var apiKey = Environment.GetEnvironmentVariable("CLOUDINARY_API_KEY");
             var apiSecret = Environment.GetEnvironmentVariable("CLOUDINARY_API_SECRET");
-            var account = new Account(
-                cloudName,      
-                apiKey,         
-                apiSecret       
-            );
-            var cloudinary = new Cloudinary(account);
-            cloudinary.Api.Secure = true; 
 
-            if (file.Length == 0) return null;
-            using var stream = file.OpenReadStream();
-           
-            UploadResult uploadResult;
-
-            if (type == "image")
+            var account = new Account(cloudName, apiKey, apiSecret);
+            _cloudinary = new Cloudinary(account)
             {
-                var uploadParams = new ImageUploadParams
-                {
-                    File = new FileDescription(file.FileName, stream),
-                    Transformation = new Transformation().Crop("fill").Gravity("face")
-                };
-                uploadResult = await cloudinary.UploadAsync(uploadParams);
-            }
-            else
+                Api = { Secure = true }
+            };
+        }
+
+        public async Task<string> UploadFileAsync(IFormFile file, int userId, string type)
+        {
+            if (type != "image" || file.Length == 0)
+                return null;
+
+            try
             {
-                var uploadParams = new RawUploadParams
+                using (var stream = file.OpenReadStream())
                 {
-                    File = new FileDescription(file.FileName, stream)
-                };
-                uploadResult = await cloudinary.UploadAsync(uploadParams); // No casting needed
+                    var uploadParams = new ImageUploadParams()
+                    {
+                        File = new FileDescription(file.FileName, stream),
+                        PublicId = $"user_{userId}_{Guid.NewGuid()}",
+                        Transformation = new Transformation()
+                    };
+
+                    var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+                    return uploadResult.SecureUrl.AbsoluteUri;
+                }
             }
-
-            // Check if upload was successful
-            if (uploadResult.Error != null) return null;
-            return uploadResult.SecureUrl.AbsoluteUri;
-
+            catch
+            {
+                return null;
+            }
         }
 
         public string ExtractPublicIdFromUrl(string url)
@@ -68,35 +152,27 @@ namespace GraphoMatch.Service
             var uri = new Uri(url);
             var segments = uri.AbsolutePath.Split('/', StringSplitOptions.RemoveEmptyEntries);
             var uploadIndex = Array.IndexOf(segments, "upload");
+
             if (uploadIndex < 0 || uploadIndex + 1 >= segments.Length)
                 throw new Exception("Invalid Cloudinary URL");
 
-            var publicId = string.Join("/", segments.Skip(uploadIndex + 2)); // skip version
-            return Path.ChangeExtension(publicId, null); // remove extension
+            var publicId = string.Join("/", segments.Skip(uploadIndex + 2));
+            return Path.ChangeExtension(publicId, null);
         }
-
 
         public async Task<bool> DeleteFileAsync(string url)
         {
-            Env.Load();
-            var cloudName = Environment.GetEnvironmentVariable("CLOUDINARY_CLOUD_NAME");
-            var apiKey = Environment.GetEnvironmentVariable("CLOUDINARY_API_KEY");
-            var apiSecret = Environment.GetEnvironmentVariable("CLOUDINARY_API_SECRET");
-            var account = new Account(
-                cloudName,
-                apiKey,
-                apiSecret
-            );
-            var cloudinary = new Cloudinary(account);
-            cloudinary.Api.Secure = true;
-            var deletionParams = new DeletionParams(ExtractPublicIdFromUrl(url));
-            var deletionResult = await cloudinary.DestroyAsync(deletionParams);
-            if (deletionResult.Result == "ok")
+            try
             {
-                return true;
+                var publicId = ExtractPublicIdFromUrl(url);
+                var deletionParams = new DeletionParams(publicId);
+                var deletionResult = await _cloudinary.DestroyAsync(deletionParams);
+                return deletionResult.Result == "ok";
             }
-            return false;
+            catch
+            {
+                return false;
+            }
         }
-
     }
 }

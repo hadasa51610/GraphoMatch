@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/Button"
 import { Input } from "@/components/ui/Input"
 import { Label } from "@/components/ui/Label"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter, } from "@/components/ui/Dialog"
-import { ArrowRight, User, Mail, Lock, Loader2, AlertCircle } from "lucide-react"
+import { ArrowRight, User, Mail, Lock, Loader2, AlertCircle, ContactRound } from "lucide-react"
 import { UserType } from "@/types/UserType"
 import type { AppDispatch } from "@/store/store"
 import { useDispatch } from "react-redux"
@@ -112,17 +112,20 @@ export const RegisterDialog = ({ open, onOpenChange }: RegisterDialogProps) => {
                   />
                 </div>
               </div>
-            </div>
-            <div className="space-y-2">
-              <div className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500">
+              <div className="space-y-2">
                 <Label htmlFor="profession" className="text-sm font-medium text-gray-300">Current Profession</Label>
-                <Input
-                  id="profession"
-                  value={profession}
-                  onChange={(e) => setProfession(e.target.value)}
-                  className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
-                  required
-                />
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <ContactRound className="h-4 w-4 text-gray-500" />
+                  </div>
+                  <Input
+                    id="profession"
+                    value={profession}
+                    onChange={(e) => setProfession(e.target.value)}
+                    className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
+                    required
+                  />
+                </div>
               </div>
             </div>
             <div className="space-y-2">
@@ -164,14 +167,19 @@ export const RegisterDialog = ({ open, onOpenChange }: RegisterDialogProps) => {
               <Label htmlFor="confirm-password" className="text-sm font-medium text-gray-300">
                 Confirm Password
               </Label>
-              <Input
-                id="confirm-password"
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
-                required
-              />
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Lock className="h-4 w-4 text-gray-500" />
+                </div>
+                <Input
+                  id="confirm-password"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="bg-white/5 border-white/10 text-white focus-visible:ring-purple-500"
+                  required
+                />
+              </div>
             </div>
             <DialogFooter className="flex-col sm:flex-row gap-2">
               <Button

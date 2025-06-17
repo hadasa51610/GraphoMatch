@@ -11,7 +11,7 @@ import type { AppDispatch } from "@/store/store"
 import { GetUser, Update } from "@/store/slices/userSlice"
 import type { UserType } from "@/types/UserType"
 import { SuccessNotification } from "@/components/SuccessNotification"
-import { AddFile, GetFiles } from "@/store/slices/fileSlice"
+import { AddFile, DeleteFile, GetFiles } from "@/store/slices/fileSlice"
 import { ImagePreviewDialog } from "@/components/ImagePreview"
 import { UserProfileCard } from "@/dashboard/profile/UserProfile"
 import { PersonalInfoForm } from "@/dashboard/profile/PersonalInfoForm"
@@ -21,6 +21,7 @@ import { useNavigate } from "react-router-dom"
 export default function ProfilePage() {
   const [handwritingFile, setHandwritingFile] = useState<File | null>(null)
   const [handwritingImageUrl, setHandwritingImageUrl] = useState<string | null>(null)
+  const [currentFileId, setCurrentFileId] = useState<number | null>(null)
   const router = useNavigate()
 
   const [previousUser, setPreviousUser] = useState<UserType | null>(null)
@@ -28,6 +29,7 @@ export default function ProfilePage() {
 
   const [isLoadingUser, setIsLoadingUser] = useState(false)
   const [isUploadingHandwriting, setIsUploadingHandwriting] = useState(false)
+  const [isDeletingHandwriting, setIsDeletingHandwriting] = useState(false)
   const [isSavingProfile, setIsSavingProfile] = useState(false)
 
   const [userError, setUserError] = useState<string | null>(null)
@@ -37,114 +39,145 @@ export default function ProfilePage() {
   const dispatch = useDispatch<AppDispatch>()
   const [user, setUser] = useState<UserType | null>(null)
   const [showProfileSuccess, setShowProfileSuccess] = useState(false)
+  const [showDeleteSuccess, setShowDeleteSuccess] = useState(false)
+  const [, setShowUploadSuccess] = useState(false)
 
-  // Always show the preview dialog when an image is available
   const [isPreviewOpen, setIsPreviewOpen] = useState(false)
 
-  // Initial data loading
   useEffect(() => {
     const userId = sessionStorage.getItem("userId")
-    if(!userId) {
-      router("/")
+    if (!userId) {
+      router("/");
+      return;
     }
-    if (userId) {
-      setIsLoadingUser(true)
-      setUserError(null)
+    setIsLoadingUser(true)
+    setUserError(null)
 
-      dispatch(GetUser(Number(userId)))
-        .then((result: any) => {
-          if (result.payload) {
-            setUser(result.payload as UserType)
-            setPreviousUser(result.payload as UserType)
-          } else {
-            setUserError("Failed to load user data")
-          }
-        })
-        .catch((error) => {
-          setUserError(error.message || "Failed to load user data")
-        })
-        .finally(() => {
-          setIsLoadingUser(false)
-        })
-    }
-  }, [dispatch])
+    dispatch(GetUser(Number(userId)))
+      .then((result: any) => {
+        if (result.payload) {
+          setUser(result.payload as UserType)
+          setPreviousUser(result.payload as UserType)
+        } else {
+          setUserError("Failed to load user data")
+        }
+      })
+      .catch((error) => {
+        setUserError(error.message || "Failed to load user data")
+      })
+      .finally(() => {
+        setIsLoadingUser(false)
+      })
+  }, [dispatch, router])
 
-  // Load files
   useEffect(() => {
     const userId = sessionStorage.getItem("userId")
-    if(!userId) {
-      router("/")
+    if (!userId) {
+      router("/");
+      return;
     }
-    if (userId) {
-      dispatch(GetFiles(Number(userId)))
-        .then((result: any) => {
-          if (result.payload) {
-            console.log("Files loaded:", result.payload)
+    dispatch(GetFiles(Number(userId)))
+      .then((result: any) => {
+        if (result.payload) {
+          console.log("Files loaded:", result.payload)
 
-            result.payload.forEach((item: any) => {
-              if (item.type === "image") {
-                // Set the image URL directly from the payload
-                setHandwritingImageUrl(item.url)
+          result.payload.forEach((item: any) => {
+            if (item.type === "image") {
+              setHandwritingImageUrl(item.url)
+              setCurrentFileId(item.id)
 
-                // Also create a file object for compatibility
-                const file = new File([], item.fileName)
-                setHandwritingFile(file)
-                setPreviousHandwritingFile(file)
-              }
-            })
-          }
-        })
-        .catch((error) => {
-          console.error("Failed to load files:", error)
-        })
-    }
-  }, [dispatch])
+              const file = new File([], item.fileName)
+              setHandwritingFile(file)
+              setPreviousHandwritingFile(file)
+            }
+          })
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to load files:", error)
+      })
+  }, [dispatch, router])
 
   const handleHandwritingUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const uploadedFile = e.target.files[0]
       const userId = sessionStorage.getItem("userId")
-      if(!userId) {
+      if (!userId) {
         router("/")
+        return;
       }
-      if (userId) {
-        // Save previous state for rollback
-        setPreviousHandwritingFile(handwritingFile)
-        const previousUrl = handwritingImageUrl
+      setPreviousHandwritingFile(handwritingFile)
+      setHandwritingFile(uploadedFile)
+      setIsUploadingHandwriting(true)
+      setHandwritingError(null)
 
-        // Update UI immediately for better UX
-        setHandwritingFile(uploadedFile)
-        setIsUploadingHandwriting(true)
-        setHandwritingError(null)
-
-        dispatch(AddFile({ data: uploadedFile, userId: Number(userId) }))
-          .then((result: any) => {
-            if (result.payload) {
-              // Extract the URL from the response
-              const fileData = result.payload
-              if (fileData.url) {
-                setHandwritingImageUrl(fileData.url)
-                // Open the preview dialog when a new image is uploaded
-                setIsPreviewOpen(true)
-              }
-            } else {
-              // Rollback on failure
-              setHandwritingFile(previousHandwritingFile)
-              setHandwritingImageUrl(previousUrl)
-              setHandwritingError("Failed to upload handwriting sample")
+      dispatch(AddFile({ data: uploadedFile, userId: Number(userId) }))
+        .then((result: any) => {
+          if (result.payload) {
+            const fileData = result.payload
+            if (fileData.url) {
+              setHandwritingImageUrl(fileData.url)
+              setCurrentFileId(fileData.id)
+              setShowUploadSuccess(true)
+              setIsPreviewOpen(true)
             }
-          })
-          .catch((error) => {
-            // Rollback on error
+          } else {
             setHandwritingFile(previousHandwritingFile)
-            setHandwritingImageUrl(previousUrl)
-            setHandwritingError(error.message || "Failed to upload handwriting sample")
-          })
-          .finally(() => {
-            setIsUploadingHandwriting(false)
-          })
-      }
+            setHandwritingImageUrl("")
+            setCurrentFileId(null)
+            setHandwritingError(`Failed to upload handwriting sample`)
+          }
+        })
+        .catch((error) => {
+          setHandwritingFile(previousHandwritingFile)
+          setHandwritingImageUrl('')
+          setCurrentFileId(null)
+          setHandwritingError(error.message || "Failed to upload handwriting sample")
+        })
+        .finally(() => {
+          setIsUploadingHandwriting(false)
+          e.target.value = ""
+        })
     }
+  }
+
+  const handleHandwritingDelete = () => {
+    if (!currentFileId) {
+      setHandwritingError("No file to delete")
+      return
+    }
+
+    const previousFile = handwritingFile
+    const previousUrl = handwritingImageUrl
+    const previousFileId = currentFileId
+
+    setIsDeletingHandwriting(true)
+    setHandwritingError(null)
+
+    dispatch(DeleteFile(currentFileId))
+      .then((result: any) => {
+        if (result.payload || !result.error) {
+          setHandwritingFile(null)
+          setHandwritingImageUrl(null)
+          setCurrentFileId(null)
+          setIsPreviewOpen(false)
+          setShowDeleteSuccess(true)
+        } else {
+          setHandwritingFile(previousFile)
+          setHandwritingImageUrl(previousUrl)
+          setCurrentFileId(previousFileId)
+          setHandwritingError("Failed to delete handwriting sample")
+        }
+      })
+      .catch((error) => {
+        setHandwritingFile(previousFile)
+        setHandwritingImageUrl(previousUrl)
+        setCurrentFileId(previousFileId)
+        setHandwritingError(error.message || "Failed to delete handwriting sample")
+      })
+      .finally(() => {
+        setIsDeletingHandwriting(false)
+      })
   }
 
   const handleSaveProfile = (e: React.FormEvent) => {
@@ -152,36 +185,32 @@ export default function ProfilePage() {
 
     if (user) {
       const userId = sessionStorage.getItem("userId")
-      if(!userId) {
+      if (!userId) {
         router("/")
+        return;
       }
-      if (userId) {
-        // Save previous state for rollback
-        setPreviousUser({ ...user })
+      setPreviousUser({ ...user })
 
-        setIsSavingProfile(true)
-        setProfileError(null)
+      setIsSavingProfile(true)
+      setProfileError(null)
 
-        dispatch(Update({ data: user, userId: Number(userId) }))
-          .then((result: any) => {
-            if (result.payload) {
-              setUser(result.payload as UserType)
-              setShowProfileSuccess(true)
-            } else {
-              // Rollback on failure
-              setUser(previousUser)
-              setProfileError("Failed to update profile")
-            }
-          })
-          .catch((error) => {
-            // Rollback on error
+      dispatch(Update({ data: user, userId: Number(userId) }))
+        .then((result: any) => {
+          if (result.payload) {
+            setUser(result.payload as UserType)
+            setShowProfileSuccess(true)
+          } else {
             setUser(previousUser)
-            setProfileError(error.message || "Failed to update profile")
-          })
-          .finally(() => {
-            setIsSavingProfile(false)
-          })
-      }
+            setProfileError("Failed to update profile")
+          }
+        })
+        .catch((error) => {
+          setUser(previousUser)
+          setProfileError(error.message || "Failed to update profile")
+        })
+        .finally(() => {
+          setIsSavingProfile(false)
+        })
     }
   }
 
@@ -192,18 +221,24 @@ export default function ProfilePage() {
     router("/dashboard/analysis")
   }
 
-  // This function now just ensures the dialog is open
   const handleImagePreview = () => {
     setIsPreviewOpen(true)
   }
 
-  // Function to close the dialog (though we'll keep it open by default)
   const handleClosePreview = () => {
     setIsPreviewOpen(false)
   }
 
   return (
     <div className="max-w-4xl mx-auto">
+      {handwritingImageUrl && (
+        <ImagePreviewDialog
+          isOpen={isPreviewOpen}
+          onClose={handleClosePreview}
+          imageUrl={handwritingImageUrl}
+          title="Handwriting Sample"
+        />
+      )}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -277,21 +312,33 @@ export default function ProfilePage() {
             onClearHandwritingError={() => setHandwritingError(null)}
             onImagePreview={handleImagePreview}
             onSubmitForAnalysis={handleSubmitForAnalysis}
+            isDeletingHandwriting={isDeletingHandwriting}
+            onHandwritingDelete={handleHandwritingDelete}
           />
         </motion.div>
       </div>
+      <div>
+        <SuccessNotification
+          show={showProfileSuccess}
+          onClose={() => setShowProfileSuccess(false)}
+          title="Profile Updated!"
+          message="Your profile information has been successfully updated. The changes will be reflected across your account."
+          color="purple"
+        />
 
-      <SuccessNotification
-        show={showProfileSuccess}
-        onClose={() => setShowProfileSuccess(false)}
-        title="Profile Updated!"
-        message="Your profile information has been successfully updated. The changes will be reflected across your account."
-        color="purple"
-      />
+        <SuccessNotification
+          show={showDeleteSuccess}
+          onClose={() => setShowDeleteSuccess(false)}
+          title="Image Deleted!"
+          message="Your handwriting sample has been successfully removed from cloud storage."
+          color="blue"
+        />
+      </div>
+     
       <ImagePreviewDialog
         isOpen={isPreviewOpen}
         onClose={handleClosePreview}
-         imageUrl={handwritingImageUrl || ""}
+        imageUrl={handwritingImageUrl || ""}
       />
     </div>
   )

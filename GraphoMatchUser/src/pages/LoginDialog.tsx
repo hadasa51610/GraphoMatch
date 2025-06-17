@@ -101,9 +101,6 @@ export const LoginDialog = ({ open, onOpenChange }: LoginDialogProps) => {
                 <Label htmlFor="password" className="text-sm font-medium text-gray-300">
                   Password
                 </Label>
-                <a href="#" className="text-xs text-purple-400 hover:text-purple-300 transition-colors">
-                  Forgot password?
-                </a>
               </div>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

@@ -52,6 +52,11 @@ namespace GraphoMatch.Service
         public async Task<bool> RemoveAsync(int id)
         {
             var handwriting = await _manager._handWriting.GetByIdAsync(id);
+            if (handwriting == null)
+            {
+                return false;
+            }
+            await DeleteExistingHandwritingAsync(handwriting.UserId, handwriting.Type);
             bool succeed = await _manager._handWriting.DeleteAsync(id);
             if (succeed) await _manager.SaveAsync();
             return succeed;
@@ -59,9 +64,6 @@ namespace GraphoMatch.Service
 
         public async Task<HandWritingDto> AddAsync(HandWritingDto entity, IFormFile image)
         {
-            // Delete previous handwriting (if exists)
-            await DeleteExistingHandwritingAsync(entity.UserId, entity.Type);
-
             // Upload new image
             var url = await _cloudinaryService.UploadFileAsync(image, entity.UserId, entity.Type);
             if (url == null)
