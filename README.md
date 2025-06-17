@@ -4,6 +4,13 @@
 
 ---
 
+## 🌍 Live Demo
+
+You can access the live version of the project here:  
+🔗 https://graphomatch.onrender.com
+
+---
+
 ## 📌 Features
 
 - ✍️ Upload handwriting samples and get graphology-based personality analysis  
@@ -37,14 +44,14 @@
 ### 🔧 Clone the repo
 
 ```bash
-git clone https://github.com/your-username/grapho-match.git
-cd grapho-match
+git clone https://github.com/hadasa51610/GraphoMatch.git
+cd GraphoMatch
 ```
 
 ### ⚛️ Frontend Setup
 
 ```bash
-cd client
+cd GraphoMatchUser
 npm install
 npm run dev
 ```
@@ -52,7 +59,7 @@ npm run dev
 ### 🖥 Backend Setup
 
 ```bash
-cd server
+cd GraphoMatchServer
 dotnet restore
 dotnet run
 ```
@@ -60,7 +67,7 @@ dotnet run
 ### 🧠 Python Graphology Server
 
 ```bash
-cd python-graphology
+cd Python
 pip install -r requirements.txt
 python app.py
 ```
@@ -70,10 +77,10 @@ python app.py
 ## 🗃️ Folder Structure
 
 ```bash
-├── client/                  # React frontend
-├── server/                  # ASP.NET Core backend
-├── python-graphology/       # Python handwriting analysis
-├── database/                # Migration files / seeders
+├── GraphoMatchUser/         # React frontend
+├── GraphoMatchAdmin/        # Angular frontend
+├── GraphoMatchServer/       # ASP.NET Core backend
+├── Python/                  # Python handwriting analysis
 ├── README.md
 ```
 
@@ -84,7 +91,7 @@ python app.py
 ### `.env` (React)
 
 ```env
-VITE_API_URL=http://localhost:5000
+VITE_API_URL=http://localhost:5173
 ```
 
 ### `appsettings.json` (C#)
