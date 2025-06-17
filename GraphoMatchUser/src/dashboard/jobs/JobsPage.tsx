@@ -133,26 +133,22 @@ export default function JobsPage() {
 
   const filteredJobs = allJobs.filter((jobCard: JobType) => {
 
-    // Filter by search query
     const matchesSearch =
       jobCard.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       jobCard.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
       jobCard.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()))
 
-    // Filter by match level
     const matchesCategory =
       selectedCategory === "all" ||
       (selectedCategory === "very-high" && jobCard.matchLevel === "Very High") ||
       (selectedCategory === "high" && jobCard.matchLevel === "High") ||
       (selectedCategory === "medium" && jobCard.matchLevel === "Medium")
 
-    // Filter by active tag filters
     const matchesTags = activeFilters.length === 0 || activeFilters.some((filter) => jobCard.tags.includes(filter))
 
     return matchesSearch && matchesCategory && matchesTags
   })
 
-  // Loading state
   if (loading) {
     return (
       <div className="max-w-5xl mx-auto px-4">

@@ -33,7 +33,6 @@ export function ParticleBackground() {
                 this.speedX = (Math.random() - 0.5) * 0.3;
                 this.speedY = (Math.random() - 0.5) * 0.3;
 
-                // Create gradient colors
                 const colors = ["rgba(147, 51, 234, ", "rgba(219, 39, 119, ", "rgba(139, 92, 246, "];
                 this.color = colors[Math.floor(Math.random() * colors.length)];
                 this.alpha = Math.random() * 0.5 + 0.1;
@@ -61,7 +60,6 @@ export function ParticleBackground() {
             particles.push(new Particle());
         }
 
-        // Connect particles with lines
         function connectParticles() {
             if (!ctx) return;
             const maxDistance = 150;

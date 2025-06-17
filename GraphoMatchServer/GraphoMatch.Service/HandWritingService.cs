@@ -64,12 +64,10 @@ namespace GraphoMatch.Service
 
         public async Task<HandWritingDto> AddAsync(HandWritingDto entity, IFormFile image)
         {
-            // Upload new image
             var url = await _cloudinaryService.UploadFileAsync(image, entity.UserId, entity.Type);
             if (url == null)
                 return null;
 
-            // Map and add new handwriting
             var newEntity = _mapper.Map<HandWriting>(entity);
             newEntity.Url = url.ToString();
             newEntity.User = await _manager._users.GetByIdAsync(entity.UserId);

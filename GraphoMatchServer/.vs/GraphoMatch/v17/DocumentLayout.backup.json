@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|solutionrelative:graphomatch.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3AEAD297-2508-4768-9D88-7D6032A77B34}|GraphoMatch.Service\\GraphoMatch.Service.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.service\\cloudinaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3AEAD297-2508-4768-9D88-7D6032A77B34}|GraphoMatch.Service\\GraphoMatch.Service.csproj|solutionrelative:graphomatch.service\\cloudinaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.api\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|solutionrelative:graphomatch.api\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39B955CF-6C8A-491D-8E4A-121C4544E835}|GraphoMatch.API\\GraphoMatch.API.csproj|solutionrelative:graphomatch.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0BDA8578-90DF-4DC5-873D-1AF2ED9440BA}|GraphoMatch.Core\\GraphoMatch.Core.csproj|d:\\hadasa\\finalproject\\graphomatch\\graphomatch\\graphomatchserver\\graphomatch.core\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -70,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Bookmark",
@@ -106,20 +106,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CloudinaryService.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\CloudinaryService.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.Service\\CloudinaryService.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\CloudinaryService.cs*",
-              "RelativeToolTip": "GraphoMatch.Service\\CloudinaryService.cs*",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAkwG8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T11:53:25.253Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": ".env",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\.env",
               "RelativeDocumentMoniker": "GraphoMatch.API\\.env",
@@ -179,7 +166,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "HandWritingService.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\HandWritingService.cs",
               "RelativeDocumentMoniker": "GraphoMatch.Service\\HandWritingService.cs",
@@ -204,7 +191,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Program.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.API\\Program.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Program.cs",
+              "RelativeToolTip": "GraphoMatch.API\\Program.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABsAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T20:31:59.84Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CloudinaryService.cs",
+              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\CloudinaryService.cs",
+              "RelativeDocumentMoniker": "GraphoMatch.Service\\CloudinaryService.cs",
+              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.Service\\CloudinaryService.cs",
+              "RelativeToolTip": "GraphoMatch.Service\\CloudinaryService.cs",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAkwG8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T11:53:25.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "HandWritingController.cs",
               "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Controllers\\HandWritingController.cs",
               "RelativeDocumentMoniker": "GraphoMatch.API\\Controllers\\HandWritingController.cs",
@@ -226,18 +239,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-05-19T12:30:08.967Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Program.cs",
-              "RelativeDocumentMoniker": "GraphoMatch.API\\Program.cs",
-              "ToolTip": "D:\\hadasa\\finalProject\\GraphoMatch\\GraphoMatch\\GraphoMatchServer\\GraphoMatch.API\\Program.cs",
-              "RelativeToolTip": "GraphoMatch.API\\Program.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAABsAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T20:31:59.84Z"
             },
             {
               "$type": "Document",

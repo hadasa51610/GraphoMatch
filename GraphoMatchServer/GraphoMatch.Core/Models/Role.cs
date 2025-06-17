@@ -16,8 +16,6 @@ namespace GraphoMatch.Core.Models
         public string RoleName { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-
-        // קשר של Role -> User (אחד)
         public int UserId { get; set; }
 
         [ForeignKey("UserId")]

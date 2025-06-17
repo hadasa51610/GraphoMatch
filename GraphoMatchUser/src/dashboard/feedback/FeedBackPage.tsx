@@ -30,7 +30,6 @@ export default function FeedbackPage() {
     })
   }, [])
 
-  // Fetch user data for each feedback
   useEffect(() => {
     const fetchUsers = async () => {
       const updatedFeedbacks = allFeedbacks
@@ -51,7 +50,6 @@ export default function FeedbackPage() {
         )
         : []
 
-      // Process feedbacks to get only one per user (the most recent)
       const userMap = new Map()
       updatedFeedbacks.forEach((feedback) => {
         const userId = feedback.userId
@@ -60,7 +58,6 @@ export default function FeedbackPage() {
         }
       })
 
-      // Convert map to array and limit to 15 feedbacks
       const uniqueFeedbacks = Array.from(userMap.values())
         .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
         .slice(0, 15)
@@ -92,7 +89,6 @@ export default function FeedbackPage() {
             setFeedback("")
             setShowSuccess(true)
 
-            // Add the new feedback and ensure we still have only one per user
             dispatch(Get()).then((getResult: any) => {
               if (getResult.payload) {
                 setAllFeedbacks([...getResult.payload])
@@ -106,7 +102,6 @@ export default function FeedbackPage() {
     }
   }
 
-  // Generate a random pastel color based on user ID for visual differentiation
   const getUserColor = (userId: number) => {
     const colors = [
       "from-purple-500 to-pink-500",

@@ -20,7 +20,6 @@ namespace GraphoMatch.Core.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UploadedAt { get; set; }
 
-        //one to many - handwritings to user
         [ForeignKey(nameof(User))]
         public int UserId {  get; set; }
         public User User { get; set; }

@@ -10,6 +10,5 @@ namespace GraphoMatch.Core.Repositories
     public interface IHandWritingRepository:IRepository<HandWriting>
     {
         Task<IEnumerable<HandWriting>> GetByUserId(int userId);
-        //Task<string> AnalyzeHandwritingAsync(int userId);
     }
 }

@@ -17,11 +17,6 @@ namespace GraphoMatch.Data.Repositories
             _handWriters = context.Set<HandWriting>();
         }
 
-        //public Task<string> AnalyzeHandwritingAsync(int userId)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public async Task<IEnumerable<HandWriting>> GetByUserId(int userId)
         {
             return await _handWriters.Where(x => x.UserId == userId && (x.FileName.Contains(".png") || x.FileName.Contains(".JPG"))).ToListAsync();

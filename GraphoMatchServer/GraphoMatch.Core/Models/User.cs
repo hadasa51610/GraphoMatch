@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace GraphoMatch.Core.Models
 {
-    //public enum Role { ADMIN, GRAPHOLOGIST, USER };
-
     [Table("User")]
     public class User
     {
@@ -28,13 +26,9 @@ namespace GraphoMatch.Core.Models
         [MaxLength(128)]
         public string Password { get; set; }
         public string Profession { get; set; }
-
-        //One to one - user to role
         public List<Role> Roles { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdateAt { get; set; }
-
-        // One-to-many relationship with HandWriting
         public List<HandWriting> HandWritings { get; set; }
 
         public List<Job> Jobs { get; set; }

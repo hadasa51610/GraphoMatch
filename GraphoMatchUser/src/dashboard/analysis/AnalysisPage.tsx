@@ -73,7 +73,6 @@ export default function AnalysisPage() {
     setPreviewOpen(true)
   }
 
-  // Function to close the dialog (though we'll keep it open by default)
   const handleClosePreview = () => {
     setPreviewOpen(false)
   }
