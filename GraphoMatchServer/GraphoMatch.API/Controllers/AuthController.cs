@@ -3,6 +3,7 @@ using GraphoMatch.API.Models;
 using GraphoMatch.Core.DTOs;
 using GraphoMatch.Core.Services;
 using GraphoMatch.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -42,11 +43,15 @@ namespace GraphoMatch.API.Controllers
         public async Task<ActionResult<LoginResDto>> RegisterAsync([FromBody] UserPostModel user)
         {
             if (string.IsNullOrWhiteSpace(user.Email) && string.IsNullOrWhiteSpace(user.Password))
+            {
                 return BadRequest("Email and password are required");
+            }
             var userDto = _mapper.Map<UserDto>(user);
             var loginResDto = await _authService.RegisterAsync(userDto);
             if (loginResDto == null)
-                return BadRequest("User already exists");
+            {
+                return Forbid();
+            }
             return Ok(loginResDto);
         }
     }

@@ -1,13 +1,19 @@
 import { FeedbackType } from "@/types/FeedbackType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { baseUrl } from "./userSlice";
-
+import axiosInstance from "../axiosInstance";
+// import axios from "axios";
+// import { baseUrl } from "./authSlice";
 
 export const Get = createAsyncThunk('feedback/get',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get(`${baseUrl}/api/Feedback`)
+            const response = await axiosInstance.get(`/api/Feedback`
+                // {
+                //     headers: {
+                //         Authorization: sessionStorage.getItem('auth_token') ? `Bearer ${sessionStorage.getItem('auth_token')}` : ''
+                //     }
+                // }
+            )
             return response.data
         } catch (error) {
             if (error instanceof Error) {
@@ -21,10 +27,16 @@ export const Get = createAsyncThunk('feedback/get',
 export const Add = createAsyncThunk('feedback/add',
     async (data: FeedbackType, thunkAPI) => {
         try {
-            const response = await axios.post(`${baseUrl}/api/Feedback`, {
+            const response = await axiosInstance.post(`/api/Feedback`, {
                 UserId: data.userId,
                 Content: data.content
-            })
+            }
+                // {
+                //     headers: {
+                //         Authorization: sessionStorage.getItem('auth_token') ? `Bearer ${sessionStorage.getItem('auth_token')}` : ''
+                //     }
+                // }
+            )
             return response.data;
         } catch (error) {
             if (error instanceof Error) {

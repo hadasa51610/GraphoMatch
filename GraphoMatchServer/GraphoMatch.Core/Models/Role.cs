@@ -16,10 +16,7 @@ namespace GraphoMatch.Core.Models
         public string RoleName { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public int UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public User User { get; set; }
+        public List<User> Users { get; set; }=new List<User>();
 
         public ICollection<Permission> Permissions { get; set; } = new List<Permission>();
 

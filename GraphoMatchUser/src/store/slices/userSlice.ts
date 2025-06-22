@@ -1,13 +1,14 @@
 import { UserType } from "@/types/UserType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-
-export const baseUrl = import.meta.env.VITE_API_URL;
+// import axios from "axios";
+// import { baseUrl } from "./authSlice";
+import axiosInstance from "../axiosInstance";
 
 export const GetUser = createAsyncThunk('data/get',
     async (userId: number, thunkAPI) => {
         try {
-            const response = await axios.get(`${baseUrl}/api/User/${userId}`)
+            // const token = sessionStorage.getItem('auth_token');
+            const response = await axiosInstance.get(`/api/User/${userId}`)
             return response.data
         } catch (error) {
             if (error instanceof Error) {
@@ -21,12 +22,18 @@ export const GetUser = createAsyncThunk('data/get',
 export const Update = createAsyncThunk('data/put',
     async ({ data, userId }: { data: UserType; userId: number }, thunkAPI) => {
         try {
-            const response = await axios.put(`${baseUrl}/api/User/${userId}`, {
+            const response = await axiosInstance.put(`/api/User/${userId}`, {
                 Name: data.name,
                 Email: data.email,
                 Password: data.password,
                 Profession: data.profession
-            })
+            }
+            //     {
+            //         headers: {
+            //             Authorization: sessionStorage.getItem('auth_token') ? `Bearer ${sessionStorage.getItem('auth_token')}` : ''
+            //         }
+            //     }
+            )
             return response.data;
         } catch (error) {
             if (error instanceof Error) {
@@ -54,7 +61,7 @@ export const userSlice = createSlice({
                 }
             ).addCase(GetUser.pending, (state) => {
                 state.error = null;
-            }) .addCase(Update.fulfilled,
+            }).addCase(Update.fulfilled,
                 (state, action) => {
                     console.log('User update succeessfully');
                     state.list = [...state.list, { ...action.payload }];

@@ -2,6 +2,7 @@ using FluentAssertions.Common;
 using GraphoMatch.API;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Configuration;
@@ -23,14 +24,16 @@ builder.Services.AddDbContext<GraphoMatch.Data.DataContext>(options =>
     options.UseMySql(connectionString, ServerVersion.Parse("8.0.41-mysql"));
 });
 
+builder.Services.AddDependency();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend",
-        builder => builder.WithOrigins("https://graphomatch.onrender.com", "http://localhost:5173")
+    options.AddPolicy("AllowSpecificOrigins",
+        builder => builder.WithOrigins("*")
+        //.WithOrigins("https://graphomatch.onrender.com", "http://localhost:5173")
                           .AllowAnyMethod()
-                          .AllowAnyHeader()
-                          .AllowCredentials());
+                          .AllowAnyHeader());
+                          //.AllowCredentials());
 });
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -63,8 +66,6 @@ builder.Services.AddSwaggerGen(options =>
                 });
 });
 
-builder.Services.AddDependency();
-
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -78,17 +79,27 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        ValidIssuer = builder.Configuration["JWT:Issuer"],
+        ValidAudience = builder.Configuration["JWT:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"])),
+        RoleClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+    };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnAuthenticationFailed = context =>
+        {
+            Console.WriteLine($"JWT ERROR: {context.Exception.Message}");
+            return Task.CompletedTask;
+        }
     };
 });
 
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
-    options.AddPolicy("EditorOrAdmin", policy => policy.RequireRole("Editor", "Admin"));
-    options.AddPolicy("ViewerOnly", policy => policy.RequireRole("Viewer"));
+    options.AddPolicy("UserOrAdmin", policy => policy.RequireRole("User", "Admin"));
+    //options.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
 });
 
 var app = builder.Build();
@@ -100,12 +111,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
+app.UseExceptionHandler("/error");
 
-app.UseCors("AllowFrontend");
+app.UseCors("AllowSpecificOrigins");
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapGet("/", () => "GraphoMatch server is running!");
 app.Run();

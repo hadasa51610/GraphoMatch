@@ -2,8 +2,9 @@ import { UserLoginType } from "@/types/UserLoginType";
 import { UserType } from "@/types/UserType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { baseUrl } from "./userSlice";
 
+export const baseUrl = import.meta.env.VITE_API_URL;
+console.log('Base URL:', baseUrl);
 
 export const Login = createAsyncThunk('data/login',
     async (data: UserLoginType, thunkAPI) => {

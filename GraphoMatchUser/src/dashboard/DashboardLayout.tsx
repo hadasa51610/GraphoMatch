@@ -27,6 +27,12 @@ const DashboardLayout = () => {
         if (result.payload) {
           setUser(result.payload as UserType);
         }
+      }).catch((error) => {
+        if (typeof error === "string" && error.includes("401")) {
+          console.log("Your profile has expired. Please log in again.")
+        } else {
+          console.log("Error fetching user data:", error as string);
+        }
       });
     }
   }, [dispatch]);

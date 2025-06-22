@@ -2,6 +2,7 @@
 using GraphoMatch.API.Models;
 using GraphoMatch.Core.DTOs;
 using GraphoMatch.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -22,6 +23,7 @@ namespace GraphoMatch.API.Controllers
         }
 
 
+        [Authorize(Policy = "UserOrAdmin")]
         // GET: api/<FeedbackController>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FeedbackDto>>> Get()
@@ -30,6 +32,7 @@ namespace GraphoMatch.API.Controllers
             return feedbacks == null ? NoContent() : Ok(feedbacks);
         }
 
+        [Authorize(Policy = "AdminOnly")]
         // GET api/<FeedbackController>/5
         [HttpGet("{id}")]
         public  async Task<ActionResult<FeedbackDto>> Get(int id)
@@ -38,6 +41,7 @@ namespace GraphoMatch.API.Controllers
             return feedback == null ? NotFound() : Ok(feedback);
         }
 
+        [Authorize(Policy = "UserOrAdmin")]
         // POST api/<FeedbackController>
         [HttpPost]
         public async Task<ActionResult<FeedbackDto>> Post([FromBody] FeedbackPostModel feedback)
@@ -49,6 +53,7 @@ namespace GraphoMatch.API.Controllers
             return Ok(feedbackDto);
         }
 
+        [Authorize(Policy = "AdminOnly")]
         // PUT api/<FeedbackController>/5
         [HttpPut("{id}")]
         public async Task<ActionResult<FeedbackDto>> Put(int id, [FromBody] FeedbackPostModel feedback)
@@ -59,6 +64,7 @@ namespace GraphoMatch.API.Controllers
             return feedback == null ? NotFound() : Ok(feedback);
         }
 
+        [Authorize(Policy = "AdminOnly")]
         // DELETE api/<FeedbackController>/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
