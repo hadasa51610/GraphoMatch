@@ -31,13 +31,16 @@ def image_url_to_base64(image_url):
 @app.route('/analyze', methods=['POST'])
 def analyze():
     try:
+        print("📥 Got request to /analyze")
         data = request.get_json()
         image_url = data.get('imageUrl')
+        print(f"🖼️ Image URL: {image_url}")
 
         if not image_url:
             return jsonify({'error': 'imageUrl is missing from the request'}), 400
 
         base64_image = image_url_to_base64(image_url)
+        print("✅ Converted image to base64")
 
         response_Gemini = client_Gemini.chat.completions.create(
             model="gemini-2.0-flash",
@@ -77,6 +80,7 @@ def analyze():
         )
 
         visual_features = response_Gemini.choices[0].message.content
+        print("🧠 Got visual features from Gemini")
 
         prompt = f"""
          Graphological analysis of the handwriting based on the following features:
@@ -114,6 +118,7 @@ def analyze():
         )
 
         final_analysis = response_analysis.choices[0].message.content
+        print("🎯 Final analysis complete")
 
         return jsonify({
             "analysis": final_analysis
@@ -121,6 +126,7 @@ def analyze():
 
     except Exception as e:
         import traceback
+        print("❌ Error occurred in /analyze")
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
