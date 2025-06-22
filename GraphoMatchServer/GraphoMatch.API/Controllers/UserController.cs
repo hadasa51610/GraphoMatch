@@ -22,7 +22,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy ="AdminOnly")]
-        // GET: api/<UserController>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> Get()
         {
@@ -31,7 +30,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "UserOrAdmin")]
-        // GET api/<UserController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> Get(int id)
         {
@@ -40,7 +38,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy ="UserOrAdmin")]
-        // POST api/<UserController>
         [HttpPost]
         public async Task<ActionResult<UserDto>> Post([FromBody] UserPostModel user)
         {
@@ -52,7 +49,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "UserOrAdmin")]
-        // PUT api/<UserController>/5
         [HttpPut("{id}")]
         public async Task<ActionResult<UserDto>> Put(int id, [FromBody] UserPostModel user)
         {
@@ -63,7 +59,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy ="UserOrAdmin")]
-        // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

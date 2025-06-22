@@ -25,7 +25,6 @@ namespace GraphoMatch.API.Controllers
 
 
         [Authorize(Policy = "AdminOnly")]
-        // GET: api/<HandWritingController>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HandWritingDto>>> Get()
         {
@@ -34,7 +33,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "UserOrAdmin")]
-        // GET api/<HandWritingController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<HandWritingDto>> Get(int id)
         {
@@ -43,7 +41,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "UserOrAdmin")]
-        // GET api/<HandWritingController>/5
         [HttpGet("ByUser/{userId}")]
         public async Task<ActionResult<IEnumerable<HandWritingDto>>> GetByUserId(int userId)
         {
@@ -52,7 +49,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "UserOrAdmin")]
-        // POST api/<HandWritingController>
         [HttpPost]
         public async Task<ActionResult<HandWritingDto>> Post([FromForm] HandWritingPostModel handWriting)
         {
@@ -64,7 +60,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "UserOrAdmin")]
-        // PUT api/<HandWritingController>/5
         [HttpPut("{id}")]
         public async Task<ActionResult<HandWritingDto>> Put(int id, [FromBody] HandWritingPostModel handWriting)
         {
@@ -75,7 +70,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "UserOrAdmin")]
-        // DELETE api/<HandWritingController>/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

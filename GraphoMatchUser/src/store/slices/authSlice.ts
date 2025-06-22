@@ -4,12 +4,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const baseUrl = import.meta.env.VITE_API_URL;
-console.log('Base URL:', baseUrl);
 
 export const Login = createAsyncThunk('data/login',
     async (data: UserLoginType, thunkAPI) => {
         try {
-            console.log('In Login...');
             const response = await axios.post(`${baseUrl}/api/Auth/login`, {
                 Email: data.email,
                 Password: data.password
@@ -30,7 +28,6 @@ export const Login = createAsyncThunk('data/login',
 export const Register = createAsyncThunk('data/register',
     async (data: UserType, thunkAPI) => {
         try {
-            console.log('In Register...');
             const response = await axios.post(`${baseUrl}/api/Auth/register`, {
                 Name: data.name,
                 Email: data.email,

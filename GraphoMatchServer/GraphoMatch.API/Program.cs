@@ -30,10 +30,8 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigins",
         builder => builder.WithOrigins("*")
-        //.WithOrigins("https://graphomatch.onrender.com", "http://localhost:5173")
                           .AllowAnyMethod()
                           .AllowAnyHeader());
-                          //.AllowCredentials());
 });
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -99,7 +97,6 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
     options.AddPolicy("UserOrAdmin", policy => policy.RequireRole("User", "Admin"));
-    //options.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
 });
 
 var app = builder.Build();
@@ -111,7 +108,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.UseHttpsRedirection();
 app.UseExceptionHandler("/error");
 
 app.UseCors("AllowSpecificOrigins");

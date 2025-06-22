@@ -23,7 +23,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "UserOrAdmin")]
-        // GET: api/<JobController>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<JobDTO>>> Get()
         {
@@ -41,7 +40,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "AdminOnly")]
-        // GET api/<JobController>/5
         [HttpGet("{id}/seekers")]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetSeekers(int id)
         {
@@ -50,7 +48,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "AdminOnly")]
-        // POST api/<JobController>
         [HttpPost]
         public async Task<ActionResult<JobDTO>> Post([FromBody] JobPostModel job)
         {
@@ -62,7 +59,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "UserOrAdmin")]
-        // PUT api/<JobController>/5
         [HttpPut("{id}/seeker/{userId}")]
         public async Task<ActionResult<UserDto>> Put(int id,int userId)
         {
@@ -77,7 +73,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "AdminOnly")]
-        // PUT api/<JobController>/5
         [HttpPut("{id}")]
         public async Task<ActionResult<JobDTO>> Put(int id, [FromBody] JobPostModel job)
         {
@@ -88,7 +83,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "AdminOnly")]
-        // DELETE api/<JobController>/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

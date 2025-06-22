@@ -1,20 +1,12 @@
 import { JobType } from "@/types/JobType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosInstance from "../axiosInstance";
-// import axios from "axios";
-// import { baseUrl } from "./authSlice";
 
 
 export const GetJobs = createAsyncThunk('job/getJobs',
     async (_, thunkAPI: { rejectWithValue: (value: string) => void }) => {
         try {
-            const response = await axiosInstance.get(`api/Job/`
-                // {
-                //     headers: {
-                //         Authorization: sessionStorage.getItem('auth_token') ? `Bearer ${sessionStorage.getItem('auth_token')}` : ''
-                //     }
-                // }
-            )
+            const response = await axiosInstance.get(`api/Job/`)
             return response.data
         } catch (error) {
             if (error instanceof Error) {
@@ -28,13 +20,7 @@ export const GetJobs = createAsyncThunk('job/getJobs',
 export const ApplyJob = createAsyncThunk('job/put',
     async ({ id, userId }: { id: number; userId: number }, thunkAPI) => {
         try {
-            const response = await axiosInstance.put(`/api/Job/${id}/seeker/${userId}`
-                // {
-                //     headers: {
-                //         Authorization: sessionStorage.getItem('auth_token') ? `Bearer ${sessionStorage.getItem('auth_token')}` : ''
-                //     }
-                // }
-            )
+            const response = await axiosInstance.put(`/api/Job/${id}/seeker/${userId}`)
             return response.data;
         } catch (error) {
             if (error instanceof Error) {
@@ -62,7 +48,7 @@ export const jobSlice = createSlice({
                 }
             ).addCase(GetJobs.pending, (state) => {
                 state.error = null;
-            }) .addCase(ApplyJob.fulfilled,
+            }).addCase(ApplyJob.fulfilled,
                 (state, action) => {
                     console.log('Apply job succeessfully');
                     state.list = [...state.list, { ...action.payload }];

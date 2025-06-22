@@ -24,7 +24,6 @@ namespace GraphoMatch.API.Controllers
 
 
         [Authorize(Policy = "UserOrAdmin")]
-        // GET: api/<FeedbackController>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FeedbackDto>>> Get()
         {
@@ -33,7 +32,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "AdminOnly")]
-        // GET api/<FeedbackController>/5
         [HttpGet("{id}")]
         public  async Task<ActionResult<FeedbackDto>> Get(int id)
         {
@@ -42,7 +40,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "UserOrAdmin")]
-        // POST api/<FeedbackController>
         [HttpPost]
         public async Task<ActionResult<FeedbackDto>> Post([FromBody] FeedbackPostModel feedback)
         {
@@ -54,7 +51,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "AdminOnly")]
-        // PUT api/<FeedbackController>/5
         [HttpPut("{id}")]
         public async Task<ActionResult<FeedbackDto>> Put(int id, [FromBody] FeedbackPostModel feedback)
         {
@@ -65,7 +61,6 @@ namespace GraphoMatch.API.Controllers
         }
 
         [Authorize(Policy = "AdminOnly")]
-        // DELETE api/<FeedbackController>/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

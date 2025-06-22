@@ -40,7 +40,6 @@ namespace GraphoMatch.Service
             new Claim(ClaimTypes.Email, user.Email),
             };
 
-            //claims.AddRange(user.Roles.Select(role => new Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", role.RoleName)));
             foreach (var role in user.Roles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role.RoleName));

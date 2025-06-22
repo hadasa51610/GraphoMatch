@@ -1,13 +1,10 @@
 import { UserType } from "@/types/UserType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import axios from "axios";
-// import { baseUrl } from "./authSlice";
 import axiosInstance from "../axiosInstance";
 
 export const GetUser = createAsyncThunk('data/get',
     async (userId: number, thunkAPI) => {
         try {
-            // const token = sessionStorage.getItem('auth_token');
             const response = await axiosInstance.get(`/api/User/${userId}`)
             return response.data
         } catch (error) {
@@ -27,13 +24,7 @@ export const Update = createAsyncThunk('data/put',
                 Email: data.email,
                 Password: data.password,
                 Profession: data.profession
-            }
-            //     {
-            //         headers: {
-            //             Authorization: sessionStorage.getItem('auth_token') ? `Bearer ${sessionStorage.getItem('auth_token')}` : ''
-            //         }
-            //     }
-            )
+            })
             return response.data;
         } catch (error) {
             if (error instanceof Error) {
