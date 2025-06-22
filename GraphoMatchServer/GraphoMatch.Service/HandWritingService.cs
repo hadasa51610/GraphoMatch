@@ -29,6 +29,7 @@ namespace GraphoMatch.Service
             _manager = manager;
             _mapper = mapper;
             _httpClient = httpClient;
+            _httpClient.Timeout = TimeSpan.FromMinutes(5);
         }
 
         public async Task<IEnumerable<HandWritingDto>> GetAsync()
@@ -114,28 +115,57 @@ namespace GraphoMatch.Service
         }
         public async Task<string> AnalyzeHandwritingAsync(int userId)
         {
-            var handwriting = await _manager._handWriting.GetByUserId(userId);
-            if (handwriting == null || !handwriting.Any()) { return null; }
-            var analysis = handwriting.First().AnalysisResult;
-            if (analysis != "none" && analysis!="")
-                return analysis;
-            var requestData = new
+            try
             {
-                imageUrl = handwriting.First().Url
-            };
+                var handwriting = await _manager._handWriting.GetByUserId(userId);
+                if (handwriting == null || !handwriting.Any())
+                {
+                    return null;
+                }
 
-            var json = JsonSerializer.Serialize(requestData);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var analysis = handwriting.First().AnalysisResult;
+                if (analysis != "none" && analysis != "")
+                {
+                    return analysis;
+                }
 
-            Env.Load();
-            var response = await _httpClient.PostAsync(Environment.GetEnvironmentVariable("PYTHON_URL"), content);
-            response.EnsureSuccessStatusCode();
+                var requestData = new
+                {
+                    imageUrl = handwriting.First().Url
+                };
 
-            var result = await response.Content.ReadAsStringAsync();
-            handwriting.First().AnalysisResult = result;
-            await _manager.SaveAsync();
+                var json = JsonSerializer.Serialize(requestData);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            return result;
+                Env.Load();
+                var pythonUrl = Environment.GetEnvironmentVariable("PYTHON_URL");
+
+                var response = await _httpClient.PostAsync(pythonUrl, content);
+                response.EnsureSuccessStatusCode();
+
+                var result = await response.Content.ReadAsStringAsync();
+
+                handwriting.First().AnalysisResult = result;
+                await _manager.SaveAsync();
+
+                return result;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"HTTP ERROR: {ex.Message}");
+                return "HTTP ERROR - Try again.";
+            }
+            catch (TaskCanceledException ex) when (!ex.CancellationToken.IsCancellationRequested)
+            {
+                Console.WriteLine("Timeout: the request was too long.");
+                return "Timeout: the request was too long.";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"general error: {ex.Message}");
+                return "general error during the analysis.";
+            }
         }
+
     }
 }
