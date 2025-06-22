@@ -2,6 +2,7 @@
 using GraphoMatch.API.Models;
 using GraphoMatch.Core.DTOs;
 using GraphoMatch.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -20,6 +21,7 @@ namespace GraphoMatch.API.Controllers
             _mapper = mapper;
         }
 
+        [Authorize(Policy ="AdminOnly")]
         // GET: api/<UserController>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> Get()
@@ -28,6 +30,7 @@ namespace GraphoMatch.API.Controllers
             return users == null ? NotFound() : Ok(users);
         }
 
+        [Authorize(Policy = "UserOrAdmin")]
         // GET api/<UserController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> Get(int id)
@@ -36,6 +39,7 @@ namespace GraphoMatch.API.Controllers
             return user == null ? NotFound() : Ok(user);
         }
 
+        [Authorize(Policy ="UserOrAdmin")]
         // POST api/<UserController>
         [HttpPost]
         public async Task<ActionResult<UserDto>> Post([FromBody] UserPostModel user)
@@ -47,6 +51,7 @@ namespace GraphoMatch.API.Controllers
             return Ok(userDto);
         }
 
+        [Authorize(Policy = "UserOrAdmin")]
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
         public async Task<ActionResult<UserDto>> Put(int id, [FromBody] UserPostModel user)
@@ -57,6 +62,7 @@ namespace GraphoMatch.API.Controllers
             return userDto == null ? NotFound() : Ok(userDto);
         }
 
+        [Authorize(Policy ="UserOrAdmin")]
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)

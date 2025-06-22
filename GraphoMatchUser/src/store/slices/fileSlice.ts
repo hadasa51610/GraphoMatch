@@ -1,7 +1,8 @@
 import { FileType } from "@/types/FileType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { baseUrl } from "./userSlice";
+import axiosInstance from "../axiosInstance";
+// import axios from "axios";
+// import { baseUrl } from "./authSlice";
 
 
 export const AddFile = createAsyncThunk('file/addFile',
@@ -13,9 +14,10 @@ export const AddFile = createAsyncThunk('file/addFile',
             formData.append('type', data.type.includes('image') ? 'image' : 'raw');
             formData.append('imageFile', data);
 
-            const response = await axios.post(`${baseUrl}/api/HandWriting`, formData, {
+            const response = await axiosInstance.post(`/api/HandWriting`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    // Authorization: sessionStorage.getItem('auth_token') ? `Bearer ${sessionStorage.getItem('auth_token')}` : ''
                 },
             });
 
@@ -32,7 +34,13 @@ export const AddFile = createAsyncThunk('file/addFile',
 export const DeleteFile = createAsyncThunk('file/deleteFile',
     async (fileId: number, thunkAPI) => {
         try {
-            const response = await axios.delete(`${baseUrl}/api/HandWriting/${fileId}`);
+            const response = await axiosInstance.delete(`/api/HandWriting/${fileId}`
+                // {
+                //     headers: {
+                //         Authorization: sessionStorage.getItem('auth_token') ? `Bearer ${sessionStorage.getItem('auth_token')}` : ''
+                //     }
+                // }
+            );
             return response.data;
         } catch (error) {
             if (error instanceof Error) {
@@ -46,7 +54,13 @@ export const DeleteFile = createAsyncThunk('file/deleteFile',
 export const GetFiles = createAsyncThunk('file/getFiles',
     async (userId: number, thunkAPI) => {
         try {
-            const response = await axios.get(`${baseUrl}/api/HandWriting/ByUser/${userId}`)
+            const response = await axiosInstance.get(`/api/HandWriting/ByUser/${userId}`
+                // {
+                //     headers: {
+                //         Authorization: sessionStorage.getItem('auth_token') ? `Bearer ${sessionStorage.getItem('auth_token')}` : ''
+                //     }
+                // }
+            )
             return response.data;
         } catch (error) {
             if (error instanceof Error) {

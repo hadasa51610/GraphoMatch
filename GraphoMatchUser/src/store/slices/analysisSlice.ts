@@ -1,14 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { baseUrl } from "./userSlice";
+import axiosInstance from "../axiosInstance";
+// import axios from "axios";
+// import { baseUrl } from "./authSlice";
 
 
 export const GetAnalysis = createAsyncThunk('analysis/getAnalysis',
     async (userId: number, thunkAPI) => {
         try {
-            const response = await axios.post(`${baseUrl}/api/HandWriting/analyze`, JSON.stringify(userId), {
+            const response = await axiosInstance.post(`/api/HandWriting/analyze`, JSON.stringify(userId), {
                 headers: {
                     'Content-Type': 'application/json',
+                    // Authorization: sessionStorage.getItem('auth_token') ? `Bearer ${sessionStorage.getItem('auth_token')}` : ''
                 },
             });
             const raw = response.data.analysis;

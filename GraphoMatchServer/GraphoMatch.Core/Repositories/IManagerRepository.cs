@@ -8,6 +8,7 @@ namespace GraphoMatch.Core.Repositories
 {
     public interface IManagerRepository
     {
+        IRoleRepository _roles {  get; }
         IUserRepository _users {  get; }
         IHandWritingRepository _handWriting { get; }
         IFeedbackRepository _feedback { get; }

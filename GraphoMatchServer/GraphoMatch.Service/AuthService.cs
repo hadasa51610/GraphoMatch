@@ -31,20 +31,24 @@ namespace GraphoMatch.Service
 
         public string GenerateJwtToken(User user)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new List<Claim>
             {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.Email),
+            new Claim(ClaimTypes.Email, user.Email),
             };
 
-            claims.AddRange(user.Roles.Select(role => new Claim(ClaimTypes.Role, role.RoleName)));
+            //claims.AddRange(user.Roles.Select(role => new Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", role.RoleName)));
+            foreach (var role in user.Roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role.RoleName));
+            }
 
             var token = new JwtSecurityToken(
-                issuer: _configuration["Jwt:Issuer"],
-                audience: _configuration["Jwt:Audience"],
+                issuer: _configuration["JWT:Issuer"],
+                audience: _configuration["JWT:Audience"],
                 claims: claims,
                 expires: DateTime.UtcNow.AddHours(3),
                 signingCredentials: credentials
@@ -53,18 +57,18 @@ namespace GraphoMatch.Service
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public async Task<bool> ValidateUser(string userEmail, string password)
+        public async Task<UserDto> ValidateUser(string userEmail, string password)
         {
             var user = await _managerRepository._users.GetByEmailAsync(userEmail);
-            return user != null && BCrypt.Net.BCrypt.Verify(password, user.Password);
+            return (user != null && BCrypt.Net.BCrypt.Verify(password, user.Password)) ? _mapper.Map<UserDto>(user) : null;
         }
 
         public async Task<LoginResDto> LoginAsync(string userEmail, string password)
         {
-            if (await ValidateUser(userEmail, password))
+            var user = await ValidateUser(userEmail, password);
+            if (user != null)
             {
-                var user = await _managerRepository._users.GetByEmailAsync(userEmail);
-                var token = GenerateJwtToken(user);
+                var token = GenerateJwtToken(_mapper.Map<User>(user));
                 return new LoginResDto
                 {
                     User = _mapper.Map<UserDto>(user),
@@ -77,7 +81,10 @@ namespace GraphoMatch.Service
         public async Task<LoginResDto> RegisterAsync(UserDto userDto)
         {
             var userByEmail = await _managerRepository._users.GetByEmailAsync(userDto.Email);
-            if (userByEmail != null) return null;
+            if (userByEmail != null)
+            {
+                return null;
+            }
 
             var user = new User
             {
@@ -85,12 +92,14 @@ namespace GraphoMatch.Service
                 Email = userDto.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password),
                 Profession = userDto.Profession,
-                CreatedAt = DateTime.UtcNow,
-                UpdateAt = DateTime.UtcNow,
-                Roles = new List<Role> { new Role { RoleName = "Editor" } }
             };
+            user.Roles.Add(new Role { RoleName = "User" });
+
             user = await _managerRepository._users.AddAsync(user);
-            if (user == null) return null;
+            if (user == null)
+            {
+                return null;
+            };
             await _managerRepository.SaveAsync();
             var token = GenerateJwtToken(user);
             return new LoginResDto

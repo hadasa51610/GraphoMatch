@@ -3,6 +3,7 @@ using GraphoMatch.API.Models;
 using GraphoMatch.Core.DTOs;
 using GraphoMatch.Core.Models;
 using GraphoMatch.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -23,6 +24,7 @@ namespace GraphoMatch.API.Controllers
         }
 
 
+        [Authorize(Policy = "AdminOnly")]
         // GET: api/<HandWritingController>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HandWritingDto>>> Get()
@@ -31,6 +33,7 @@ namespace GraphoMatch.API.Controllers
             return handWritings == null ? NotFound() : Ok(handWritings);
         }
 
+        [Authorize(Policy = "UserOrAdmin")]
         // GET api/<HandWritingController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<HandWritingDto>> Get(int id)
@@ -39,6 +42,7 @@ namespace GraphoMatch.API.Controllers
             return handWriting == null ? NotFound() : Ok(handWriting);
         }
 
+        [Authorize(Policy = "UserOrAdmin")]
         // GET api/<HandWritingController>/5
         [HttpGet("ByUser/{userId}")]
         public async Task<ActionResult<IEnumerable<HandWritingDto>>> GetByUserId(int userId)
@@ -47,6 +51,7 @@ namespace GraphoMatch.API.Controllers
             return handWritings == null ? NotFound() : Ok(handWritings);
         }
 
+        [Authorize(Policy = "UserOrAdmin")]
         // POST api/<HandWritingController>
         [HttpPost]
         public async Task<ActionResult<HandWritingDto>> Post([FromForm] HandWritingPostModel handWriting)
@@ -58,6 +63,7 @@ namespace GraphoMatch.API.Controllers
             return Ok(dto);
         }
 
+        [Authorize(Policy = "UserOrAdmin")]
         // PUT api/<HandWritingController>/5
         [HttpPut("{id}")]
         public async Task<ActionResult<HandWritingDto>> Put(int id, [FromBody] HandWritingPostModel handWriting)
@@ -68,6 +74,7 @@ namespace GraphoMatch.API.Controllers
             return dto == null ? NotFound() : Ok(dto);
         }
 
+        [Authorize(Policy = "UserOrAdmin")]
         // DELETE api/<HandWritingController>/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
@@ -76,6 +83,7 @@ namespace GraphoMatch.API.Controllers
             return Ok(await _handWriting.RemoveAsync(id));
         }
 
+        [Authorize(Policy = "UserOrAdmin")]
         [HttpPost("analyze")]
         public async Task<IActionResult> Analyze([FromBody] int userId)
         {

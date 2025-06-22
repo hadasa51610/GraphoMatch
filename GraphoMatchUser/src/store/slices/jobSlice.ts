@@ -1,13 +1,20 @@
 import { JobType } from "@/types/JobType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { baseUrl } from "./userSlice";
+import axiosInstance from "../axiosInstance";
+// import axios from "axios";
+// import { baseUrl } from "./authSlice";
 
 
 export const GetJobs = createAsyncThunk('job/getJobs',
     async (_, thunkAPI: { rejectWithValue: (value: string) => void }) => {
         try {
-            const response = await axios.get(`${baseUrl}/api/Job/`)
+            const response = await axiosInstance.get(`api/Job/`
+                // {
+                //     headers: {
+                //         Authorization: sessionStorage.getItem('auth_token') ? `Bearer ${sessionStorage.getItem('auth_token')}` : ''
+                //     }
+                // }
+            )
             return response.data
         } catch (error) {
             if (error instanceof Error) {
@@ -21,7 +28,13 @@ export const GetJobs = createAsyncThunk('job/getJobs',
 export const ApplyJob = createAsyncThunk('job/put',
     async ({ id, userId }: { id: number; userId: number }, thunkAPI) => {
         try {
-            const response = await axios.put(`${baseUrl}/api/Job/${id}/seeker/${userId}`)
+            const response = await axiosInstance.put(`/api/Job/${id}/seeker/${userId}`
+                // {
+                //     headers: {
+                //         Authorization: sessionStorage.getItem('auth_token') ? `Bearer ${sessionStorage.getItem('auth_token')}` : ''
+                //     }
+                // }
+            )
             return response.data;
         } catch (error) {
             if (error instanceof Error) {

@@ -16,6 +16,8 @@ namespace GraphoMatch.Data
         public DbSet<HandWriting> HandWritings { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Job> jobs { get; set; }
+        public DbSet<Role> Roles { get; set; }
+
         private readonly IConfiguration _configuration;
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }

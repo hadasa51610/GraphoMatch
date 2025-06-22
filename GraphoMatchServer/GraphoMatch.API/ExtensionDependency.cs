@@ -27,6 +27,8 @@ namespace GraphoMatch.API
 
             services.AddScoped<IAuthService, AuthService>();
 
+            services.AddScoped<IRoleRepository, RoleRepository>();
+
             services.AddScoped<IManagerRepository,ManagerRepository>();
             services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
 

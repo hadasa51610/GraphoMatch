@@ -94,7 +94,11 @@ export default function ProfilePage() {
         }
       })
       .catch((error) => {
-        console.error("Failed to load files:", error)
+        if (typeof error === "string" && error.includes("401")) {
+          setUserError("Your profile has expired. Please log in again.")
+        } else {
+          setUserError(error as string)
+        }
       })
   }, [dispatch, router])
 
@@ -334,7 +338,7 @@ export default function ProfilePage() {
           color="blue"
         />
       </div>
-     
+
       <ImagePreviewDialog
         isOpen={isPreviewOpen}
         onClose={handleClosePreview}

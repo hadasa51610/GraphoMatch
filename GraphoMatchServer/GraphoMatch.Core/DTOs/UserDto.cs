@@ -14,7 +14,7 @@ namespace GraphoMatch.Core.DTOs
         public string Email { get; set; }
         public string Password { get; set; }
         public string Profession { get; set; }
-        public Role Role { get; set; }
+        public List<Role> Roles { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 }

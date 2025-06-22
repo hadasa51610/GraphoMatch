@@ -44,6 +44,9 @@ export const LoginDialog = ({ open, onOpenChange }: LoginDialogProps) => {
         if (typeof err === "string" && err.includes("401")) {
           setError("Invalid email or password, please try again!")
         }
+        else if (typeof err === "string" && err.includes("404")) {
+          setError("User not found, please sign up!")
+        }
         else {
           setError(err as string)
         }

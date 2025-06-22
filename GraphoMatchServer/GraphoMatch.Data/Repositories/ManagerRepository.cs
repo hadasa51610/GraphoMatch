@@ -15,13 +15,16 @@ namespace GraphoMatch.Data.Repositories
         public IFeedbackRepository _feedback { get; }
         public IJobRepository _jobs { get; }
 
-        public ManagerRepository(DataContext context, IUserRepository users, IHandWritingRepository handWriting, IFeedbackRepository feedback, IJobRepository jobs)
+        public IRoleRepository _roles { get; }
+
+        public ManagerRepository(DataContext context, IUserRepository users, IHandWritingRepository handWriting, IFeedbackRepository feedback, IJobRepository jobs, IRoleRepository roles)
         {
             _context = context;
             _users = users;
             _handWriting = handWriting;
             _feedback = feedback;
             _jobs = jobs;
+            _roles = roles;
         }
 
         public async Task SaveAsync()

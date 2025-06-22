@@ -62,8 +62,8 @@ export const RegisterDialog = ({ open, onOpenChange }: RegisterDialogProps) => {
         if (typeof err === "string" && err.includes("400")) {
           setError("User already exists, please Log in!")
         }
-        else {
-          setError(err as string)
+        else if(typeof err === "string" && err.includes("403")) {
+          setError("User already exists, please Log in!")
         }
       } else {
         setError("Registration failed. Please try again later.")
