@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 import os
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:7134","https://graphomatchserver.onrender.com"], supports_credentials=True)
+CORS(app, origins=["http://localhost:7134","https://graphomatchserver.onrender.com","http://localhost:5173","https://graphomatch.onrender.com"], supports_credentials=True)
 
 
 load_dotenv()

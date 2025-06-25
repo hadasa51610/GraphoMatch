@@ -9,7 +9,6 @@ export class AuthService {
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
   constructor() {
-    // Check if user is logged in on service initialization
     const token = sessionStorage.getItem('authToken');
     if (token) {
       this.isAuthenticatedSubject.next(true);
@@ -22,7 +21,6 @@ export class AuthService {
       setTimeout(() => {
         if (email === 'admin@graphomatch.com' && password === 'admin123') {
           sessionStorage.setItem('authToken', 'mock-jwt-token');
-          sessionStorage.setItem('userRole', 'admin');
           this.isAuthenticatedSubject.next(true);
           observer.next(true);
         } else {
@@ -35,7 +33,6 @@ export class AuthService {
 
   logout(): void {
     sessionStorage.removeItem('authToken');
-    sessionStorage.removeItem('userRole');
     this.isAuthenticatedSubject.next(false);
   }
 

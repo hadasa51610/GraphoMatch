@@ -1,82 +1,72 @@
 <div class="login-container">
-      <div class="login-background">
-        <div class="floating-shape shape-1"></div>
-        <div class="floating-shape shape-2"></div>
-        <div class="floating-shape shape-3"></div>
-        <div class="floating-shape shape-4"></div>
-      </div>
-      
-      <div class="login-card">
-        <div class="login-header">
-          <div class="logo-container">
-            <div class="logo-icon">🧠</div>
-            <div class="logo-text">
-              <h1>GraphoMatch</h1>
-              <p>Admin Dashboard</p>
-            </div>
-          </div>
-          <div class="welcome-text">
-            <h2>Welcome Back!</h2>
-            <p>Sign in to access your admin dashboard</p>
-          </div>
+  <div class="login-background">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+    <div class="floating-shape shape-4"></div>
+  </div>
+
+  <div class="login-card">
+    <div class="login-header">
+      <div class="logo-container">
+        <div class="logo-icon">🧠</div>
+        <div class="logo-text">
+          <h1>GraphoMatch</h1>
+          <p>Admin Dashboard</p>
         </div>
-        
-        <form (ngSubmit)="onLogin()" #loginForm="ngForm" class="login-form">
-          <div class="form-group">
-            <label for="email" class="form-label">
-              <span class="label-icon">📧</span>
-              Email Address
-            </label>
-            <div class="input-wrapper">
-              <input 
-                type="email" 
-                id="email" 
-                name="email"
-                [(ngModel)]="credentials.email"
-                class="form-input"
-                placeholder="Enter your email address"
-                required>
-              <div class="input-focus-border"></div>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label for="password" class="form-label">
-              <span class="label-icon">🔒</span>
-              Password
-            </label>
-            <div class="input-wrapper">
-              <input 
-                type="password" 
-                id="password" 
-                name="password"
-                [(ngModel)]="credentials.password"
-                class="form-input"
-                placeholder="Enter your password"
-                required>
-              <div class="input-focus-border"></div>
-            </div>
-          </div>
-          
-          <div *ngIf="errorMessage" class="error-message">
-            <span class="error-icon">⚠️</span>
-            {{ errorMessage }}
-          </div>
-          
-          <button 
-            type="submit" 
-            class="btn btn-primary login-btn"
-            [disabled]="isLoading"
-            [class.loading]="isLoading">
-            <span *ngIf="!isLoading" class="btn-content">
-              <span class="btn-icon">🚀</span>
-              Sign In
-            </span>
-            <span *ngIf="isLoading" class="btn-loading">
-              <span class="loading-spinner"></span>
-              Signing in...
-            </span>
-          </button>
-        </form>
+      </div>
+      <div class="welcome-text">
+        <h2>Welcome Back!</h2>
+        <p>Sign in to access your admin dashboard</p>
       </div>
     </div>
+
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm" class="login-form">
+      <div class="form-group">
+        <label for="email" class="form-label">
+          <span class="label-icon">📧</span>
+          Email Address
+        </label>
+        <div class="input-wrapper">
+          <input type="email" id="email" name="email" [(ngModel)]="credentials.email" class="form-input"
+            placeholder="Enter your email address" required>
+          <div class="input-focus-border"></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="form-label">
+          <span class="label-icon">🔒</span>
+          Password
+        </label>
+        <div class="input-wrapper">
+          <input type="password" id="password" name="password" [(ngModel)]="credentials.password" class="form-input"
+            placeholder="Enter your password" required>
+          <div class="input-focus-border"></div>
+        </div>
+      </div>
+
+      @if(errorMessage){
+      <div class="error-message">
+        <span class="error-icon">⚠️</span>
+        {{ errorMessage }}
+      </div>
+      }
+
+      <button type="submit" class="btn btn-primary login-btn" [disabled]="isLoading" [class.loading]="isLoading">
+        @if (!isLoading) {
+        <span class="btn-content">
+          <span class="btn-icon">🚀</span>
+          Sign In
+        </span>
+        }
+        @if (isLoading) {
+        <span class="btn-loading">
+          <span class="loading-spinner"></span>
+          Signing in...
+        </span>
+        }
+      </button>
+    </form>
+  </div>
+</div>

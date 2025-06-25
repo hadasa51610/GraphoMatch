@@ -44,5 +44,9 @@ export class LoginComponent {
           this.isLoading = false;
         }
       });
+      this.credentials={
+        email: '',
+        password: ''
+      }
   }
 }
