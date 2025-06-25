@@ -1,0 +1,176 @@
+ <div class="jobs-page fade-in">
+      <div class="page-header">
+        <h1>Job Management</h1>
+        <p>Manage job listings and applications</p>
+        <button (click)="showAddModal()" class="btn btn-primary">Add New Job</button>
+      </div>
+      
+      <div class="jobs-controls">
+        <div class="search-box">
+          <input 
+            type="text" 
+            placeholder="Search jobs..." 
+            [(ngModel)]="searchTerm"
+            (input)="filterJobs()"
+            class="form-input">
+        </div>
+        <div class="filter-controls">
+          <select [(ngModel)]="statusFilter" (change)="filterJobs()" class="form-input">
+            <option value="">All Status</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+          <select [(ngModel)]="typeFilter" (change)="filterJobs()" class="form-input">
+            <option value="">All Types</option>
+            <option value="full-time">Full Time</option>
+            <option value="part-time">Part Time</option>
+            <option value="contract">Contract</option>
+            <option value="remote">Remote</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="jobs-grid">
+        <div *ngFor="let job of filteredJobs" class="job-card">
+          <div class="job-header">
+            <h3>{{ job.title }}</h3>
+            <span class="badge" [class]="'badge-' + job.status">{{ job.status }}</span>
+          </div>
+          <div class="job-meta">
+            <span class="job-type">{{ job.type | titlecase }}</span>
+            <span class="job-location">📍 {{ job.location }}</span>
+            <span class="job-salary">💰 &#36;{{ job.salaryRange.min }}k - &#36;{{ job.salaryRange.max }}k</span>
+          </div>
+          <p class="job-description">{{ job.description }}</p>
+          <div class="job-requirements">
+            <span *ngFor="let req of job.requirements.slice(0, 3)" class="requirement-tag">
+              {{ req }}
+            </span>
+            <span *ngIf="job.requirements.length > 3" class="requirement-more">
+              +{{ job.requirements.length - 3 }} more
+            </span>
+          </div>
+          <div class="job-stats">
+            <span class="applications-count">{{ job.applications }} applications</span>
+            <span class="created-date">{{ job.createdAt | date:'shortDate' }}</span>
+          </div>
+          <div class="job-actions">
+            <button (click)="editJob(job)" class="btn btn-secondary btn-sm">Edit</button>
+            <button (click)="toggleJobStatus(job)" class="btn btn-sm"
+                    [class]="job.status === 'active' ? 'btn-danger' : 'btn-success'">
+              {{ job.status === 'active' ? 'Deactivate' : 'Activate' }}
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Add/Edit Job Modal -->
+      <div *ngIf="showModal" class="modal-overlay" (click)="closeModal()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+          <div class="modal-header">
+            <h3>{{ isEditing ? 'Edit Job' : 'Add New Job' }}</h3>
+            <button (click)="closeModal()" class="close-btn">×</button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="saveJob()" #jobForm="ngForm">
+              <div class="form-group">
+                <label class="form-label">Job Title</label>
+                <input 
+                  type="text" 
+                  [(ngModel)]="editingJob.title"
+                  name="title"
+                  class="form-input"
+                  required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Description</label>
+                <textarea 
+                  [(ngModel)]="editingJob.description"
+                  name="description"
+                  class="form-input"
+                  rows="4"
+                  required></textarea>
+              </div>
+              <div class="grid grid-2">
+                <div class="form-group">
+                  <label class="form-label">Location</label>
+                  <input 
+                    type="text" 
+                    [(ngModel)]="editingJob.location"
+                    name="location"
+                    class="form-input"
+                    required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Type</label>
+                  <select 
+                    [(ngModel)]="editingJob.type"
+                    name="type"
+                    class="form-input"
+                    required>
+                    <option value="full-time">Full Time</option>
+                    <option value="part-time">Part Time</option>
+                    <option value="contract">Contract</option>
+                    <option value="remote">Remote</option>
+                  </select>
+                </div>
+              </div>
+              <div class="grid grid-2">
+                <div class="form-group">
+                  <label class="form-label">Min Salary (k)</label>
+                  <input 
+                    type="number" 
+                    [(ngModel)]="editingJob.salaryRange.min"
+                    name="minSalary"
+                    class="form-input"
+                    required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Max Salary (k)</label>
+                  <input 
+                    type="number" 
+                    [(ngModel)]="editingJob.salaryRange.max"
+                    name="maxSalary"
+                    class="form-input"
+                    required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Category</label>
+                <input 
+                  type="text" 
+                  [(ngModel)]="editingJob.category"
+                  name="category"
+                  class="form-input"
+                  required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Requirements (comma separated)</label>
+                <input 
+                  type="text" 
+                  [(ngModel)]="requirementsString"
+                  name="requirements"
+                  class="form-input"
+                  placeholder="JavaScript, Angular, Node.js"
+                  required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Status</label>
+                <select 
+                  [(ngModel)]="editingJob.status"
+                  name="status"
+                  class="form-input"
+                  required>
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                </select>
+              </div>
+              <div class="modal-actions">
+                <button type="button" (click)="closeModal()" class="btn btn-secondary">Cancel</button>
+                <button type="submit" class="btn btn-primary">{{ isEditing ? 'Update' : 'Create' }} Job</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

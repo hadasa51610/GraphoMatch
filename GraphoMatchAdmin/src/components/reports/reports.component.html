@@ -1,0 +1,241 @@
+<div class="reports-page fade-in">
+      <div class="page-header">
+        <div class="header-content">
+          <h1 class="page-title">
+            <span class="title-icon">📊</span>
+            Reports & Analytics
+          </h1>
+          <p class="page-subtitle">Comprehensive insights into your platform's performance and user engagement</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-secondary">
+            <span>📥</span>
+            Export Data
+          </button>
+          <button class="btn btn-primary">
+            <span>📈</span>
+            Generate Report
+          </button>
+        </div>
+      </div>
+      
+      <div class="reports-grid">
+        <!-- User Analytics Chart -->
+        <div class="report-section chart-section slide-in-up" style="animation-delay: 0.1s">
+          <div class="card chart-card">
+            <div class="chart-header">
+              <h3 class="chart-title">
+                <span class="chart-icon">👥</span>
+                User Analytics
+              </h3>
+              <div class="chart-controls">
+                <select class="chart-filter">
+                  <option>Last 7 days</option>
+                  <option>Last 30 days</option>
+                  <option>Last 3 months</option>
+                </select>
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas #userChart></canvas>
+            </div>
+            <div class="chart-legend">
+              <div class="legend-item">
+                <span class="legend-color active"></span>
+                <span class="legend-text">Active Users</span>
+                <span class="legend-value">{{ (reportData$ | async)?.activeUsers || 0 }}</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-color inactive"></span>
+                <span class="legend-text">Inactive Users</span>
+                <span class="legend-value">{{ (reportData$ | async)?.inactiveUsers || 0 }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Job Analytics Chart -->
+        <div class="report-section chart-section slide-in-up" style="animation-delay: 0.2s">
+          <div class="card chart-card">
+            <div class="chart-header">
+              <h3 class="chart-title">
+                <span class="chart-icon">💼</span>
+                Job Analytics
+              </h3>
+              <div class="chart-controls">
+                <select class="chart-filter">
+                  <option>All Categories</option>
+                  <option>Technology</option>
+                  <option>Marketing</option>
+                  <option>Management</option>
+                </select>
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas #jobChart></canvas>
+            </div>
+            <div class="chart-legend">
+              <div class="legend-item">
+                <span class="legend-color job-active"></span>
+                <span class="legend-text">Active Jobs</span>
+                <span class="legend-value">{{ (reportData$ | async)?.activeJobs || 0 }}</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-color job-inactive"></span>
+                <span class="legend-text">Inactive Jobs</span>
+                <span class="legend-value">{{ (reportData$ | async)?.inactiveJobs || 0 }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Analysis Trends Chart -->
+        <div class="report-section full-width slide-in-up" style="animation-delay: 0.3s">
+          <div class="card chart-card">
+            <div class="chart-header">
+              <h3 class="chart-title">
+                <span class="chart-icon">📈</span>
+                Analysis Trends
+              </h3>
+              <div class="chart-controls">
+                <div class="trend-stats">
+                  <div class="trend-stat">
+                    <span class="trend-value">+24%</span>
+                    <span class="trend-label">Growth</span>
+                  </div>
+                  <div class="trend-stat">
+                    <span class="trend-value">{{ (reportData$ | async)?.totalAnalyses || 0 }}</span>
+                    <span class="trend-label">Total</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="chart-container large">
+              <canvas #trendChart></canvas>
+            </div>
+            <p class="chart-description">
+              Monthly handwriting analysis completion trends showing consistent user engagement and platform growth over the past year.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Key Performance Indicators -->
+        <div class="report-section slide-in-up" style="animation-delay: 0.4s">
+          <div class="card kpi-card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <span class="title-icon">🎯</span>
+                Key Performance Indicators
+              </h3>
+            </div>
+            <div class="kpi-grid" *ngIf="reportData$ | async as data">
+              <div class="kpi-item">
+                <div class="kpi-icon users">👥</div>
+                <div class="kpi-content">
+                  <div class="kpi-value">{{ data.totalUsers }}</div>
+                  <div class="kpi-label">Total Users</div>
+                  <div class="kpi-change positive">
+                    <span class="change-arrow">↗</span>
+                    +12% from last month
+                  </div>
+                </div>
+              </div>
+              
+              <div class="kpi-item">
+                <div class="kpi-icon analyses">📝</div>
+                <div class="kpi-content">
+                  <div class="kpi-value">{{ data.totalAnalyses }}</div>
+                  <div class="kpi-label">Analyses Completed</div>
+                  <div class="kpi-change positive">
+                    <span class="change-arrow">↗</span>
+                    +18% from last month
+                  </div>
+                </div>
+              </div>
+              
+              <div class="kpi-item">
+                <div class="kpi-icon average">⚡</div>
+                <div class="kpi-content">
+                  <div class="kpi-value">{{ data.averageAnalysesPerUser }}</div>
+                  <div class="kpi-label">Avg Analyses/User</div>
+                  <div class="kpi-change neutral">
+                    <span class="change-arrow">→</span>
+                    No change
+                  </div>
+                </div>
+              </div>
+              
+              <div class="kpi-item">
+                <div class="kpi-icon applications">📊</div>
+                <div class="kpi-content">
+                  <div class="kpi-value">{{ data.totalApplications }}</div>
+                  <div class="kpi-label">Job Applications</div>
+                  <div class="kpi-change positive">
+                    <span class="change-arrow">↗</span>
+                    +25% from last month
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- User Engagement Metrics -->
+        <div class="report-section slide-in-up" style="animation-delay: 0.5s">
+          <div class="card engagement-card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <span class="title-icon">💫</span>
+                User Engagement
+              </h3>
+            </div>
+            <div class="engagement-stats">
+              <div class="engagement-item">
+                <div class="engagement-circle">
+                  <div class="circle-progress" [style.background]="'conic-gradient(#667eea 0deg 252deg, #e5e7eb 252deg 360deg)'">
+                    <div class="circle-content">
+                      <span class="circle-value">70%</span>
+                      <span class="circle-label">Active</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="engagement-details">
+                  <div class="engagement-title">Active Users</div>
+                  <div class="engagement-subtitle">Daily engagement rate</div>
+                </div>
+              </div>
+              
+              <div class="engagement-item">
+                <div class="engagement-circle">
+                  <div class="circle-progress" [style.background]="'conic-gradient(#f093fb 0deg 180deg, #e5e7eb 180deg 360deg)'">
+                    <div class="circle-content">
+                      <span class="circle-value">50%</span>
+                      <span class="circle-label">Repeat</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="engagement-details">
+                  <div class="engagement-title">Repeat Analyses</div>
+                  <div class="engagement-subtitle">Users returning for more</div>
+                </div>
+              </div>
+              
+              <div class="engagement-item">
+                <div class="engagement-circle">
+                  <div class="circle-progress" [style.background]="'conic-gradient(#43e97b 0deg 288deg, #e5e7eb 288deg 360deg)'">
+                    <div class="circle-content">
+                      <span class="circle-value">80%</span>
+                      <span class="circle-label">Match</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="engagement-details">
+                  <div class="engagement-title">Job Match Rate</div>
+                  <div class="engagement-subtitle">Successful career matches</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

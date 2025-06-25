@@ -1,0 +1,58 @@
+<div class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="logo-icon">🧠</div>
+          <div class="logo-text">
+            <h2>GraphoMatch</h2>
+            <p>Admin Dashboard</p>
+          </div>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a routerLink="/dashboard" routerLinkActive="active" class="nav-item">
+          <div class="nav-icon-wrapper">
+            <span class="nav-icon">📊</span>
+          </div>
+          <span class="nav-text">Dashboard</span>
+          <div class="nav-indicator"></div>
+        </a>
+        <a routerLink="/users" routerLinkActive="active" class="nav-item">
+          <div class="nav-icon-wrapper">
+            <span class="nav-icon">👥</span>
+          </div>
+          <span class="nav-text">Users</span>
+          <div class="nav-indicator"></div>
+        </a>
+        <a routerLink="/jobs" routerLinkActive="active" class="nav-item">
+          <div class="nav-icon-wrapper">
+            <span class="nav-icon">💼</span>
+          </div>
+          <span class="nav-text">Jobs</span>
+          <div class="nav-indicator"></div>
+        </a>
+        <a routerLink="/reports" routerLinkActive="active" class="nav-item">
+          <div class="nav-icon-wrapper">
+            <span class="nav-icon">📈</span>
+          </div>
+          <span class="nav-text">Reports</span>
+          <div class="nav-indicator"></div>
+        </a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">A</div>
+          <div class="user-info">
+            <div class="user-name">Admin User</div>
+            <div class="user-role">Administrator</div>
+          </div>
+        </div>
+        <button (click)="logout()" class="logout-btn">
+          <div class="logout-icon-wrapper">
+            <span class="logout-icon">🚪</span>
+          </div>
+          <span class="logout-text">Logout</span>
+        </button>
+      </div>
+    </div>
