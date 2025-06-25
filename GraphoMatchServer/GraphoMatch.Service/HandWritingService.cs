@@ -153,17 +153,17 @@ namespace GraphoMatch.Service
             catch (HttpRequestException ex)
             {
                 Console.WriteLine($"HTTP ERROR: {ex.Message}");
-                return "HTTP ERROR - Try again.";
+                return null;
             }
             catch (TaskCanceledException ex) when (!ex.CancellationToken.IsCancellationRequested)
             {
                 Console.WriteLine("Timeout: the request was too long.");
-                return "Timeout: the request was too long.";
+                return null;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"general error: {ex.Message}");
-                return "general error during the analysis.";
+                return null;
             }
         }
 
