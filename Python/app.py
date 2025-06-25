@@ -17,6 +17,9 @@ client_Gemini = OpenAI(
     base_url=os.getenv("BASE_URL")
 )
 
+@app.route("/ping")
+def ping():
+    return "pong", 200
 
 def image_url_to_base64(image_url):
     """
