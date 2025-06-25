@@ -18,8 +18,6 @@ namespace GraphoMatch.Core.Models
         public DateTime UpdatedAt { get; set; }
         public List<User> Users { get; set; }=new List<User>();
 
-        public ICollection<Permission> Permissions { get; set; } = new List<Permission>();
-
         public Role()
         {
             CreatedAt = DateTime.Now;
