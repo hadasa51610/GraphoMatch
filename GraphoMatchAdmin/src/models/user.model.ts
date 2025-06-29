@@ -1,11 +1,7 @@
 export interface User {
   id: string;
   email: string;
-  firstName: string;
-  lastName: string;
-  role: 'admin' | 'user';
-  status: 'active' | 'inactive';
+  name: string;
   createdAt: Date;
-  lastLogin?: Date;
-  analysisCount: number;
+  profession: string;
 }

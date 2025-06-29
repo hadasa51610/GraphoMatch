@@ -25,28 +25,39 @@ export class LoginComponent {
     private router: Router
   ) {}
 
-  onLogin(): void {
+  async onLogin(): Promise<void> {
     this.isLoading = true;
     this.errorMessage = '';
     
-    this.authService.login(this.credentials.email, this.credentials.password)
-      .subscribe({
+    try {
+      const loginObservable = await this.authService.login(this.credentials.email, this.credentials.password);
+      loginObservable.subscribe({
         next: (success) => {
           if (success) {
+            if(this.authService.getUserRole(success.token)=='Admin'){
             this.router.navigate(['/dashboard']);
+            }
+            else {
+              this.errorMessage= 'You do not have permission to access this application. Please contact your administrator.';
+              this.isLoading = false;
+            }
           } else {
             this.errorMessage = 'Invalid email or password. Please check your credentials and try again.';
           }
           this.isLoading = false;
         },
-        error: (error) => {
+        error: () => {
           this.errorMessage = 'Login failed. Please check your connection and try again.';
           this.isLoading = false;
         }
       });
-      this.credentials={
-        email: '',
-        password: ''
-      }
+    } catch (error) {
+      this.errorMessage = 'Login failed. Please check your connection and try again.';
+      this.isLoading = false;
+    }
+    this.credentials = {
+      email: '',
+      password: ''
+    }
   }
 }

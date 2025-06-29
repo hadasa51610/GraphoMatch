@@ -1,131 +1,83 @@
- <div class="users-page fade-in">
-      <div class="page-header">
-        <h1>User Management</h1>
-        <p>Manage system users and their access</p>
+<div class="users-page fade-in">
+  <div class="page-header">
+    <h1>User Management</h1>
+    <p>Manage system users and their access</p>
+  </div>
+
+  <div class="users-controls">
+    <div class="search-box">
+      <input type="text" placeholder="Search users..." [(ngModel)]="searchTerm" (input)="filterUsers()"
+        class="form-input">
+    </div>
+  </div>
+
+  <div class="users-table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Profession</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of filteredUsers; track user.id) {
+        <tr>
+          <td>
+            <div class="user-info">
+              <div class="user-avatar">{{ user.name.charAt(0) }}{{ user.name.charAt(0) }}</div>
+              <div class="user-name">{{ user.name }}</div>
+            </div>
+          </td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.profession }}</td>
+          <td>{{ user.createdAt | date:'short' }}</td>
+          <td>
+            <div class="action-buttons">
+              <button (click)="editUser(user)" class="btn btn-secondary btn-sm">
+                Edit
+              </button>
+            </div>
+               <button (click)="deleteUser(user)" class="btn btn-secondary btn-sm">
+                Delete
+              </button>
+            
+          </td>
+        </tr>
+      }
+      </tbody>
+    </table>
+  </div>
+
+  @if(showEditModal){
+  <div class="modal-overlay" (click)="closeEditModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Edit User</h3>
+        <button (click)="closeEditModal()" class="close-btn">×</button>
       </div>
-      
-      <div class="users-controls">
-        <div class="search-box">
-          <input 
-            type="text" 
-            placeholder="Search users..." 
-            [(ngModel)]="searchTerm"
-            (input)="filterUsers()"
-            class="form-input">
-        </div>
-        <div class="filter-controls">
-          <select [(ngModel)]="statusFilter" (change)="filterUsers()" class="form-input">
-            <option value="">All Status</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
-        </div>
-      </div>
-      
-      <div class="users-table-container">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Status</th>
-              <th>Last Login</th>
-              <th>Analyses</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let user of filteredUsers">
-              <td>
-                <div class="user-info">
-                  <div class="user-avatar">{{ user.firstName.charAt(0) }}{{ user.lastName.charAt(0) }}</div>
-                  <div>
-                    <div class="user-name">{{ user.firstName }} {{ user.lastName }}</div>
-                    <div class="user-role">{{ user.role }}</div>
-                  </div>
-                </div>
-              </td>
-              <td>{{ user.email }}</td>
-              <td>
-                <span class="badge" [class]="'badge-' + user.status">
-                  {{ user.status }}
-                </span>
-              </td>
-              <td>{{ user.lastLogin | date:'short' }}</td>
-              <td>{{ user.analysisCount }}</td>
-              <td>
-                <div class="action-buttons">
-                  <button 
-                    (click)="editUser(user)" 
-                    class="btn btn-secondary btn-sm">
-                    Edit
-                  </button>
-                  <button 
-                    (click)="toggleUserStatus(user)" 
-                    class="btn btn-sm"
-                    [class]="user.status === 'active' ? 'btn-danger' : 'btn-success'">
-                    {{ user.status === 'active' ? 'Deactivate' : 'Activate' }}
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      
-      <!-- Edit User Modal -->
-      <div *ngIf="showEditModal" class="modal-overlay" (click)="closeEditModal()">
-        <div class="modal-content" (click)="$event.stopPropagation()">
-          <div class="modal-header">
-            <h3>Edit User</h3>
-            <button (click)="closeEditModal()" class="close-btn">×</button>
+      <div class="modal-body">
+        <form (ngSubmit)="saveUser()" #editForm="ngForm">
+          <div class="form-group">
+            <label class="form-label">Name</label>
+            <input type="text" [(ngModel)]="editingUser.name" name="name" class="form-input" required>
           </div>
-          <div class="modal-body">
-            <form (ngSubmit)="saveUser()" #editForm="ngForm">
-              <div class="form-group">
-                <label class="form-label">First Name</label>
-                <input 
-                  type="text" 
-                  [(ngModel)]="editingUser.firstName"
-                  name="firstName"
-                  class="form-input"
-                  required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Last Name</label>
-                <input 
-                  type="text" 
-                  [(ngModel)]="editingUser.lastName"
-                  name="lastName"
-                  class="form-input"
-                  required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Email</label>
-                <input 
-                  type="email" 
-                  [(ngModel)]="editingUser.email"
-                  name="email"
-                  class="form-input"
-                  required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Status</label>
-                <select 
-                  [(ngModel)]="editingUser.status"
-                  name="status"
-                  class="form-input"
-                  required>
-                  <option value="active">Active</option>
-                  <option value="inactive">Inactive</option>
-                </select>
-              </div>
-              <div class="modal-actions">
-                <button type="button" (click)="closeEditModal()" class="btn btn-secondary">Cancel</button>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
-              </div>
-            </form>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" [(ngModel)]="editingUser.email" name="email" class="form-input" required>
           </div>
-        </div>
+           <div class="form-group">
+            <label class="form-label">Current Profession</label>
+            <input type="text" [(ngModel)]="editingUser.profession" name="profession" class="form-input" required>
+          </div>
+          <div class="modal-actions">
+            <button type="button" (click)="closeEditModal()" class="btn btn-secondary">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
+}
+</div>

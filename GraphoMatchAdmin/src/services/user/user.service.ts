@@ -1,91 +1,67 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, tap } from 'rxjs';
 import { User } from '../../models/user.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
-  private mockUsers: User[] = [
-    {
-      id: '1',
-      email: 'john.doe@email.com',
-      firstName: 'John',
-      lastName: 'Doe',
-      role: 'user',
-      status: 'active',
-      createdAt: new Date('2024-01-15'),
-      lastLogin: new Date('2024-12-20'),
-      analysisCount: 15
-    },
-    {
-      id: '2',
-      email: 'jane.smith@email.com',
-      firstName: 'Jane',
-      lastName: 'Smith',
-      role: 'user',
-      status: 'active',
-      createdAt: new Date('2024-02-20'),
-      lastLogin: new Date('2024-12-19'),
-      analysisCount: 8
-    },
-    {
-      id: '3',
-      email: 'mike.johnson@email.com',
-      firstName: 'Mike',
-      lastName: 'Johnson',
-      role: 'user',
-      status: 'inactive',
-      createdAt: new Date('2024-03-10'),
-      lastLogin: new Date('2024-11-15'),
-      analysisCount: 3
-    }
-  ];
-
+  private mockUsers: User[] = [];
   private usersSubject = new BehaviorSubject<User[]>(this.mockUsers);
   public users$ = this.usersSubject.asObservable();
+  private baseURL = 'https://localhost:7134/api';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    return this.users$;
+    return this.http.get<User[]>(`${this.baseURL}/User`).pipe(
+      tap(users => this.usersSubject.next(users))
+    );
   }
 
   getUserById(id: string): Observable<User | undefined> {
-    return of(this.mockUsers.find(user => user.id === id));
+    return this.http.get<User>(`${this.baseURL}/User/${id}`).pipe(
+      tap(user => {
+        if (user) {
+          this.usersSubject.next([user]);
+        }
+      })
+    );
   }
 
   updateUser(updatedUser: User): Observable<User> {
-    const index = this.mockUsers.findIndex(user => user.id === updatedUser.id);
-    if (index !== -1) {
-      this.mockUsers[index] = updatedUser;
-      this.usersSubject.next([...this.mockUsers]);
-    }
-    return of(updatedUser);
+    return this.http.put<User>(`${this.baseURL}/User/${updatedUser.id}`, updatedUser).pipe(
+      tap(user => {
+        const currentUsers = this.usersSubject.getValue();
+        const index = currentUsers.findIndex(u => u.id === user.id);
+        if (index !== -1) {
+          currentUsers[index] = user;
+          this.usersSubject.next(currentUsers);
+        }
+      })
+    );
   }
 
   deleteUser(id: string): Observable<boolean> {
-    const index = this.mockUsers.findIndex(user => user.id === id);
-    if (index !== -1) {
-      this.mockUsers.splice(index, 1);
-      this.usersSubject.next([...this.mockUsers]);
-      return of(true);
-    }
-    return of(false);
+    return this.http.delete<boolean>(`${this.baseURL}/User/${id}`);
+  }
+
+  getTotalAnalyses(): Observable<number> {
+    return this.http.get<any[]>(`${this.baseURL}/HandWriting`).pipe(
+      map(analyses => analyses.filter(a => a.AnalysisResult != 'none').length),
+    );
   }
 
   getUserStats(): Observable<any> {
     const totalUsers = this.mockUsers.length;
-    const activeUsers = this.mockUsers.filter(user => user.status === 'active').length;
-    const totalAnalyses = this.mockUsers.reduce((sum, user) => sum + user.analysisCount, 0);
-    
-    return of({
-      totalUsers,
-      activeUsers,
-      inactiveUsers: totalUsers - activeUsers,
-      totalAnalyses,
-      averageAnalysesPerUser: Math.round(totalAnalyses / totalUsers)
-    });
+    return this.getTotalAnalyses().pipe(
+      map(totalAnalyses => ({
+        totalUsers,
+        totalAnalyses,
+        averageAnalysesPerUser: totalUsers > 0 ? Math.round(totalAnalyses / totalUsers) : 0
+      }))
+    );
   }
 }

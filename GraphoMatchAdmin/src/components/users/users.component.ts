@@ -35,14 +35,9 @@ export class UsersComponent implements OnInit {
 
       if (this.searchTerm) {
         filtered = filtered.filter(user =>
-          user.firstName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-          user.lastName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          user.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
           user.email.toLowerCase().includes(this.searchTerm.toLowerCase())
         );
-      }
-
-      if (this.statusFilter) {
-        filtered = filtered.filter(user => user.status === this.statusFilter);
       }
 
       this.filteredUsers = filtered;
@@ -54,6 +49,12 @@ export class UsersComponent implements OnInit {
     this.showEditModal = true;
   }
 
+   deleteUser(user: User): void {
+    this.userService.deleteUser(user.id).subscribe(() => {
+      this.filterUsers();
+    });
+  }
+
   closeEditModal(): void {
     this.showEditModal = false;
     this.editingUser = {};
@@ -62,17 +63,6 @@ export class UsersComponent implements OnInit {
   saveUser(): void {
     this.userService.updateUser(this.editingUser).subscribe(() => {
       this.closeEditModal();
-      this.filterUsers();
-    });
-  }
-
-  toggleUserStatus(user: User): void {
-    const updatedUser = {
-      ...user,
-      status: user.status === 'active' ? 'inactive' as const : 'active' as const
-    };
-
-    this.userService.updateUser(updatedUser).subscribe(() => {
       this.filterUsers();
     });
   }

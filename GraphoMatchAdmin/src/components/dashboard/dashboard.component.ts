@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
     ]).pipe(
       map(([userStats, jobStats]) => ({
         ...userStats,
-        ...jobStats
+        ...jobStats        
       }))
     );
   }

@@ -14,208 +14,54 @@
         </div>
     </div>
 
-<div *ngIf="dashboardData$ | async as data">
-    <div class="stats-grid">
-        <div class="stat-card slide-in-up" style="animation-delay: 0.1s">
-            <div class="stat-icon-wrapper users">
-                <div class="stat-icon">👥</div>
-            </div>
-            <div class="stat-content">
-                <h3 class="stat-number">{{ data.totalUsers }}</h3>
-                <p class="stat-label">Total Users</p>
-                <div class="stat-progress">
-                    <div class="progress-bar users" [style.width.%]="(data.activeUsers / data.totalUsers) * 100"></div>
+    <div *ngIf="dashboardData$ | async as data">
+        <div class="stats-grid">
+            <div class="stat-card slide-in-up" style="animation-delay: 0.1s">
+                <div class="stat-icon-wrapper users">
+                    <div class="stat-icon">👥</div>
                 </div>
-                <span class="stat-change positive">
-                    <span class="change-icon">↗</span>
-                    {{ data.activeUsers }} active users
-                </span>
-            </div>
-        </div>
-    
-
-        <div class="stat-card slide-in-up" style="animation-delay: 0.2s">
-            <div class="stat-icon-wrapper jobs">
-                <div class="stat-icon">💼</div>
-            </div>
-            <div class="stat-content">
-                <h3 class="stat-number">{{ data.totalJobs }}</h3>
-                <p class="stat-label">Job Listings</p>
-                <div class="stat-progress">
-                    <div class="progress-bar jobs" [style.width.%]="(data.activeJobs / data.totalJobs) * 100"></div>
-                </div>
-                <span class="stat-change positive">
-                    <span class="change-icon">↗</span>
-                    {{ data.activeJobs }} active jobs
-                </span>
-            </div>
-        </div>
-
-        <div class="stat-card slide-in-up" style="animation-delay: 0.3s">
-            <div class="stat-icon-wrapper analyses">
-                <div class="stat-icon">📝</div>
-            </div>
-            <div class="stat-content">
-                <h3 class="stat-number">{{ data.totalAnalyses }}</h3>
-                <p class="stat-label">Analyses Completed</p>
-                <div class="stat-progress">
-                    <div class="progress-bar analyses" style="width: 85%"></div>
-                </div>
-                <span class="stat-change neutral">
-                    <span class="change-icon">→</span>
-                    {{ data.averageAnalysesPerUser }} avg per user
-                </span>
-            </div>
-        </div>
-
-        <div class="stat-card slide-in-up" style="animation-delay: 0.4s">
-            <div class="stat-icon-wrapper applications">
-                <div class="stat-icon">📊</div>
-            </div>
-            <div class="stat-content">
-                <h3 class="stat-number">{{ data.totalApplications }}</h3>
-                <p class="stat-label">Job Applications</p>
-                <div class="stat-progress">
-                    <div class="progress-bar applications" style="width: 92%"></div>
-                </div>
-                <span class="stat-change positive">
-                    <span class="change-icon">↗</span>
-                    {{ data.averageApplicationsPerJob }} avg per job
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
-    <div class="dashboard-grid">
-        <div class="dashboard-section slide-in-right" style="animation-delay: 0.5s">
-            <div class="card activity-card">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        <span class="title-icon">⚡</span>
-                        Recent Activity
-                    </h3>
-                    <div class="activity-indicator">
-                        <span class="live-dot"></span>
-                        Live
-                    </div>
-                </div>
-                <div class="activity-list">
-                    <div class="activity-item">
-                        <div class="activity-avatar new-user">👤</div>
-                        <div class="activity-content">
-                            <p class="activity-text">
-                                <strong>New user registration</strong>
-                                <span class="activity-email">john.doe&#64;email.com</span>
-                            </p>
-                            <div class="activity-meta">
-                                <span class="activity-time">2 hours ago</span>
-                                <span class="activity-badge new">New</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="activity-item">
-                        <div class="activity-avatar application">💼</div>
-                        <div class="activity-content">
-                            <p class="activity-text">
-                                <strong>Job application submitted</strong>
-                                <span class="activity-detail">Software Developer position</span>
-                            </p>
-                            <div class="activity-meta">
-                                <span class="activity-time">4 hours ago</span>
-                                <span class="activity-badge pending">Pending</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="activity-item">
-                        <div class="activity-avatar analysis">🧠</div>
-                        <div class="activity-content">
-                            <p class="activity-text">
-                                <strong>Handwriting analysis completed</strong>
-                                <span class="activity-detail">Career guidance generated</span>
-                            </p>
-                            <div class="activity-meta">
-                                <span class="activity-time">6 hours ago</span>
-                                <span class="activity-badge completed">Completed</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="activity-item">
-                        <div class="activity-avatar job-post">📢</div>
-                        <div class="activity-content">
-                            <p class="activity-text">
-                                <strong>New job posted</strong>
-                                <span class="activity-detail">Marketing Specialist</span>
-                            </p>
-                            <div class="activity-meta">
-                                <span class="activity-time">1 day ago</span>
-                                <span class="activity-badge published">Published</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="stat-content">
+                    <h3 class="stat-number">{{ data.totalUsers }}</h3>
+                    <p class="stat-label">Total Users</p>
                 </div>
             </div>
-        </div>
 
-        <div class="dashboard-section slide-in-right" style="animation-delay: 0.6s">
-            <div class="card status-card">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        <span class="title-icon">🔧</span>
-                        System Health
-                    </h3>
-                    <div class="health-score">
-                        <span class="score-value">98%</span>
-                        <span class="score-label">Uptime</span>
-                    </div>
+
+            <div class="stat-card slide-in-up" style="animation-delay: 0.2s">
+                <div class="stat-icon-wrapper jobs">
+                    <div class="stat-icon">💼</div>
                 </div>
-                <div class="status-list">
-                    <div class="status-item">
-                        <div class="status-info">
-                            <span class="status-indicator active pulse"></span>
-                            <span class="status-name">API Service</span>
-                        </div>
-                        <div class="status-details">
-                            <span class="status-text online">Online</span>
-                            <span class="status-metric">99.9%</span>
-                        </div>
-                    </div>
+                <div class="stat-content">
+                    <h3 class="stat-number">{{ data.totalJobs }}</h3>
+                    <p class="stat-label">Job Listings</p>
+                </div>
+            </div>
 
-                    <div class="status-item">
-                        <div class="status-info">
-                            <span class="status-indicator active pulse"></span>
-                            <span class="status-name">Database</span>
-                        </div>
-                        <div class="status-details">
-                            <span class="status-text online">Connected</span>
-                            <span class="status-metric">
-                                < 50ms</span>
-                        </div>
-                    </div>
+            <div class="stat-card slide-in-up" style="animation-delay: 0.3s">
+                <div class="stat-icon-wrapper analyses">
+                    <div class="stat-icon">📝</div>
+                </div>
+                <div class="stat-content">
+                    <h3 class="stat-number">{{ data.totalAnalyses }}</h3>
+                    <p class="stat-label">Analyses Completed</p>
+                    <span class="stat-change neutral">
+                        <span class="change-icon">→</span>
+                        {{ data.averageAnalysesPerUser }} avg per user
+                    </span>
+                </div>
+            </div>
 
-                    <div class="status-item">
-                        <div class="status-info">
-                            <span class="status-indicator active pulse"></span>
-                            <span class="status-name">AI Analysis Engine</span>
-                        </div>
-                        <div class="status-details">
-                            <span class="status-text online">Running</span>
-                            <span class="status-metric">Active</span>
-                        </div>
-                    </div>
-
-                    <div class="status-item">
-                        <div class="status-info">
-                            <span class="status-indicator warning pulse"></span>
-                            <span class="status-name">Email Service</span>
-                        </div>
-                        <div class="status-details">
-                            <span class="status-text warning">Degraded</span>
-                            <span class="status-metric">85%</span>
-                        </div>
-                    </div>
+            <div class="stat-card slide-in-up" style="animation-delay: 0.4s">
+                <div class="stat-icon-wrapper applications">
+                    <div class="stat-icon">📊</div>
+                </div>
+                <div class="stat-content">
+                    <h3 class="stat-number">{{ data.totalApplications }}</h3>
+                    <p class="stat-label">Job Applications</p>
+                    <span class="stat-change positive">
+                        <span class="change-icon">↗</span>
+                        {{ data.averageApplicationsPerJob }} avg per job
+                    </span>
                 </div>
             </div>
         </div>
