@@ -11,5 +11,6 @@ namespace GraphoMatch.Core.Services
     {
         Task<IEnumerable<UserDto>> GetAllSeekers(int id);
         Task<UserDto> AddSeeker(int id,int userId);
+        Task<IEnumerable<JobDTO>> GetWithSeekersAsync();
     }
 }

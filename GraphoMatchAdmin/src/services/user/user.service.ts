@@ -13,11 +13,16 @@ export class UserService {
   public users$ = this.usersSubject.asObservable();
   private baseURL = 'https://localhost:7134/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.getUsers().subscribe();
+   }
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.baseURL}/User`).pipe(
-      tap(users => this.usersSubject.next(users))
+      tap((users) => {
+        this.mockUsers = users;
+        this.usersSubject.next(users);
+      })
     );
   }
 

@@ -40,16 +40,8 @@ export class JobsComponent implements OnInit {
         filtered = filtered.filter(job => 
           job.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
           job.description.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-          job.category.toLowerCase().includes(this.searchTerm.toLowerCase())
+          job.location.toLowerCase().includes(this.searchTerm.toLowerCase())
         );
-      }
-      
-      if (this.statusFilter) {
-        filtered = filtered.filter(job => job.status === this.statusFilter);
-      }
-      
-      if (this.typeFilter) {
-        filtered = filtered.filter(job => job.type === this.typeFilter);
       }
       
       this.filteredJobs = filtered;
@@ -62,10 +54,7 @@ export class JobsComponent implements OnInit {
       title: '',
       description: '',
       location: '',
-      type: 'full-time',
-      category: '',
-      status: 'active',
-      salaryRange: { min: 50, max: 80 }
+      salary: `50$-80$ `
     };
     this.requirementsString = '';
     this.showModal = true;
@@ -74,7 +63,7 @@ export class JobsComponent implements OnInit {
   editJob(job: Job): void {
     this.isEditing = true;
     this.editingJob = { ...job };
-    this.requirementsString = job.requirements.join(', ');
+    this.requirementsString = job.tags.join(', ');
     this.showModal = true;
   }
 
@@ -103,7 +92,6 @@ export class JobsComponent implements OnInit {
   toggleJobStatus(job: Job): void {
     const updatedJob = {
       ...job,
-      status: job.status === 'active' ? 'inactive' as const : 'active' as const
     };
     
     this.jobService.updateJob(updatedJob).subscribe(() => {

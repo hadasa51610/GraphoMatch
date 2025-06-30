@@ -14,55 +14,39 @@
             (input)="filterJobs()"
             class="form-input">
         </div>
-        <div class="filter-controls">
-          <select [(ngModel)]="statusFilter" (change)="filterJobs()" class="form-input">
-            <option value="">All Status</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
-          <select [(ngModel)]="typeFilter" (change)="filterJobs()" class="form-input">
-            <option value="">All Types</option>
-            <option value="full-time">Full Time</option>
-            <option value="part-time">Part Time</option>
-            <option value="contract">Contract</option>
-            <option value="remote">Remote</option>
-          </select>
-        </div>
       </div>
-      
+
+      @for(job of filteredJobs; track job.id) {
       <div class="jobs-grid">
-        <div *ngFor="let job of filteredJobs" class="job-card">
+        <div class="job-card">
           <div class="job-header">
             <h3>{{ job.title }}</h3>
-            <span class="badge" [class]="'badge-' + job.status">{{ job.status }}</span>
           </div>
           <div class="job-meta">
-            <span class="job-type">{{ job.type | titlecase }}</span>
             <span class="job-location">📍 {{ job.location }}</span>
-            <span class="job-salary">💰 &#36;{{ job.salaryRange.min }}k - &#36;{{ job.salaryRange.max }}k</span>
+            <span class="job-salary">💰 &#36;{{ job.salary }}</span>
           </div>
           <p class="job-description">{{ job.description }}</p>
           <div class="job-requirements">
-            <span *ngFor="let req of job.requirements.slice(0, 3)" class="requirement-tag">
-              {{ req }}
-            </span>
-            <span *ngIf="job.requirements.length > 3" class="requirement-more">
-              +{{ job.requirements.length - 3 }} more
-            </span>
+            @for(tag of job.tags; track tag) {
+              <span class="requirement-tag">{{ tag }}</span>
+            }
+            @if (job.tags.length > 3) {
+              <span class="requirement-more">
+                +{{ job.tags.length - 3 }} more
+              </span>
+            }
           </div>
           <div class="job-stats">
-            <span class="applications-count">{{ job.applications }} applications</span>
-            <span class="created-date">{{ job.createdAt | date:'shortDate' }}</span>
+            <span class="applications-count">{{ job.seekers }} applications</span>
+            <span class="created-date">{{ job.posted | date:'shortDate' }}</span>
           </div>
           <div class="job-actions">
             <button (click)="editJob(job)" class="btn btn-secondary btn-sm">Edit</button>
-            <button (click)="toggleJobStatus(job)" class="btn btn-sm"
-                    [class]="job.status === 'active' ? 'btn-danger' : 'btn-success'">
-              {{ job.status === 'active' ? 'Deactivate' : 'Activate' }}
-            </button>
           </div>
         </div>
       </div>
+    }
       
       <!-- Add/Edit Job Modal -->
       <div *ngIf="showModal" class="modal-overlay" (click)="closeModal()">

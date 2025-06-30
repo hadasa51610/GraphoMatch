@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using GraphoMatch.API.Models;
 using GraphoMatch.Core.DTOs;
-using GraphoMatch.Core.Models;
 using GraphoMatch.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

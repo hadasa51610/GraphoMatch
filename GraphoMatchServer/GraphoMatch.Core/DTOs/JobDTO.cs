@@ -17,11 +17,13 @@ namespace GraphoMatch.Core.DTOs
         public string Location { get; set; }
         public DateTime Posted { get; set; }
         public List<string> Tags { get; set; }
+        public List<UserDto> Seekers { get; set; }
         public string Salary { get; set; }
 
         public JobDTO()
         {
             Tags = new List<string>();
+            Seekers = new List<UserDto>();
         }
     }
 }

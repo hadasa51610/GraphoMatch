@@ -1,4 +1,6 @@
-﻿namespace GraphoMatch.API.Models
+﻿using GraphoMatch.Core.DTOs;
+
+namespace GraphoMatch.API.Models
 {
     public class JobPostModel
     {
@@ -7,11 +9,13 @@
         public string Description { get; set; }
         public string Location { get; set; }
         public List<string> Tags { get; set; }
+        public List<UserDto> Seekers { get; set; }
         public string Salary { get; set; }
 
         public JobPostModel()
         {
             Tags = new List<string>();
+            Seekers = new List<UserDto>();
         }
     }
 }

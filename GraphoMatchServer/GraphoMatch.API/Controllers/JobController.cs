@@ -30,6 +30,14 @@ namespace GraphoMatch.API.Controllers
             return jobs == null ? NotFound() : Ok(jobs);
         }
 
+        [Authorize(Policy = "AdminOnly")]
+        [HttpGet("withSeekers")]
+        public async Task<ActionResult<IEnumerable<JobDTO>>> GetWithSeekers()
+        {
+            var jobs = await _jobService.GetWithSeekersAsync();
+            return jobs == null ? NotFound() : Ok(jobs);
+        }
+
         [Authorize(Policy = "UserOrAdmin")]
         // GET api/<JobController>/5
         [HttpGet("{id}")]

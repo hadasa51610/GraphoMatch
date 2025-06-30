@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using GraphoMatch.Core.DTOs;
 
 namespace GraphoMatch.Data.Repositories
 {
@@ -36,6 +37,13 @@ namespace GraphoMatch.Data.Repositories
 
             return existsJob?.Seekers;
         }
-    }
 
+        public async Task<IEnumerable<Job>> GetWithSeekersAsync()
+        {
+            return await _dbSet
+                .Include(j => j.Seekers)
+                .ToListAsync();
+        }
+
+    }
 }

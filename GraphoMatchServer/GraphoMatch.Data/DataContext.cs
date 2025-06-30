@@ -1,7 +1,6 @@
 ﻿using GraphoMatch.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,17 +39,18 @@ namespace GraphoMatch.Data
                 .HasOne(f => f.User)
                 .WithMany(u => u.Feedback)
                 .HasForeignKey(f => f.UserId)
-                .OnDelete(DeleteBehavior.Restrict); 
+                .OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<HandWriting>()
-                .HasOne(h => h.User)  
-                .WithMany()          
-                .HasForeignKey(h => h.UserId) 
+                .HasOne(h => h.User)
+                .WithMany()
+                .HasForeignKey(h => h.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<HandWriting>()
                 .HasOne(h => h.User)
                 .WithMany(u => u.HandWritings)
                 .HasForeignKey(h => h.UserId);
+
 
             base.OnModelCreating(modelBuilder);
         }

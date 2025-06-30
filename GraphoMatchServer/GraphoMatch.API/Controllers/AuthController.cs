@@ -25,6 +25,12 @@ namespace GraphoMatch.API.Controllers
             _config = configuration;
         }
 
+        [HttpGet("ping")]
+        public ActionResult Get()
+        {
+            return Ok();
+        }
+
         [HttpPost("login")]
         public async Task<ActionResult<LoginResDto>> Login([FromBody] LoginPostModel model)
         {

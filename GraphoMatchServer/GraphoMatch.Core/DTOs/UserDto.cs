@@ -16,5 +16,11 @@ namespace GraphoMatch.Core.DTOs
         public string Profession { get; set; }
         public List<Role> Roles { get; set; }
         public DateTime CreatedAt { get; set; }
+        public List<Job> Jobs { get; set; }
+
+        public UserDto()
+        {
+            Jobs = new List<Job>();
+        }
     }
 }

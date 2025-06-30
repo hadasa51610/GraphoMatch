@@ -62,6 +62,12 @@ namespace GraphoMatch.Service
             return _mapper.Map<IEnumerable<JobDTO>>(jobs);
         }
 
+        public async Task<IEnumerable<JobDTO>> GetWithSeekersAsync()
+        {
+            var jobs = await _managerRepository._jobs.GetWithSeekersAsync();
+            return _mapper.Map<IEnumerable<JobDTO>>(jobs);
+        }
+
         public async Task<JobDTO?> GetByIdAsync(int id)
         {
             var job = await _managerRepository._jobs.GetByIdAsync(id);

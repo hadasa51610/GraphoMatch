@@ -47,7 +47,7 @@ namespace GraphoMatch.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("FeedBack");
+                    b.ToTable("FeedBack", (string)null);
                 });
 
             modelBuilder.Entity("GraphoMatch.Core.Models.HandWriting", b =>
@@ -87,7 +87,7 @@ namespace GraphoMatch.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("HandWriting");
+                    b.ToTable("HandWriting", (string)null);
                 });
 
             modelBuilder.Entity("GraphoMatch.Core.Models.Job", b =>
@@ -127,7 +127,7 @@ namespace GraphoMatch.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Job");
+                    b.ToTable("Job", (string)null);
                 });
 
             modelBuilder.Entity("GraphoMatch.Core.Models.Role", b =>
@@ -151,7 +151,7 @@ namespace GraphoMatch.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.ToTable("Role", (string)null);
                 });
 
             modelBuilder.Entity("GraphoMatch.Core.Models.User", b =>
@@ -189,7 +189,7 @@ namespace GraphoMatch.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("JobUser", b =>
@@ -204,7 +204,7 @@ namespace GraphoMatch.Data.Migrations
 
                     b.HasIndex("SeekersId");
 
-                    b.ToTable("JobUser");
+                    b.ToTable("JobUser", (string)null);
                 });
 
             modelBuilder.Entity("RoleUser", b =>
@@ -219,7 +219,7 @@ namespace GraphoMatch.Data.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("RoleUser");
+                    b.ToTable("RoleUser", (string)null);
                 });
 
             modelBuilder.Entity("GraphoMatch.Core.Models.Feedback", b =>
