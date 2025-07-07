@@ -32,7 +32,7 @@ const Footer = () => {
                         </a>
                     </div>
 
-                    <div className="text-sm text-gray-500">© {new Date().getFullYear()} GraphoMatch. All rights reserved.</div>
+                    <div className="text-sm text-gray-500">© {new Date().getFullYear()} Hadasa Klirs. All rights reserved.</div>
                 </div>
             </div>
         </footer>
