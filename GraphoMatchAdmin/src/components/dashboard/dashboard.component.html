@@ -64,6 +64,61 @@
                     </span>
                 </div>
             </div>
+            <!-- User Feedback Section -->
+            <div class="feedback-section slide-in-up" style="animation-delay: 0.5s">
+                <div class="card feedback-card">
+                    <div class="card-header">
+                        <div class="header-left">
+                            <h3 class="card-title">
+                                <span class="title-icon">💬</span>
+                                User Feedback
+                            </h3>
+                            <div class="feedback-stats">
+                                <div class="stat-item">
+                                    <span class="stat-icon">📝</span>
+                                    <span class="stat-value">{{ feedbacks.length || 0 }}</span>
+                                    <span class="stat-label">Total Reviews</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if(feedbacks.length > 0) {
+                    <div class="feedback-list">
+                        @for (item of feedbacks; track item.id) {
+                        <div class="feedback-item">
+                            <div class="feedback-header">
+                                @if(item.user) {
+                                <div class="user-info">
+                                    <div class="user-avatar">{{ getUserInitials(item.user.name) }}</div>
+                                    <div class="user-details">
+                                        <div class="user-name">{{ item.user.name ||'' }}</div>
+                                        <div class="user-email">{{ item.user.email || '' }}</div>
+                                    </div>
+                                </div>
+                                }
+                                <div class="feedback-meta">
+                                    <div class="feedback-time">{{ item.createdAt | date:'short' }}</div>
+                                </div>
+                            </div>
+
+                            <div class="feedback-content">
+                                <p class="feedback-comment">{{ item.content }}</p>
+                            </div>
+                        </div>
+                        }
+
+                        @if (feedbacks.length===0) {
+                        <div class="no-feedback">
+                            <div class="no-feedback-icon">💭</div>
+                            <h4>No feedback yet</h4>
+                            <p>User feedback will appear here once submitted</p>
+                        </div>
+                        }
+                    </div>
+                    }
+                </div>
+            </div>
         </div>
     </div>
 </div>

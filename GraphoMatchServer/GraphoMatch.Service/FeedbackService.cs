@@ -63,5 +63,11 @@ namespace GraphoMatch.Service
             if (feedbackDto != null) await _managerRepository.SaveAsync();
             return _mapper.Map<FeedbackDto>(feedbackDto);
         }
+
+        public async Task<IEnumerable<FeedbackDto>> GetWithUsersAsync()
+        {
+            var feedbacks = await _managerRepository._feedback.GetWithUsersAsync();
+            return _mapper.Map<IEnumerable<FeedbackDto>>(feedbacks);
+        }
     }
 }

@@ -22,5 +22,10 @@ namespace GraphoMatch.Data.Repositories
         {
             return await _feedbacks.Where(f => f.UserId == userId).ToListAsync();
         }
+
+        public async Task<IEnumerable<Feedback>> GetWithUsersAsync()
+        {
+            return await _feedbacks.Include(f => f.User).ToListAsync();
+        }
     }
 }

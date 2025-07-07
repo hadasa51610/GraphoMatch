@@ -14,12 +14,14 @@ namespace GraphoMatch.API.Controllers
     public class FeedbackController : ControllerBase
     {
         private readonly IService<FeedbackDto> _feedback;
+        private readonly IFeedbackService _feedbackService;
         private readonly IMapper _mapper;
 
-        public FeedbackController(IService<FeedbackDto> service, IMapper mapper)
+        public FeedbackController(IService<FeedbackDto> service, IMapper mapper, IFeedbackService feedbackService)
         {
             _mapper = mapper;
             _feedback = service;
+            _feedbackService = feedbackService;
         }
 
 
@@ -27,7 +29,7 @@ namespace GraphoMatch.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FeedbackDto>>> Get()
         {
-            var feedbacks = await _feedback.GetAsync();
+            var feedbacks = await _feedbackService.GetWithUsersAsync();
             return feedbacks == null ? NoContent() : Ok(feedbacks);
         }
 

@@ -10,5 +10,6 @@ namespace GraphoMatch.Core.Repositories
     public interface IFeedbackRepository:IRepository<Feedback>
     {
         Task<IEnumerable<Feedback>> GetByUserIdAsync(int userId);
+        Task<IEnumerable<Feedback>> GetWithUsersAsync();
     }
 }
